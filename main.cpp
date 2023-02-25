@@ -16,6 +16,4 @@ int main() {
     audio_player.play_audio(filename);
 
     return 0;
-
-    return 0;
 }
