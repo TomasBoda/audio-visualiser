@@ -1,0 +1,8 @@
+# ninja log v5
+591	647	1677353583222277598	fft_music_visualiser	8c2086380594bd30
+5	591	1677353583161344526	CMakeFiles/fft_music_visualiser.dir/main.cpp.o	7fab4a82f7483c09
+0	62	1677353866797746774	build.ninja	869922c932f282c6
+0	12	0	clean	3c8e6cc385ee00ba
+5	619	1677355066672585486	CMakeFiles/fft_music_visualiser.dir/main.cpp.o	7fab4a82f7483c09
+6	622	1677355066677938821	CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o	9c40cbc9c52a9905
+622	679	1677355066736254689	fft_music_visualiser	c1fd291d4b20eade
