@@ -88,13 +88,13 @@ build CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o: CXX_COMPI
   OBJECT_DIR = CMakeFiles/fft_music_visualiser.dir
   OBJECT_FILE_DIR = CMakeFiles/fft_music_visualiser.dir/src/audio
 
-build CMakeFiles/fft_music_visualiser.dir/src/window/Window.cpp.o: CXX_COMPILER__fft_music_visualiser_Debug /Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/src/window/Window.cpp || cmake_object_order_depends_target_fft_music_visualiser
+build CMakeFiles/fft_music_visualiser.dir/src/config.cpp.o: CXX_COMPILER__fft_music_visualiser_Debug /Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/src/config.cpp || cmake_object_order_depends_target_fft_music_visualiser
   DEFINES = -DWXUSINGDLL -D_FILE_OFFSET_BITS=64 -D__WXMAC__ -D__WXOSX_COCOA__ -D__WXOSX__
-  DEP_FILE = CMakeFiles/fft_music_visualiser.dir/src/window/Window.cpp.o.d
+  DEP_FILE = CMakeFiles/fft_music_visualiser.dir/src/config.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++14
   INCLUDES = -F/Library/frameworks -isystem /opt/homebrew/lib/wx/include/osx_cocoa-unicode-3.2 -isystem /opt/homebrew/include/wx-3.2
   OBJECT_DIR = CMakeFiles/fft_music_visualiser.dir
-  OBJECT_FILE_DIR = CMakeFiles/fft_music_visualiser.dir/src/window
+  OBJECT_FILE_DIR = CMakeFiles/fft_music_visualiser.dir/src
 
 
 # =============================================================================
@@ -104,7 +104,7 @@ build CMakeFiles/fft_music_visualiser.dir/src/window/Window.cpp.o: CXX_COMPILER_
 #############################################
 # Link the executable fft_music_visualiser
 
-build fft_music_visualiser: CXX_EXECUTABLE_LINKER__fft_music_visualiser_Debug CMakeFiles/fft_music_visualiser.dir/main.cpp.o CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o CMakeFiles/fft_music_visualiser.dir/src/window/Window.cpp.o | /Library/frameworks/SDL2.framework/SDL2 /Library/frameworks/SDL2_mixer.framework/SDL2_mixer
+build fft_music_visualiser: CXX_EXECUTABLE_LINKER__fft_music_visualiser_Debug CMakeFiles/fft_music_visualiser.dir/main.cpp.o CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o CMakeFiles/fft_music_visualiser.dir/src/config.cpp.o | /Library/frameworks/SDL2.framework/SDL2 /Library/frameworks/SDL2_mixer.framework/SDL2_mixer
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
   LINK_LIBRARIES = -Wl,-rpath,/opt/homebrew/lib -Wl,-rpath,/Library/frameworks  /Library/frameworks/SDL2.framework/SDL2  /Library/frameworks/SDL2_mixer.framework/SDL2_mixer  -L/opt/homebrew/lib  -framework IOKit  -framework Carbon  -framework Cocoa  -framework QuartzCore  -framework AudioToolbox  -framework System  -framework OpenGL  -lwx_osx_cocoau_core-3.2  -lwx_baseu-3.2
   LINK_PATH = -L/opt/homebrew/lib

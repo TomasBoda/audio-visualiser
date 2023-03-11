@@ -1,7 +1,7 @@
 #include <wx/wx.h>
+#include <iostream>
 #include "../window/Window.h"
 #include "../audio/AudioPlayer.h"
-#include "../config.h"
 
 #ifndef FFT_MUSIC_VISUALISER_APP_H
 #define FFT_MUSIC_VISUALISER_APP_H
@@ -14,10 +14,11 @@ private:
 };
 
 bool App::OnInit() {
-    window = new Window("Music Visualiser", wxPoint(50, 50), wxSize(constants::WIDTH, constants::HEIGHT));
+    window = new Window("Music Visualiser", wxPoint(50, 50), wxSize(800, 500));
 
     AudioPlayer audio_player;
-    audio_player.play_audio(constants::FILENAME);
+    const char * filename = "../never-gonna-give-u-up.wav";
+    audio_player.play_audio(filename);
 
     return true;
 }

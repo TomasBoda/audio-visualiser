@@ -9,11 +9,9 @@
 
 class AudioPlayer {
 public:
-    AudioPlayer() { initialize(); }
+    AudioPlayer() {}
 
     void play_audio(const char * & filename);
-private:
-    void initialize();
 };
 
 #endif
