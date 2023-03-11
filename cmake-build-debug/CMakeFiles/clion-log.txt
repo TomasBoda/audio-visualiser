@@ -1,4 +1,5 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja /Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser
 -- Configuring done
+WARNING: Target "fft_music_visualiser" requests linking to directory "/Library//frameworks".  Targets may link only to libraries.  CMake is dropping the item.
 -- Generating done
 -- Build files have been written to: /Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug
