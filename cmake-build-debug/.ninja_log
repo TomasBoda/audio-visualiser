@@ -1,13 +1,11 @@
 # ninja log v5
-8	1102	1678569055332563756	CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o	9526faf5c953586a
-0	8	0	clean	3c8e6cc385ee00ba
-7	1159	1678569000562565147	CMakeFiles/fft_music_visualiser.dir/src/window/Window.cpp.o	64aa51000ddadccf
+1932	2273	1678574505369621326	fft_music_visualiser	773bee7f42e111a6
+0	389	1678574554130916598	build.ninja	869922c932f282c6
+2	1774	1678574504851549260	CMakeFiles/fft_music_visualiser.dir/src/window/Window.cpp.o	64aa51000ddadccf
+0	1932	1678574505022082390	CMakeFiles/fft_music_visualiser.dir/main.cpp.o	b4c5807f82779e41
 8	553	1677362930781266964	CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o	f35e63f95b8c8c7b
-7	1201	1678569000604992183	CMakeFiles/fft_music_visualiser.dir/main.cpp.o	b4c5807f82779e41
-0	376	1678569284455188838	build.ninja	869922c932f282c6
-1102	1218	1678569055453908841	fft_music_visualiser	773bee7f42e111a6
-0	389	1678569284455188838	build.ninja	869922c932f282c6
-9	1072	1678569285543827926	CMakeFiles/fft_music_visualiser.dir/src/window/Window.cpp.o	64aa51000ddadccf
-9	1114	1678569285588279012	CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o	9526faf5c953586a
-9	1123	1678569285597716298	CMakeFiles/fft_music_visualiser.dir/main.cpp.o	b4c5807f82779e41
-1123	1247	1678569285726448203	fft_music_visualiser	773bee7f42e111a6
+0	8	0	clean	3c8e6cc385ee00ba
+1	1913	1678574504999754890	CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o	9526faf5c953586a
+1	390	1678574554130916598	build.ninja	869922c932f282c6
+6	1142	1678574555285851481	CMakeFiles/fft_music_visualiser.dir/main.cpp.o	b4c5807f82779e41
+1143	1266	1678574555415932815	fft_music_visualiser	773bee7f42e111a6
