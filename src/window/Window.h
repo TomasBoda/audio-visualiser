@@ -38,10 +38,19 @@ public:
     void OnPaint(wxPaintEvent& event) {
         wxPaintDC dc(this);
 
-        std::lock_guard<std::mutex> lock(global::MUTEX);
-        int shared_data = global::SHARED_DATA;
+        dc.SetPen(*wxTRANSPARENT_PEN);
+        dc.SetBrush(wxBrush(wxColour(255, 0, 0), wxBRUSHSTYLE_SOLID));
 
-        dc.DrawText(wxString::Format(wxT("%d"), shared_data), 100, 100);
+        std::lock_guard<std::mutex> lock(global::MUTEX);
+
+        for (int i = 0; i < global::NUM_CHUNKS; i++) {
+            int width = 800 / global::NUM_CHUNKS;
+            int height = global::SPECTRUM[i] / 1000;
+            int x = i * width;
+            int y = 500 - height;
+
+            dc.DrawRectangle(x, y, width, height);
+        }
     }
 private:
     wxTimer * timer;

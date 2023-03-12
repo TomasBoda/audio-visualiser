@@ -14,11 +14,10 @@ private:
 };
 
 bool App::OnInit() {
-    window = new Window("Music Visualiser", wxPoint(50, 50), wxSize(800, 500));
+    window = new Window("Music Visualiser", wxPoint(50, 50), wxSize(global::WIDTH, global::HEIGHT));
 
     AudioPlayer audio_player;
-    const char * filename = "../never-gonna-give-u-up.wav";
-    audio_player.play_audio(filename);
+    audio_player.play_audio(global::FILENAME);
 
     return true;
 }

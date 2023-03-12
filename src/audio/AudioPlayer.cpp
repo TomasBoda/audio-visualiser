@@ -1,36 +1,82 @@
 #include <iostream>
 #include <thread>
-#include <random>
+#include <vector>
+#include <cmath>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_audio.h>
 #include <SDL2_mixer/SDL_mixer.h>
+#include <complex>
 #include "../config.h"
 #include "AudioPlayer.h"
 
 using namespace std;
 
-Uint8 * audio_position;
-Uint32 audio_length;
+typedef std::complex<double> Complex;
 
-void audio_callback(void * user_data, Uint8 * stream, int length) {
-    if (audio_length == 0) {
+void FFT(std::vector<Complex>& x) {
+    const size_t N = x.size();
+
+    if (N <= 1) {
         return;
     }
 
-    int buffer_size = length > audio_length ? audio_length : length;
-    SDL_memcpy (stream, audio_position, buffer_size);
+    std::vector<Complex> even(N / 2), odd(N / 2);
 
-    audio_position += buffer_size;
-    audio_length -= buffer_size;
+    for (size_t i = 0; i < N / 2; i++) {
+        even[i] = x[2 * i];
+        odd[i] = x[2*i + 1];
+    }
 
-    // generate random int and update global data
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(1, 10);
+    FFT(even);
+    FFT(odd);
 
-    int shared_data = dist(gen);
-    std::lock_guard<std::mutex> lock(global::MUTEX);
-    global::SHARED_DATA = shared_data;
+    for (size_t k = 0; k < N / 2; k++) {
+        Complex t = std::polar(1.0, -2 * M_PI * k / N) * odd[k];
+        x[k] = even[k] + t;
+        x[k + N/2] = even[k] - t;
+    }
+}
+
+struct AudioData {
+    Uint8 * position;
+    Uint32 length;
+    Uint32 sample_rate;
+};
+
+void audio_callback(void * user_data, Uint8 * stream, int length) {
+    AudioData * audio = (AudioData *) user_data;
+
+    Uint32 buffer_size = length > audio->length ? audio->length : length;
+    SDL_memcpy(stream, audio->position, buffer_size);
+
+    std::vector<Complex> x(buffer_size / 2);
+    for (size_t i = 0; i < buffer_size / 2; i++) {
+        int16_t sample = (stream[2*i + 1] << 8) | stream[2 * i];
+        x[i] = sample;
+    }
+
+    FFT(x);
+
+    const size_t N = x.size() / 2;
+    const int chunk_size = N / global::NUM_CHUNKS;
+
+    for (size_t i = 0; i < global::NUM_CHUNKS; i++) {
+        double chunk_sum = 0;
+
+        for (size_t j = 0; j < chunk_size; j++) {
+            int index = (i * chunk_size) + j;
+
+            double frequency = index * audio->sample_rate / (double) N;
+            double magnitude = std::abs(x[index]);
+
+            chunk_sum += magnitude;
+        }
+
+        global::SPECTRUM[i] = chunk_sum / chunk_size;
+    }
+
+    audio->position += buffer_size;
+    audio->length -= buffer_size;
 }
 
 void AudioPlayer::play_audio(const char * & filename) {
@@ -49,11 +95,13 @@ void AudioPlayer::play_audio(const char * & filename) {
             exit(1);
         }
 
-        wav_spec.callback = audio_callback;
-        wav_spec.userdata = NULL;
+        AudioData audio;
+        audio.position = wav_buffer;
+        audio.length = wav_length;
+        audio.sample_rate = wav_spec.freq;
 
-        audio_position = wav_buffer;
-        audio_length = wav_length;
+        wav_spec.callback = audio_callback;
+        wav_spec.userdata = &audio;
 
         if (SDL_OpenAudio(&wav_spec, NULL) < 0) {
             cerr << "Cannot open audio..." << endl;
@@ -61,7 +109,7 @@ void AudioPlayer::play_audio(const char * & filename) {
         }
 
         SDL_PauseAudio(0);
-        while (audio_length > 0) {
+        while (audio.length > 0) {
             SDL_Delay(100);
         }
 
