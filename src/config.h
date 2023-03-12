@@ -7,6 +7,6 @@ namespace global {
     extern const char * FILENAME;
 
     extern int NUM_CHUNKS;
-    extern double SPECTRUM[32];
+    extern double SPECTRUM[60];
     extern std::mutex MUTEX;
 }

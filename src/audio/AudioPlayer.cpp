@@ -30,10 +30,8 @@ void audio_callback(void * user_data, Uint8 * stream, int length) {
         x[i].imag(stream[i * 2 + 1]);
     }
 
-    FFT(x);
-
     const size_t N = x.size() / 2;
-    const int chunk_size = N / global::NUM_CHUNKS;
+    const double chunk_size = N / global::NUM_CHUNKS;
 
     for (size_t i = 0; i < global::NUM_CHUNKS; i++) {
         double chunk_sum = 0;
@@ -41,7 +39,7 @@ void audio_callback(void * user_data, Uint8 * stream, int length) {
         for (size_t j = 0; j < chunk_size; j++) {
             int index = (i * chunk_size) + j;
 
-            //double frequency = index * audio->sample_rate / (double) N;
+            double frequency = index * audio->sample_rate / (double) N;
             double magnitude = std::abs(x[index]);
             chunk_sum += magnitude;
         }
@@ -84,7 +82,7 @@ void AudioPlayer::play_audio(const char * & filename) {
 
         SDL_PauseAudio(0);
         while (audio.length > 0) {
-            SDL_Delay(100);
+            SDL_Delay(1);
         }
 
         SDL_CloseAudio();
