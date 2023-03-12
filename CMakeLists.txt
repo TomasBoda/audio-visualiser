@@ -13,7 +13,7 @@ set(wxWidgets_CONFIGURATION mswu)
 find_package(wxWidgets REQUIRED COMPONENTS core base)
 include(${wxWidgets_USE_FILE})
 
-add_executable(fft_music_visualiser main.cpp src/audio/AudioPlayer.h src/audio/AudioPlayer.cpp src/app/App.h src/window/Window.h src/config.h src/config.cpp)
+add_executable(fft_music_visualiser main.cpp src/audio/AudioPlayer.h src/audio/AudioPlayer.cpp src/app/App.h src/window/Window.h src/config.h src/config.cpp src/utils/FFT.h)
 
 # Add the frameworks to your target
 target_link_libraries(fft_music_visualiser PRIVATE

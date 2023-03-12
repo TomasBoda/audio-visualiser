@@ -8,34 +8,9 @@
 #include <complex>
 #include "../config.h"
 #include "AudioPlayer.h"
+#include "../utils/FFT.h"
 
 using namespace std;
-
-typedef std::complex<double> Complex;
-
-void FFT(std::vector<Complex>& x) {
-    const size_t N = x.size();
-
-    if (N <= 1) {
-        return;
-    }
-
-    std::vector<Complex> even(N / 2), odd(N / 2);
-
-    for (size_t i = 0; i < N / 2; i++) {
-        even[i] = x[2 * i];
-        odd[i] = x[2*i + 1];
-    }
-
-    FFT(even);
-    FFT(odd);
-
-    for (size_t k = 0; k < N / 2; k++) {
-        Complex t = std::polar(1.0, -2 * M_PI * k / N) * odd[k];
-        x[k] = even[k] + t;
-        x[k + N/2] = even[k] - t;
-    }
-}
 
 struct AudioData {
     Uint8 * position;
@@ -49,10 +24,10 @@ void audio_callback(void * user_data, Uint8 * stream, int length) {
     Uint32 buffer_size = length > audio->length ? audio->length : length;
     SDL_memcpy(stream, audio->position, buffer_size);
 
-    std::vector<Complex> x(buffer_size / 2);
+    vector<complex<double>> x(buffer_size / 2);
     for (size_t i = 0; i < buffer_size / 2; i++) {
-        int16_t sample = (stream[2*i + 1] << 8) | stream[2 * i];
-        x[i] = sample;
+        x[i].real(stream[i * 2]);
+        x[i].imag(stream[i * 2 + 1]);
     }
 
     FFT(x);
@@ -66,9 +41,8 @@ void audio_callback(void * user_data, Uint8 * stream, int length) {
         for (size_t j = 0; j < chunk_size; j++) {
             int index = (i * chunk_size) + j;
 
-            double frequency = index * audio->sample_rate / (double) N;
+            //double frequency = index * audio->sample_rate / (double) N;
             double magnitude = std::abs(x[index]);
-
             chunk_sum += magnitude;
         }
 

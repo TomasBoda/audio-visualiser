@@ -14,7 +14,7 @@ public:
         Bind(wxEVT_TIMER, &Window::OnTimer, this, timer->GetId());
         Bind(wxEVT_PAINT, &Window::OnPaint, this);
 
-        timer->Start(50);
+        timer->Start(20);
 
         SetSize(size);
         SetPosition(pos);
@@ -38,18 +38,21 @@ public:
     void OnPaint(wxPaintEvent& event) {
         wxPaintDC dc(this);
 
-        dc.SetPen(*wxTRANSPARENT_PEN);
-        dc.SetBrush(wxBrush(wxColour(255, 0, 0), wxBRUSHSTYLE_SOLID));
-
         std::lock_guard<std::mutex> lock(global::MUTEX);
 
-        for (int i = 0; i < global::NUM_CHUNKS; i++) {
-            int width = 800 / global::NUM_CHUNKS;
-            int height = global::SPECTRUM[i] / 1000;
-            int x = i * width;
-            int y = 500 - height;
+        for (int i = 0; i < global::NUM_CHUNKS - 1; i++) {
+            auto m1 = global::SPECTRUM[i] / 100;
+            auto m2 = global::SPECTRUM[i + 1] / 100;
 
-            dc.DrawRectangle(x, y, width, height);
+            int width = global::WIDTH / global::NUM_CHUNKS;
+
+            int x1 = i * width;
+            int x2 = i * width + width;
+            int y1 = global::HEIGHT - m1;
+            int y2 = global::HEIGHT - m2;
+
+            dc.SetPen(*wxWHITE_PEN);
+            dc.DrawLine(x1, global::HEIGHT - y1, x2, global::HEIGHT - y2);
         }
     }
 private:
