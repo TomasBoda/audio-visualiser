@@ -2,13 +2,13 @@
 #include <thread>
 #include <vector>
 #include <cmath>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_audio.h>
-#include <SDL2_mixer/SDL_mixer.h>
+#include <SDL.h>
 #include <complex>
 #include "../config.h"
 #include "AudioPlayer.h"
 #include "../utils/FFT.h"
+
+#include <fftw3.h>
 
 using namespace std;
 

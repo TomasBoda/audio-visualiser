@@ -7,8 +7,8 @@ namespace global {
     int WIDTH = 1200;
     int HEIGHT = 700;
 
-    const char * FILENAME = "../never-gonna-give-u-up.wav";
-    //const char * FILENAME = "../drums.wav";
+    //const char * FILENAME = "../never-gonna-give-u-up.wav";
+    const char * FILENAME = "../malby.wav";
 
     int NUM_CHUNKS = 60;
     double SPECTRUM[60] = {};
