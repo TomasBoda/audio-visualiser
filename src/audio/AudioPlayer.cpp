@@ -1,12 +1,11 @@
 #include <iostream>
 #include <thread>
-#include <vector>
 #include <cmath>
 #include <SDL.h>
-#include <complex>
 #include "../config.h"
 #include "AudioPlayer.h"
 #include "../utils/FFT.h"
+#include <algorithm>
 
 #include <fftw3.h>
 
@@ -18,37 +17,49 @@ struct AudioData {
     Uint32 sample_rate;
 };
 
-void audio_callback(void * user_data, Uint8 * stream, int length) {
+void audio_callback(void * user_data, Uint8 * stream, int len) {
     AudioData * audio = (AudioData *) user_data;
 
-    Uint32 buffer_size = length > audio->length ? audio->length : length;
-    SDL_memcpy(stream, audio->position, buffer_size);
+    int num_samples = len / 2;
 
-    vector<complex<double>> x(buffer_size / 2);
-    for (size_t i = 0; i < buffer_size / 2; i++) {
-        x[i].real(stream[i * 2]);
-        x[i].imag(stream[i * 2 + 1]);
+    fftw_complex * in = (fftw_complex *) fftw_malloc(sizeof(fftw_complex) * num_samples);
+    fftw_complex * out = (fftw_complex *) fftw_malloc(sizeof(fftw_complex) * num_samples);
+    fftw_plan plan = fftw_plan_dft_1d(num_samples, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
+
+    for (int i = 0; i < num_samples; i++) {
+        Sint16 sample = ((Sint16) audio->position[2 * i + 1] << 8) | audio->position[2 * i];
+        double normalized_sample = (double) sample / 32768.0;
+
+        in[i][0] = normalized_sample;
+        in[i][1] = 0;
     }
 
-    const size_t N = x.size() / 2;
-    const double chunk_size = N / global::NUM_CHUNKS;
+    fftw_execute(plan);
 
-    for (size_t i = 0; i < global::NUM_CHUNKS; i++) {
-        double chunk_sum = 0;
+    const int num_bins = global::NUM_CHUNKS;
+    double bin_width = (double) audio->sample_rate / (double) num_samples;
 
-        for (size_t j = 0; j < chunk_size; j++) {
-            int index = (i * chunk_size) + j;
-
-            double frequency = index * audio->sample_rate / (double) N;
-            double magnitude = std::abs(x[index]);
-            chunk_sum += magnitude;
-        }
-
-        global::SPECTRUM[i] = chunk_sum / chunk_size;
+    double * magnitudes = new double[num_bins];
+    for (int i = 0; i < num_bins; i++) {
+        double frequency = bin_width * i;
+        double magnitude = sqrt(out[i][0] * out[i][0] + out[i][1] * out[i][1]);
+        magnitudes[i] = magnitude;
     }
 
-    audio->position += buffer_size;
-    audio->length -= buffer_size;
+    double * db_values = new double[num_bins];
+    for (int i = 0; i < num_bins; i++) {
+        double db_value = 20.0 * log10(magnitudes[i] + 1e-6);
+        db_values[i] = max(0.0, db_value);
+        global::SPECTRUM[i] = db_values[i] * 10;
+    }
+
+    fftw_destroy_plan(plan);
+    fftw_free(in);
+    fftw_free(out);
+
+    SDL_memcpy(stream, audio->position, len);
+    audio->position += len;
+    audio->length -= len;
 }
 
 void AudioPlayer::play_audio(const char * & filename) {

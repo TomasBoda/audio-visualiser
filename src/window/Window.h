@@ -42,6 +42,7 @@ public:
 
         std::lock_guard<std::mutex> lock(global::MUTEX);
 
+        /*
         for (int i = 0; i < global::NUM_CHUNKS; i++) {
             auto magnitude = global::SPECTRUM[i];
 
@@ -97,29 +98,24 @@ public:
             dc.SetPen(pen);
             dc.DrawLine(x_c, y_c, x_m, y_m);
         }
+        */
 
-        /*
-        for (int i = 0; i < global::NUM_CHUNKS - 1; i++) {
-            auto m1 = global::SPECTRUM[i];
-            auto m2 = global::SPECTRUM[i + 1];
-
+        for (int i = 0; i < global::NUM_CHUNKS; i++) {
+            auto height = global::SPECTRUM[i];
             int width = global::WIDTH / global::NUM_CHUNKS;
 
-            int x1 = i * width;
-            int x2 = i * width + width;
-            int y1 = global::HEIGHT - m1;
-            int y2 = global::HEIGHT - m2;
+            int x = i * width;
+            int y = global::HEIGHT - height;
 
-            wxPen pen_black(wxColour(0, 0, 0), 5);
-            wxPen pen_red(wxColour(255, 0, 0), 5);
+            int factor = 255 / global::NUM_CHUNKS * i;
 
-            dc.SetPen(pen_red);
-            dc.DrawLine(x1, y1 + 20, x2, y2 + 20);
+            int r = factor;
+            int g = 0;
+            int b = 255 - factor;
 
-            dc.SetPen(pen_black);
-            dc.DrawLine(x1, y1, x2, y2);
+            dc.SetBrush(wxBrush(wxColour(r, g, b)));
+            dc.DrawRectangle(x, y, width, height);
         }
-        */
     }
 private:
     wxTimer * timer;

@@ -10,7 +10,7 @@ namespace global {
     //const char * FILENAME = "../never-gonna-give-u-up.wav";
     const char * FILENAME = "../malby.wav";
 
-    int NUM_CHUNKS = 60;
-    double SPECTRUM[60] = {};
+    int NUM_CHUNKS = 120;
+    double SPECTRUM[120] = {};
     mutex MUTEX;
 }
