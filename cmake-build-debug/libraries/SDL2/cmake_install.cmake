@@ -1,4 +1,4 @@
-# Install script for directory: /Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/libraries/SDL2
+# Install script for directory: /Users/tomasboda/Desktop/music-visualiser-master/libraries/SDL2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

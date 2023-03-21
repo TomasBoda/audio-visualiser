@@ -51,7 +51,7 @@ set_target_properties(FFTW3::fftw3 PROPERTIES
 # Import target "FFTW3::fftw3" for configuration "Debug"
 set_property(TARGET FFTW3::fftw3 APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(FFTW3::fftw3 PROPERTIES
-  IMPORTED_LOCATION_DEBUG "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/libfftw3.3.dylib"
+  IMPORTED_LOCATION_DEBUG "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/libfftw3.3.dylib"
   IMPORTED_SONAME_DEBUG "@rpath/libfftw3.3.6.9.dylib"
   )
 

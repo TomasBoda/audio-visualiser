@@ -1,4 +1,4 @@
-# Install script for directory: /Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/libraries/fftw3
+# Install script for directory: /Users/tomasboda/Desktop/music-visualiser-master/libraries/fftw3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,8 +39,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/libfftw3.3.dylib"
-    "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/libfftw3.3.6.9.dylib"
+    "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/libfftw3.3.dylib"
+    "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/libfftw3.3.6.9.dylib"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfftw3.3.dylib"
@@ -56,7 +56,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/libfftw3.dylib")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/libfftw3.dylib")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfftw3.dylib" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfftw3.dylib")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -67,8 +67,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/libfftw3.3.dylib"
-    "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/libfftw3.3.6.9.dylib"
+    "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/libfftw3.3.dylib"
+    "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/libfftw3.3.6.9.dylib"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfftw3.3.dylib"
@@ -84,7 +84,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/libfftw3.dylib")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/libfftw3.dylib")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfftw3.dylib" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libfftw3.dylib")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -94,17 +94,17 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/libraries/fftw3/api/fftw3.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/Users/tomasboda/Desktop/music-visualiser-master/libraries/fftw3/api/fftw3.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xDevelopmentx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/fftw3.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/fftw3.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xDevelopmentx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fftw3" TYPE FILE FILES
-    "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/FFTW3Config.cmake"
-    "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/FFTW3ConfigVersion.cmake"
+    "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/FFTW3Config.cmake"
+    "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/FFTW3ConfigVersion.cmake"
     )
 endif()
 
@@ -112,7 +112,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xDevelopmentx" OR NOT CMAKE_INSTALL_
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/fftw3/FFTW3LibraryDepends.cmake")
     file(DIFFERENT EXPORT_FILE_CHANGED FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/fftw3/FFTW3LibraryDepends.cmake"
-         "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/CMakeFiles/Export/lib/cmake/fftw3/FFTW3LibraryDepends.cmake")
+         "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/CMakeFiles/Export/lib/cmake/fftw3/FFTW3LibraryDepends.cmake")
     if(EXPORT_FILE_CHANGED)
       file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/fftw3/FFTW3LibraryDepends-*.cmake")
       if(OLD_CONFIG_FILES)
@@ -121,9 +121,9 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xDevelopmentx" OR NOT CMAKE_INSTALL_
       endif()
     endif()
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fftw3" TYPE FILE FILES "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/CMakeFiles/Export/lib/cmake/fftw3/FFTW3LibraryDepends.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fftw3" TYPE FILE FILES "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/CMakeFiles/Export/lib/cmake/fftw3/FFTW3LibraryDepends.cmake")
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fftw3" TYPE FILE FILES "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/CMakeFiles/Export/lib/cmake/fftw3/FFTW3LibraryDepends-debug.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/fftw3" TYPE FILE FILES "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/CMakeFiles/Export/lib/cmake/fftw3/FFTW3LibraryDepends-debug.cmake")
   endif()
 endif()
 

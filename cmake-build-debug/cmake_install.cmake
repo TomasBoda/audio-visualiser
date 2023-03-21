@@ -1,4 +1,4 @@
-# Install script for directory: /Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser
+# Install script for directory: /Users/tomasboda/Desktop/music-visualiser-master
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,12 +39,12 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/SDL2/cmake_install.cmake")
+  include("/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/fftw3/cmake_install.cmake")
+  include("/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/fftw3/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -55,5 +55,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

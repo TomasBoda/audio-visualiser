@@ -29,7 +29,6 @@ void audio_callback(void * user_data, Uint8 * stream, int len) {
     for (int i = 0; i < num_samples; i++) {
         Sint16 sample = ((Sint16) audio->position[2 * i + 1] << 8) | audio->position[2 * i];
         double normalized_sample = (double) sample / 32768.0;
-
         in[i][0] = normalized_sample;
         in[i][1] = 0;
     }
@@ -50,7 +49,7 @@ void audio_callback(void * user_data, Uint8 * stream, int len) {
     for (int i = 0; i < num_bins; i++) {
         double db_value = 20.0 * log10(magnitudes[i] + 1e-6);
         db_values[i] = max(0.0, db_value);
-        global::SPECTRUM[i] = db_values[i] * 10;
+        global::SPECTRUM[i] = db_values[i] * db_values[i] / 6;
     }
 
     fftw_destroy_plan(plan);

@@ -1,8 +1,8 @@
-if (NOT EXISTS "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/install_manifest.txt")
-    message(FATAL_ERROR "Cannot find install manifest: \"/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/install_manifest.txt\"")
-endif(NOT EXISTS "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/install_manifest.txt")
+if (NOT EXISTS "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/install_manifest.txt")
+    message(FATAL_ERROR "Cannot find install manifest: \"/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/install_manifest.txt\"")
+endif(NOT EXISTS "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/install_manifest.txt")
 
-file(READ "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/install_manifest.txt" files)
+file(READ "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/install_manifest.txt" files)
 string(REGEX REPLACE "\n" ";" files "${files}")
 foreach (file ${files})
     message(STATUS "Uninstalling \"$ENV{DESTDIR}${file}\"")

@@ -1,6 +1,6 @@
 #include <wx/wx.h>
 #include <iostream>
-#include "../window/Window.h"
+#include "../gui/Window.h"
 #include "../audio/AudioPlayer.h"
 
 #ifndef FFT_MUSIC_VISUALISER_APP_H
@@ -11,13 +11,14 @@ public:
     virtual bool OnInit();
 private:
     Window * window;
+    AudioPlayer * audio_player;
 };
 
 bool App::OnInit() {
-    window = new Window("Music Visualiser", wxPoint(50, 50), wxSize(global::WIDTH, global::HEIGHT));
+    window = new Window();
+    audio_player = new AudioPlayer();
 
-    AudioPlayer audio_player;
-    audio_player.play_audio(global::FILENAME);
+    audio_player->play_audio(global::FILENAME);
 
     return true;
 }

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/SDL2/CMakeFiles/CheckOBJC
+# Install script for directory: /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/CMakeFiles/CheckOBJC
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/tomasboda/Documents/Workspace/C++/exam/fft-music-visualiser/cmake-build-debug/libraries/SDL2/CMakeFiles/CheckOBJC/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/CMakeFiles/CheckOBJC/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
