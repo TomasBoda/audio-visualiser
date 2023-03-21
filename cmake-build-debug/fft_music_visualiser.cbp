@@ -3064,6 +3064,9 @@
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/utils/FFT.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/utils/MessageDialog.h">
+			<Option target="fft_music_visualiser"/>
+		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

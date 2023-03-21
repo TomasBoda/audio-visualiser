@@ -735,4 +735,5 @@ CMakeFiles/fft_music_visualiser.dir/main.cpp.o: \
   /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_timer.h \
   /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_version.h \
   /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_locale.h \
-  /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_misc.h
+  /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_misc.h \
+  /Users/tomasboda/Desktop/music-visualiser-master/src/app/../utils/MessageDialog.h

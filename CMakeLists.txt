@@ -19,6 +19,6 @@ add_executable(fft_music_visualiser
         src/config.h
         src/config.cpp
         src/utils/FFT.h
-        src/gui/Window.h src/gui/Window.cpp)
+        src/gui/Window.h src/gui/Window.cpp src/utils/MessageDialog.h)
 
 target_link_libraries(fft_music_visualiser PRIVATE SDL2 ${wxWidgets_LIBRARIES} fftw3)

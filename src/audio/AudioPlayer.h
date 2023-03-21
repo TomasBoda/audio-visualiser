@@ -8,7 +8,7 @@ class AudioPlayer {
 public:
     AudioPlayer() {}
 
-    void play_audio(const char * & filename);
+    void play_audio(const std::string & filename);
 };
 
 #endif

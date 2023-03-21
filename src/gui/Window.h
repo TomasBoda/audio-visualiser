@@ -21,6 +21,10 @@ public:
         gui_timer->Start(10);
         frq_timer->Start(10);
 
+        for (int i = 0; i < global::NUM_CHUNKS; i++) {
+            frequency_spectrum[i] = 0;
+        }
+
         SetBackgroundColour(wxColour(* wxBLACK));
         SetSize(wxSize(global::WIDTH, global::HEIGHT));
         Center();

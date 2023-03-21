@@ -6,7 +6,8 @@
 #include "AudioPlayer.h"
 #include "../utils/FFT.h"
 #include <algorithm>
-
+#include <wx/wx.h>
+#include "../utils/MessageDialog.h"
 #include <fftw3.h>
 
 using namespace std;
@@ -61,20 +62,18 @@ void audio_callback(void * user_data, Uint8 * stream, int len) {
     audio->length -= len;
 }
 
-void AudioPlayer::play_audio(const char * & filename) {
+void AudioPlayer::play_audio(const string & filename) {
     thread audio_thread( [filename]() {
         if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-            cerr << "SDL error occurred..." << endl;
-            exit(1);
+            Dialog::showErrorMessage("Audio library could not be initialized...");
         }
 
         Uint32 wav_length;
         Uint8 * wav_buffer;
         SDL_AudioSpec wav_spec;
 
-        if (SDL_LoadWAV(filename, &wav_spec, &wav_buffer, &wav_length) == NULL) {
-            cerr << "Cannot open audio file..." << endl;
-            exit(1);
+        if (SDL_LoadWAV(filename.c_str(), &wav_spec, &wav_buffer, &wav_length) == NULL) {
+            Dialog::showErrorMessage("Cannot open the provided audio file...");
         }
 
         AudioData audio;
@@ -86,8 +85,7 @@ void AudioPlayer::play_audio(const char * & filename) {
         wav_spec.userdata = &audio;
 
         if (SDL_OpenAudio(&wav_spec, NULL) < 0) {
-            cerr << "Cannot open audio..." << endl;
-            exit(1);
+            Dialog::showErrorMessage("Cannot open the provided audio file...");
         }
 
         SDL_PauseAudio(0);
