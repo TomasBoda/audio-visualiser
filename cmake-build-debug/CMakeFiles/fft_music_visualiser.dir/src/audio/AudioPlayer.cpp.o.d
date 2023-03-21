@@ -480,11 +480,7 @@ CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o: \
   /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_misc.h \
   /Users/tomasboda/Desktop/music-visualiser-master/src/audio/../config.h \
   /Users/tomasboda/Desktop/music-visualiser-master/src/audio/AudioPlayer.h \
-  /Users/tomasboda/Desktop/music-visualiser-master/src/audio/../utils/FFT.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/complex \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/sstream \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/vector \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__split_buffer \
+  /Users/tomasboda/Desktop/music-visualiser-master/src/audio/../utils/Dialog.h \
   /opt/homebrew/include/wx-3.2/wx/wx.h \
   /opt/homebrew/include/wx-3.2/wx/defs.h \
   /opt/homebrew/include/wx-3.2/wx/platform.h \
@@ -532,6 +528,8 @@ CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o: \
   /opt/homebrew/include/wx-3.2/wx/hashmap.h \
   /opt/homebrew/include/wx-3.2/wx/wxcrt.h \
   /opt/homebrew/include/wx-3.2/wx/arrstr.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/vector \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__split_buffer \
   /opt/homebrew/include/wx-3.2/wx/intl.h \
   /opt/homebrew/include/wx-3.2/wx/localedefs.h \
   /opt/homebrew/include/wx-3.2/wx/translation.h \
@@ -736,5 +734,4 @@ CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o: \
   /opt/homebrew/include/wx-3.2/wx/osx/filedlg.h \
   /opt/homebrew/include/wx-3.2/wx/mdi.h \
   /opt/homebrew/include/wx-3.2/wx/osx/mdi.h \
-  /Users/tomasboda/Desktop/music-visualiser-master/src/audio/../utils/MessageDialog.h \
   /Users/tomasboda/Desktop/music-visualiser-master/libraries/fftw3/api/fftw3.h

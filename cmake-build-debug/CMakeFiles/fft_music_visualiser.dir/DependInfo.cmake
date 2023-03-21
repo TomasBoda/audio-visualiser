@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/tomasboda/Desktop/music-visualiser-master/main.cpp" "CMakeFiles/fft_music_visualiser.dir/main.cpp.o" "gcc" "CMakeFiles/fft_music_visualiser.dir/main.cpp.o.d"
+  "/Users/tomasboda/Desktop/music-visualiser-master/src/app/App.cpp" "CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o" "gcc" "CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o.d"
   "/Users/tomasboda/Desktop/music-visualiser-master/src/audio/AudioPlayer.cpp" "CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o" "gcc" "CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o.d"
   "/Users/tomasboda/Desktop/music-visualiser-master/src/config.cpp" "CMakeFiles/fft_music_visualiser.dir/src/config.cpp.o" "gcc" "CMakeFiles/fft_music_visualiser.dir/src/config.cpp.o.d"
   "/Users/tomasboda/Desktop/music-visualiser-master/src/gui/Window.cpp" "CMakeFiles/fft_music_visualiser.dir/src/gui/Window.cpp.o" "gcc" "CMakeFiles/fft_music_visualiser.dir/src/gui/Window.cpp.o.d"

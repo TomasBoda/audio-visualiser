@@ -302,6 +302,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/fft_music_visualiser.dir/build.make CMakeFiles/fft_music_visualiser.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/app/App.o: src/app/App.cpp.o
+.PHONY : src/app/App.o
+
+# target to build an object file
+src/app/App.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fft_music_visualiser.dir/build.make CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o
+.PHONY : src/app/App.cpp.o
+
+src/app/App.i: src/app/App.cpp.i
+.PHONY : src/app/App.i
+
+# target to preprocess a source file
+src/app/App.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fft_music_visualiser.dir/build.make CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.i
+.PHONY : src/app/App.cpp.i
+
+src/app/App.s: src/app/App.cpp.s
+.PHONY : src/app/App.s
+
+# target to generate assembly for a file
+src/app/App.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fft_music_visualiser.dir/build.make CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.s
+.PHONY : src/app/App.cpp.s
+
 src/audio/AudioPlayer.o: src/audio/AudioPlayer.cpp.o
 .PHONY : src/audio/AudioPlayer.o
 
@@ -398,6 +422,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/app/App.o"
+	@echo "... src/app/App.i"
+	@echo "... src/app/App.s"
 	@echo "... src/audio/AudioPlayer.o"
 	@echo "... src/audio/AudioPlayer.i"
 	@echo "... src/audio/AudioPlayer.s"

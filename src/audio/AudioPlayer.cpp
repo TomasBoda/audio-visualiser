@@ -4,10 +4,8 @@
 #include <SDL.h>
 #include "../config.h"
 #include "AudioPlayer.h"
-#include "../utils/FFT.h"
 #include <algorithm>
-#include <wx/wx.h>
-#include "../utils/MessageDialog.h"
+#include "../utils/Dialog.h"
 #include <fftw3.h>
 
 using namespace std;

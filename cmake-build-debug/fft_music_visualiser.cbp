@@ -3040,6 +3040,9 @@
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/main.cpp">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/app/App.cpp">
+			<Option target="fft_music_visualiser"/>
+		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/app/App.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
@@ -3061,10 +3064,7 @@
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/Window.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
-		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/utils/FFT.h">
-			<Option target="fft_music_visualiser"/>
-		</Unit>
-		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/utils/MessageDialog.h">
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/utils/Dialog.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/CMakeLists.txt">
