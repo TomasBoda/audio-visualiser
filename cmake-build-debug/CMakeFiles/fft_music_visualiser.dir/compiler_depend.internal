@@ -675,6 +675,72 @@ CMakeFiles/fft_music_visualiser.dir/main.cpp.o
  /opt/homebrew/include/wx-3.2/wx/mdi.h
  /opt/homebrew/include/wx-3.2/wx/osx/mdi.h
  /Users/tomasboda/Desktop/music-visualiser-master/src/app/App.h
+ /Users/tomasboda/Desktop/music-visualiser-master/src/gui/Window.h
+ /opt/homebrew/include/wx-3.2/wx/display.h
+ /opt/homebrew/include/wx-3.2/wx/vidmode.h
+ /Users/tomasboda/Desktop/music-visualiser-master/src/config.h
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric
+ /Users/tomasboda/Desktop/music-visualiser-master/src/audio/AudioPlayer.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_main.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_stdinc.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include-config-debug/SDL_config.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_platform.h
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/AvailabilityMacros.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/begin_code.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/close_code.h
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/inttypes.h
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include/inttypes.h
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/inttypes.h
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/xlocale/_inttypes.h
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/float.h
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include/float.h
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/float.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_assert.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_atomic.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_audio.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_error.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_endian.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_mutex.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_thread.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_rwops.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_clipboard.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_cpuinfo.h
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include/arm_neon.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_events.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_video.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_pixels.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_rect.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_surface.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_blendmode.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_keyboard.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_keycode.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_scancode.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_mouse.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_joystick.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_guid.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_gamecontroller.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_sensor.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_quit.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_gesture.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_touch.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_filesystem.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_haptic.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_hidapi.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_hints.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_loadso.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_log.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_messagebox.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_metal.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_power.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_render.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_shape.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_system.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_timer.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_version.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_locale.h
+ /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_misc.h
 
 CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o
  /Users/tomasboda/Desktop/music-visualiser-master/src/app/App.cpp
@@ -1351,6 +1417,8 @@ CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o
  /opt/homebrew/include/wx-3.2/wx/mdi.h
  /opt/homebrew/include/wx-3.2/wx/osx/mdi.h
  /Users/tomasboda/Desktop/music-visualiser-master/src/gui/Window.h
+ /opt/homebrew/include/wx-3.2/wx/display.h
+ /opt/homebrew/include/wx-3.2/wx/vidmode.h
  /Users/tomasboda/Desktop/music-visualiser-master/src/config.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric
@@ -3196,6 +3264,8 @@ CMakeFiles/fft_music_visualiser.dir/src/gui/Window.cpp.o
  /opt/homebrew/include/wx-3.2/wx/osx/filedlg.h
  /opt/homebrew/include/wx-3.2/wx/mdi.h
  /opt/homebrew/include/wx-3.2/wx/osx/mdi.h
+ /opt/homebrew/include/wx-3.2/wx/display.h
+ /opt/homebrew/include/wx-3.2/wx/vidmode.h
  /Users/tomasboda/Desktop/music-visualiser-master/src/config.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric

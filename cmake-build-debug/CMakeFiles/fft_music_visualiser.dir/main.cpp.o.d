@@ -673,6 +673,8 @@ CMakeFiles/fft_music_visualiser.dir/main.cpp.o: \
   /opt/homebrew/include/wx-3.2/wx/osx/mdi.h \
   /Users/tomasboda/Desktop/music-visualiser-master/src/app/App.h \
   /Users/tomasboda/Desktop/music-visualiser-master/src/app/../gui/Window.h \
+  /opt/homebrew/include/wx-3.2/wx/display.h \
+  /opt/homebrew/include/wx-3.2/wx/vidmode.h \
   /Users/tomasboda/Desktop/music-visualiser-master/src/app/../gui/../config.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric \

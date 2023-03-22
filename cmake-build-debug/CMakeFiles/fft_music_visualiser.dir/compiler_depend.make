@@ -673,7 +673,73 @@ CMakeFiles/fft_music_visualiser.dir/main.cpp.o: ../main.cpp \
   /opt/homebrew/include/wx-3.2/wx/osx/filedlg.h \
   /opt/homebrew/include/wx-3.2/wx/mdi.h \
   /opt/homebrew/include/wx-3.2/wx/osx/mdi.h \
-  ../src/app/App.h
+  ../src/app/App.h \
+  ../src/gui/Window.h \
+  /opt/homebrew/include/wx-3.2/wx/display.h \
+  /opt/homebrew/include/wx-3.2/wx/vidmode.h \
+  ../src/config.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric \
+  ../src/audio/AudioPlayer.h \
+  libraries/SDL2/include/SDL.h \
+  libraries/SDL2/include/SDL_main.h \
+  libraries/SDL2/include/SDL_stdinc.h \
+  libraries/SDL2/include-config-debug/SDL_config.h \
+  libraries/SDL2/include/SDL_platform.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/AvailabilityMacros.h \
+  libraries/SDL2/include/begin_code.h \
+  libraries/SDL2/include/close_code.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/inttypes.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include/inttypes.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/inttypes.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/xlocale/_inttypes.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/float.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include/float.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/float.h \
+  libraries/SDL2/include/SDL_assert.h \
+  libraries/SDL2/include/SDL_atomic.h \
+  libraries/SDL2/include/SDL_audio.h \
+  libraries/SDL2/include/SDL_error.h \
+  libraries/SDL2/include/SDL_endian.h \
+  libraries/SDL2/include/SDL_mutex.h \
+  libraries/SDL2/include/SDL_thread.h \
+  libraries/SDL2/include/SDL_rwops.h \
+  libraries/SDL2/include/SDL_clipboard.h \
+  libraries/SDL2/include/SDL_cpuinfo.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.1.6/include/arm_neon.h \
+  libraries/SDL2/include/SDL_events.h \
+  libraries/SDL2/include/SDL_video.h \
+  libraries/SDL2/include/SDL_pixels.h \
+  libraries/SDL2/include/SDL_rect.h \
+  libraries/SDL2/include/SDL_surface.h \
+  libraries/SDL2/include/SDL_blendmode.h \
+  libraries/SDL2/include/SDL_keyboard.h \
+  libraries/SDL2/include/SDL_keycode.h \
+  libraries/SDL2/include/SDL_scancode.h \
+  libraries/SDL2/include/SDL_mouse.h \
+  libraries/SDL2/include/SDL_joystick.h \
+  libraries/SDL2/include/SDL_guid.h \
+  libraries/SDL2/include/SDL_gamecontroller.h \
+  libraries/SDL2/include/SDL_sensor.h \
+  libraries/SDL2/include/SDL_quit.h \
+  libraries/SDL2/include/SDL_gesture.h \
+  libraries/SDL2/include/SDL_touch.h \
+  libraries/SDL2/include/SDL_filesystem.h \
+  libraries/SDL2/include/SDL_haptic.h \
+  libraries/SDL2/include/SDL_hidapi.h \
+  libraries/SDL2/include/SDL_hints.h \
+  libraries/SDL2/include/SDL_loadso.h \
+  libraries/SDL2/include/SDL_log.h \
+  libraries/SDL2/include/SDL_messagebox.h \
+  libraries/SDL2/include/SDL_metal.h \
+  libraries/SDL2/include/SDL_power.h \
+  libraries/SDL2/include/SDL_render.h \
+  libraries/SDL2/include/SDL_shape.h \
+  libraries/SDL2/include/SDL_system.h \
+  libraries/SDL2/include/SDL_timer.h \
+  libraries/SDL2/include/SDL_version.h \
+  libraries/SDL2/include/SDL_locale.h \
+  libraries/SDL2/include/SDL_misc.h
 
 CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o: ../src/app/App.cpp \
   ../src/app/App.h \
@@ -1349,6 +1415,8 @@ CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o: ../src/app/App.cpp \
   /opt/homebrew/include/wx-3.2/wx/mdi.h \
   /opt/homebrew/include/wx-3.2/wx/osx/mdi.h \
   ../src/gui/Window.h \
+  /opt/homebrew/include/wx-3.2/wx/display.h \
+  /opt/homebrew/include/wx-3.2/wx/vidmode.h \
   ../src/config.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric \
@@ -3191,12 +3259,16 @@ CMakeFiles/fft_music_visualiser.dir/src/gui/Window.cpp.o: ../src/gui/Window.cpp 
   /opt/homebrew/include/wx-3.2/wx/osx/filedlg.h \
   /opt/homebrew/include/wx-3.2/wx/mdi.h \
   /opt/homebrew/include/wx-3.2/wx/osx/mdi.h \
+  /opt/homebrew/include/wx-3.2/wx/display.h \
+  /opt/homebrew/include/wx-3.2/wx/vidmode.h \
   ../src/config.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric
 
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/thread:
+
+../src/app/App.cpp:
 
 libraries/SDL2/include/SDL_misc.h:
 
@@ -3251,8 +3323,6 @@ libraries/SDL2/include/SDL_main.h:
 libraries/SDL2/include/SDL.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric:
-
-../src/app/App.cpp:
 
 ../src/app/App.h:
 
@@ -3537,6 +3607,8 @@ libraries/SDL2/include/SDL_clipboard.h:
 /opt/homebrew/include/wx-3.2/wx/clntdata.h:
 
 /opt/homebrew/include/wx-3.2/wx/event.h:
+
+/opt/homebrew/include/wx-3.2/wx/display.h:
 
 /opt/homebrew/include/wx-3.2/wx/thread.h:
 
@@ -4145,6 +4217,8 @@ libraries/SDL2/include/SDL_rect.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/errno.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/limits.h:
+
+/opt/homebrew/include/wx-3.2/wx/vidmode.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__mutex_base:
 

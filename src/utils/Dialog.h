@@ -17,7 +17,7 @@ public:
     }
 
     static std::string showFileSelect() {
-        wxFileDialog fileDialog(NULL, "Select an audio file", "", "", "All files (*.wav)|*.wav", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+        wxFileDialog fileDialog(NULL, "Select an audio file", "", "", "All files (*.wav)|*.wav|(*.mp3)|*.mp3", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 
         if (fileDialog.ShowModal() == wxID_CANCEL) {
             Dialog::showErrorMessage("No file selected, exiting...");

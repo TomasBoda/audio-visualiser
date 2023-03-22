@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <wx/wx.h>
+#include <wx/display.h>
 #include <algorithm>
 #include "../config.h"
 #include <random>
@@ -15,6 +16,7 @@ public:
         frq_timer = new wxTimer(this, wxID_ANY);
 
         Bind(wxEVT_PAINT, &Window::OnPaint, this);
+        Bind(wxEVT_SIZE, &Window::OnSize, this);
         Bind(wxEVT_TIMER, &Window::OnGuiTimer, this, gui_timer->GetId());
         Bind(wxEVT_TIMER, &Window::OnFrqTimer, this, frq_timer->GetId());
 
@@ -25,10 +27,13 @@ public:
             frequency_spectrum[i] = 0;
         }
 
+        wxDisplay display;
+        wxRect screenRect = display.GetClientArea();
+        global::WIDTH = screenRect.width;
+        global::HEIGHT = screenRect.height;
+        SetSize(screenRect);
         SetBackgroundColour(wxColour(* wxBLACK));
-        SetSize(wxSize(global::WIDTH, global::HEIGHT));
         Center();
-        ShowFullScreen(false);
         Show(true);
     };
 
@@ -59,6 +64,12 @@ private:
 
     void OnPaint(wxPaintEvent& event) {
         draw_circle_visualisation(event);
+    }
+
+    void OnSize(wxSizeEvent& event) {
+        wxSize size = event.GetSize();
+        global::WIDTH = size.GetWidth();
+        global::HEIGHT = size.GetHeight();
     }
 
     void OnClose(wxCloseEvent& event) {
