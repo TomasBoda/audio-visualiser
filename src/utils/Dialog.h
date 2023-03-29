@@ -30,4 +30,4 @@ public:
     }
 };
 
-#endif //FFT_MUSIC_VISUALISER_MESSAGEDIALOG_H
+#endif

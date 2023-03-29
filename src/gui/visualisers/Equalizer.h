@@ -131,7 +131,12 @@ private:
     }
 
     void draw_frequency_line(wxPaintDC & graphics, int x1, int y1, int x2, int y2) {
-        graphics.SetPen(pen_frequency_line);
+        double factor = (255.0 / global::WIDTH) * x1;
+        double r = factor;
+        double g = 0;
+        double b = 255 - factor;
+
+        graphics.SetPen(wxPen(wxColour(r, g, b), 5));
         graphics.DrawLine(x1, y1, x2, y2);
     }
 };

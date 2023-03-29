@@ -20,7 +20,7 @@ public:
 
         equalizer_visualiser = new Equalizer();
         circular_visualiser = new Circular();
-        visualiser = circular_visualiser;
+        visualiser = equalizer_visualiser;
 
         init_menu_bar();
         init_default_window();
