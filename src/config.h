@@ -9,7 +9,7 @@ namespace global {
 
     extern std::mutex MUTEX;
     extern const int NUM_CHUNKS;
-    extern double SPECTRUM[180];
+    extern double * SPECTRUM;
     extern int SMOOTHING_FACTOR;
     extern double GRAVITY;
 }

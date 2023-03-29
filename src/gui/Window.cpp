@@ -8,20 +8,71 @@ using namespace std;
 void Window::draw_spectrum_visualisation(wxPaintEvent &event) {
     wxPaintDC graphics(this);
 
-    for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        auto height = frequency_spectrum[i];
-        int width = global::WIDTH / global::NUM_CHUNKS;
+    int size = global::NUM_CHUNKS;
 
-        int x = i * width;
-        int y = global::HEIGHT - height;
+    double spectrum = 20000.0;
+    double freqs[] = { 0, 200, 1000, 8000, 20000 };
+    double frequencies[] = { freqs[1] - freqs[0], freqs[2] - freqs[1], freqs[3] - freqs[2], freqs[4] - freqs[3] };
+    double ranges[] = { spectrum / frequencies[0], spectrum / frequencies[1], spectrum / frequencies[2], spectrum / frequencies[3] };
 
-        int factor = 255 / global::NUM_CHUNKS * i;
-        int r = factor;
-        int g = 0;
-        int b = 255 - factor;
+    double indexes[] = {0, size / ranges[0], size / ranges[1], size / ranges[2], size / ranges[3]};
+    double widths[] = { global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
 
-        graphics.SetBrush(wxBrush(wxColour(r, g, b)));
-        graphics.DrawRectangle(x, y, width, height);
+    int x_prev = 0;
+    int y_prev = global::HEIGHT;
+
+    for (int i = 0; i < 4; i++) {
+        double offset = 0;
+        for (int j = 0; j < i; j++) offset += widths[j];
+
+        for (int j = indexes[i]; j < indexes[i + 1]; j++) {
+            double height = frequency_spectrum[j];
+            double width = widths[i] / (indexes[i + 1] - indexes[i]);
+
+            int x = offset + (j - indexes[i]) * width;
+            int y = global::HEIGHT - height;
+
+            if (!(i == 0 && j == indexes[0])) {
+                graphics.SetPen(wxPen(wxColour(255, 255, 255), 2));
+                graphics.DrawLine(x_prev, y_prev, x, y);
+            }
+
+            x_prev = x;
+            y_prev = y;
+        }
+    }
+
+    graphics.SetPen(wxPen(wxColour(90, 90, 90), 2));
+    graphics.DrawLine(0, global::HEIGHT / 2, global::WIDTH, global::HEIGHT / 2);
+
+    wxFont font = wxFont( 15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Arial") );
+    graphics.SetFont(font);
+
+    for (int i = 0; i < 5; i++) {
+        double offset = 0;
+        for (int j = 0; j < i - 1; j++) offset += widths[j];
+
+        wxString value = to_string((int) freqs[i]) + " Hz";
+        int x = offset + (i == 0 ? 0 : widths[i - 1]);
+        int y = global::HEIGHT / 2 + 30;
+
+        if (i == 0) {
+            x += 30;
+        } else if (i == 4) {
+            x -= 100;
+        }
+
+        graphics.DrawText(value, x, y);
+
+        graphics.SetPen(wxPen(wxColour(90, 90, 90), 2));
+        graphics.DrawLine(x, global::HEIGHT / 2 - 10, x, global::HEIGHT / 2 + 10);
+
+        if (i > 0) {
+            wxString value_mid = to_string((int) ((freqs[i] + freqs[i - 1]) / 2)) + " Hz";
+            int x_mid = offset + widths[i - 1] / 2;
+            graphics.DrawText(value_mid, x_mid, y);
+            graphics.DrawLine(x_mid, global::HEIGHT / 2 - 10, x_mid, global::HEIGHT / 2 + 10);
+        }
     }
 }
 
@@ -73,24 +124,14 @@ void Window::copy_and_normalize_frequency_spectrum() {
     std::lock_guard<std::mutex> lock(global::MUTEX);
 
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        double new_frequency = 0;
-
-        for (int j = 0; j < global::SMOOTHING_FACTOR; j++) {
-            int index = (i + j) % global::NUM_CHUNKS;
-            new_frequency += global::SPECTRUM[index];
-        }
-
-        new_frequency /= global::SMOOTHING_FACTOR;
-
-        if (new_frequency > frequency_spectrum[i]) {
-            frequency_spectrum[i] = new_frequency;
+        if (global::SPECTRUM[i] > frequency_spectrum[i]) {
+            frequency_spectrum[i] = global::SPECTRUM[i];
         }
     }
 }
 
 void Window::apply_gravity_to_frequency_spectrum() {
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        double offset = frequency_spectrum[i] * global::GRAVITY;
-        frequency_spectrum[i] -= offset;
+        frequency_spectrum[i] -= global::GRAVITY;
     }
 }

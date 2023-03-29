@@ -1480,7 +1480,8 @@ CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o: ../src/app/App.cpp \
   libraries/SDL2/include/SDL_version.h \
   libraries/SDL2/include/SDL_locale.h \
   libraries/SDL2/include/SDL_misc.h \
-  ../src/utils/Dialog.h
+  ../src/utils/Dialog.h \
+  ../src/config/Config.h
 
 CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o: ../src/audio/AudioPlayer.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iostream \
@@ -2217,7 +2218,8 @@ CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o: ../src/audio/Au
   /opt/homebrew/include/wx-3.2/wx/osx/filedlg.h \
   /opt/homebrew/include/wx-3.2/wx/mdi.h \
   /opt/homebrew/include/wx-3.2/wx/osx/mdi.h \
-  ../libraries/fftw3/api/fftw3.h
+  ../libraries/fftw3/api/fftw3.h \
+  ../src/audio/AudioUtil.h
 
 CMakeFiles/fft_music_visualiser.dir/src/config.cpp.o: ../src/config.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/mutex \
@@ -3266,6 +3268,8 @@ CMakeFiles/fft_music_visualiser.dir/src/gui/Window.cpp.o: ../src/gui/Window.cpp 
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric
 
 
+../src/audio/AudioUtil.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/thread:
 
 ../src/app/App.cpp:
@@ -3961,6 +3965,8 @@ libraries/SDL2/include/SDL_video.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__algorithm/comp.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__iterator/readable_traits.h:
+
+../src/config/Config.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/sys/_types/_ino64_t.h:
 

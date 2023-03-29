@@ -3052,10 +3052,19 @@
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/audio/AudioPlayer.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/audio/AudioUtil.h">
+			<Option target="fft_music_visualiser"/>
+		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/config.cpp">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/config.h">
+			<Option target="fft_music_visualiser"/>
+		</Unit>
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/config/Config.h">
+			<Option target="fft_music_visualiser"/>
+		</Unit>
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/Visualisation.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/Window.cpp">

@@ -734,4 +734,5 @@ CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o: \
   /opt/homebrew/include/wx-3.2/wx/osx/filedlg.h \
   /opt/homebrew/include/wx-3.2/wx/mdi.h \
   /opt/homebrew/include/wx-3.2/wx/osx/mdi.h \
-  /Users/tomasboda/Desktop/music-visualiser-master/libraries/fftw3/api/fftw3.h
+  /Users/tomasboda/Desktop/music-visualiser-master/libraries/fftw3/api/fftw3.h \
+  /Users/tomasboda/Desktop/music-visualiser-master/src/audio/AudioUtil.h

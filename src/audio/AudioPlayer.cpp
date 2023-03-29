@@ -7,57 +7,68 @@
 #include <algorithm>
 #include "../utils/Dialog.h"
 #include <fftw3.h>
+#include <utility>
+#include "AudioUtil.h"
 
 using namespace std;
 
-struct AudioData {
-    Uint8 * position;
-    Uint32 length;
-    Uint32 sample_rate;
-};
-
-void audio_callback(void * user_data, Uint8 * stream, int len) {
+void audio_callback(void * user_data, Uint8 * stream, int length) {
     AudioData * audio = (AudioData *) user_data;
+    Uint32 window_size = audio->samples;
 
-    int num_samples = len / 2;
+    fftw_complex * fft_input = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
+    fftw_complex * fft_output = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
+    fftw_plan fft_plan = fftw_plan_dft_1d(window_size, fft_input, fft_output, FFTW_FORWARD, FFTW_ESTIMATE);
 
-    fftw_complex * in = (fftw_complex *) fftw_malloc(sizeof(fftw_complex) * num_samples);
-    fftw_complex * out = (fftw_complex *) fftw_malloc(sizeof(fftw_complex) * num_samples);
-    fftw_plan plan = fftw_plan_dft_1d(num_samples, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
+    copy_stream_to_fft_input(fft_input, audio);
+    fftw_execute(fft_plan);
 
-    for (int i = 0; i < num_samples; i++) {
-        Sint16 sample = ((Sint16) audio->position[2 * i + 1] << 8) | audio->position[2 * i];
-        double normalized_sample = (double) sample / 32768.0;
-        in[i][0] = normalized_sample;
-        in[i][1] = 0;
-    }
+    int low_frequency = 0;
+    int high_frequency = 20000;
 
-    fftw_execute(plan);
+    pair<size_t, size_t> bin_range = frequency_range_to_bin_indexes(low_frequency, high_frequency, audio);
+    size_t start_bin = bin_range.first;
+    size_t end_bin = bin_range.second;
 
-    const int num_bins = global::NUM_CHUNKS;
-    double bin_width = (double) audio->sample_rate / (double) num_samples;
-
-    double * magnitudes = new double[num_bins];
-    for (int i = 0; i < num_bins; i++) {
-        double frequency = bin_width * i;
-        double magnitude = sqrt(out[i][0] * out[i][0] + out[i][1] * out[i][1]);
-        magnitudes[i] = magnitude;
-    }
+    int num_bins = end_bin - start_bin;
 
     double * db_values = new double[num_bins];
-    for (int i = 0; i < num_bins; i++) {
-        double db_value = 20.0 * log10(magnitudes[i] + 1e-6);
-        db_values[i] = max(0.0, db_value);
-        global::SPECTRUM[i] = db_values[i] * db_values[i] / 6;
+    for (int i = start_bin; i < end_bin; i++) {
+        int index = i - start_bin;
+
+        double real_part = fft_output[i][0];
+        double imag_part = fft_output[i][1];
+
+        double magnitude = sqrt(real_part * real_part + imag_part * imag_part);
+        double db_value = magnitude_to_db(magnitude);
+
+        db_values[index] = db_value;
     }
 
-    fftw_destroy_plan(plan);
-    fftw_free(in);
-    fftw_free(out);
+    int num_chunks = global::NUM_CHUNKS;
+    int chunk_width = num_bins / num_chunks;
 
-    SDL_memcpy(stream, audio->position, len);
-    audio->position += len;
-    audio->length -= len;
+    double * db_chunks = new double[num_chunks];
+    for (int i = 0; i < num_chunks; i++) {
+        double db_sum = 0;
+
+        for (int j = 0; j < chunk_width; j++) {
+            int index = i * chunk_width + j;
+            db_sum += db_values[index];
+        }
+
+        db_chunks[i] = db_sum / chunk_width;
+    }
+
+    double db_range = 60;
+    double pixel_factor = global::HEIGHT / db_range;
+    for (int i = 0; i < num_chunks; i++) {
+        double value = db_chunks[i];
+        global::SPECTRUM[i] = value * pixel_factor;
+    }
+
+    free_fftw_data(fft_input, fft_output, fft_plan);
+    copy_to_stream_and_advance(stream, audio, length);
 }
 
 void AudioPlayer::play_audio(const string & filename) {
@@ -78,6 +89,9 @@ void AudioPlayer::play_audio(const string & filename) {
         audio.position = wav_buffer;
         audio.length = wav_length;
         audio.sample_rate = wav_spec.freq;
+        audio.channels = wav_spec.channels;
+        audio.samples = wav_spec.samples;
+        audio.format = wav_spec.format;
 
         wav_spec.callback = audio_callback;
         wav_spec.userdata = &audio;

@@ -1483,6 +1483,7 @@ CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o
  /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_locale.h
  /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_misc.h
  /Users/tomasboda/Desktop/music-visualiser-master/src/utils/Dialog.h
+ /Users/tomasboda/Desktop/music-visualiser-master/src/config/Config.h
 
 CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o
  /Users/tomasboda/Desktop/music-visualiser-master/src/audio/AudioPlayer.cpp
@@ -2221,6 +2222,7 @@ CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o
  /opt/homebrew/include/wx-3.2/wx/mdi.h
  /opt/homebrew/include/wx-3.2/wx/osx/mdi.h
  /Users/tomasboda/Desktop/music-visualiser-master/libraries/fftw3/api/fftw3.h
+ /Users/tomasboda/Desktop/music-visualiser-master/src/audio/AudioUtil.h
 
 CMakeFiles/fft_music_visualiser.dir/src/config.cpp.o
  /Users/tomasboda/Desktop/music-visualiser-master/src/config.cpp

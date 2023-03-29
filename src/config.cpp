@@ -9,8 +9,8 @@ namespace global {
     const char * FILENAME = "../src/assets/bilderbuch-bungalow.wav";
 
     std::mutex MUTEX;
-    const int NUM_CHUNKS = 180;
-    double SPECTRUM[NUM_CHUNKS] = {};
-    int SMOOTHING_FACTOR = 20;
-    double GRAVITY = 0.008;
+    const int NUM_CHUNKS = 360;
+    double * SPECTRUM = new double[NUM_CHUNKS];
+    int SMOOTHING_FACTOR = 5;
+    double GRAVITY = 3;
 }
