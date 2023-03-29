@@ -5,17 +5,24 @@
 #include <algorithm>
 #include "../config.h"
 #include <random>
+#include "Visualiser.h"
+#include "visualisers/Equalizer.h"
+#include "visualisers/Circular.h"
 
 #ifndef FFT_MUSIC_VISUALISER_WINDOW_H
 #define FFT_MUSIC_VISUALISER_WINDOW_H
 
 class Window : public wxFrame {
 public:
-    Window() : wxFrame(NULL, wxID_ANY, global::APP_NAME, wxDefaultPosition, wxDefaultSize), frequency_spectrum(new double[global::NUM_CHUNKS]) {
+    Window() : wxFrame(NULL, wxID_ANY, global::APP_NAME, wxDefaultPosition, wxDefaultSize) {
         create_and_start_gui_timer(10);
         create_and_start_frq_timer(10);
 
-        init_default_spectrum_values();
+        equalizer_visualiser = new Equalizer();
+        circular_visualiser = new Circular();
+        visualiser = circular_visualiser;
+
+        init_menu_bar();
         init_default_window();
     };
 
@@ -28,34 +35,33 @@ public:
 private:
     wxTimer * gui_timer;
     wxTimer * frq_timer;
-    double * frequency_spectrum;
 
-    wxPen pen_inner_lines { wxColour(40, 40, 40), 3 };
-    wxPen pen_outer_lines { wxColour(255, 255, 255), 5 };
-    wxPen pen_inner_circle { wxColour(255, 255, 255), 5 };
-    wxBrush brush_inner_circle { wxColour(0, 0, 0) };
+    wxMenuBar * menu_bar;
 
-    void OnPaint(wxPaintEvent& event) {
-        //draw_circle_visualisation(event);
-        draw_spectrum_visualisation(event);
+    Equalizer * equalizer_visualiser;
+    Circular * circular_visualiser;
+    Visualiser * visualiser;
+
+    void OnPaint(wxPaintEvent & event) {
+        wxPaintDC graphics(this);
+        visualiser->render_visualiser(graphics);
     }
 
     void OnGuiTimer(wxTimerEvent & event) {
-        apply_gravity_to_frequency_spectrum();
         Refresh();
     }
 
     void OnFrqTimer(wxTimerEvent & event) {
-        copy_and_normalize_frequency_spectrum();
+        visualiser->update_visualiser();
     }
 
-    void OnSize(wxSizeEvent& event) {
+    void OnSize(wxSizeEvent & event) {
         wxSize size = event.GetSize();
         global::WIDTH = size.GetWidth();
         global::HEIGHT = size.GetHeight();
     }
 
-    void OnClose(wxCloseEvent& event) {
+    void OnClose(wxCloseEvent & event) {
         gui_timer->Stop();
         frq_timer->Stop();
         Destroy();
@@ -71,6 +77,36 @@ private:
         frq_timer = new wxTimer(this, wxID_ANY);
         Bind(wxEVT_TIMER, &Window::OnFrqTimer, this, frq_timer->GetId());
         frq_timer->Start(refresh_rate);
+    }
+
+    void init_menu_bar() {
+        menu_bar = new wxMenuBar();
+
+        wxMenu * file_menu = new wxMenu();
+        file_menu->Append(wxID_ANY, "&Quit\tCtrl+Q");
+        Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::OnQuit, this, file_menu->GetMenuItems()[0]->GetId());
+        menu_bar->Append(file_menu, "&File");
+
+        wxMenu * visualiser_menu = new wxMenu();
+        visualiser_menu->Append(wxID_ANY, "Equalizer\tCtrl+E");
+        visualiser_menu->Append(wxID_ANY, "Circular\tCtrl+C");
+        Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::OnEqualizerSelect, this, visualiser_menu->GetMenuItems()[0]->GetId());
+        Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::OnCircularSelect, this, visualiser_menu->GetMenuItems()[1]->GetId());
+        menu_bar->Append(visualiser_menu, "&Visualiser");
+
+        SetMenuBar(menu_bar);
+    }
+
+    void OnQuit(wxCommandEvent & event) {
+        std::exit(0);
+    }
+
+    void OnEqualizerSelect(wxCommandEvent & event) {
+        visualiser = equalizer_visualiser;
+    }
+
+    void OnCircularSelect(wxCommandEvent & event) {
+        visualiser = circular_visualiser;
     }
 
     void init_default_window() {
@@ -93,18 +129,6 @@ private:
         global::HEIGHT = screenRect.height;
         SetSize(screenRect);
     }
-
-    void init_default_spectrum_values() {
-        for (int i = 0; i < global::NUM_CHUNKS; i++) {
-            frequency_spectrum[i] = -global::HEIGHT / 2;
-        }
-    }
-
-    void draw_spectrum_visualisation(wxPaintEvent & event);
-    void draw_circle_visualisation(wxPaintEvent & event);
-
-    void copy_and_normalize_frequency_spectrum();
-    void apply_gravity_to_frequency_spectrum();
 };
 
 #endif

@@ -678,6 +678,10 @@ CMakeFiles/fft_music_visualiser.dir/main.cpp.o: \
   /Users/tomasboda/Desktop/music-visualiser-master/src/app/../gui/../config.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric \
+  /Users/tomasboda/Desktop/music-visualiser-master/src/app/../gui/Visualiser.h \
+  /Users/tomasboda/Desktop/music-visualiser-master/src/app/../gui/visualisers/Equalizer.h \
+  /Users/tomasboda/Desktop/music-visualiser-master/src/app/../gui/visualisers/../Visualiser.h \
+  /Users/tomasboda/Desktop/music-visualiser-master/src/app/../gui/visualisers/Circular.h \
   /Users/tomasboda/Desktop/music-visualiser-master/src/app/../audio/AudioPlayer.h \
   /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL.h \
   /Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/include/SDL_main.h \

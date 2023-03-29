@@ -18,6 +18,6 @@ add_executable(fft_music_visualiser
         src/app/App.h
         src/config.h
         src/config.cpp
-        src/gui/Window.h src/gui/Window.cpp src/utils/Dialog.h src/app/App.cpp src/audio/AudioUtil.h src/config/Config.h src/gui/Visualisation.h)
+        src/gui/Window.h src/gui/Window.cpp src/utils/Dialog.h src/app/App.cpp src/audio/AudioUtil.h src/gui/Visualiser.h src/gui/Visualiser.h src/gui/visualisers/Equalizer.h src/gui/visualisers/Circular.h)
 
 target_link_libraries(fft_music_visualiser PRIVATE SDL2 ${wxWidgets_LIBRARIES} fftw3)

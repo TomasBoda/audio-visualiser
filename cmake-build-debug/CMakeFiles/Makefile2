@@ -123,8 +123,8 @@ libraries/fftw3/clean: libraries/fftw3/CMakeFiles/fftw3.dir/clean
 # Target rules for target CMakeFiles/fft_music_visualiser.dir
 
 # All Build rule for target.
-CMakeFiles/fft_music_visualiser.dir/all: libraries/SDL2/CMakeFiles/SDL2.dir/all
 CMakeFiles/fft_music_visualiser.dir/all: libraries/fftw3/CMakeFiles/fftw3.dir/all
+CMakeFiles/fft_music_visualiser.dir/all: libraries/SDL2/CMakeFiles/SDL2.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/fft_music_visualiser.dir/build.make CMakeFiles/fft_music_visualiser.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/fft_music_visualiser.dir/build.make CMakeFiles/fft_music_visualiser.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/CMakeFiles --progress-num= "Built target fft_music_visualiser"

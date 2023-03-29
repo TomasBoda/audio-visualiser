@@ -680,6 +680,10 @@ CMakeFiles/fft_music_visualiser.dir/main.cpp.o: ../main.cpp \
   ../src/config.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric \
+  ../src/gui/Visualiser.h \
+  ../src/gui/visualisers/Equalizer.h \
+  ../src/gui/Visualiser.h \
+  ../src/gui/visualisers/Circular.h \
   ../src/audio/AudioPlayer.h \
   libraries/SDL2/include/SDL.h \
   libraries/SDL2/include/SDL_main.h \
@@ -1420,6 +1424,10 @@ CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o: ../src/app/App.cpp \
   ../src/config.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric \
+  ../src/gui/Visualiser.h \
+  ../src/gui/visualisers/Equalizer.h \
+  ../src/gui/Visualiser.h \
+  ../src/gui/visualisers/Circular.h \
   ../src/audio/AudioPlayer.h \
   libraries/SDL2/include/SDL.h \
   libraries/SDL2/include/SDL_main.h \
@@ -1480,8 +1488,7 @@ CMakeFiles/fft_music_visualiser.dir/src/app/App.cpp.o: ../src/app/App.cpp \
   libraries/SDL2/include/SDL_version.h \
   libraries/SDL2/include/SDL_locale.h \
   libraries/SDL2/include/SDL_misc.h \
-  ../src/utils/Dialog.h \
-  ../src/config/Config.h
+  ../src/utils/Dialog.h
 
 CMakeFiles/fft_music_visualiser.dir/src/audio/AudioPlayer.cpp.o: ../src/audio/AudioPlayer.cpp \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iostream \
@@ -3265,7 +3272,11 @@ CMakeFiles/fft_music_visualiser.dir/src/gui/Window.cpp.o: ../src/gui/Window.cpp 
   /opt/homebrew/include/wx-3.2/wx/vidmode.h \
   ../src/config.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/random \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric \
+  ../src/gui/Visualiser.h \
+  ../src/gui/visualisers/Equalizer.h \
+  ../src/gui/Visualiser.h \
+  ../src/gui/visualisers/Circular.h
 
 
 ../src/audio/AudioUtil.h:
@@ -3325,6 +3336,10 @@ libraries/SDL2/include/SDL_stdinc.h:
 libraries/SDL2/include/SDL_main.h:
 
 libraries/SDL2/include/SDL.h:
+
+../src/gui/visualisers/Equalizer.h:
+
+../src/gui/Visualiser.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/numeric:
 
@@ -3826,6 +3841,8 @@ libraries/SDL2/include/SDL_mutex.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__functional/mem_fun_ref.h:
 
+../src/gui/visualisers/Circular.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__iterator/size.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/sys/_types/_fd_copy.h:
@@ -3965,8 +3982,6 @@ libraries/SDL2/include/SDL_video.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__algorithm/comp.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__iterator/readable_traits.h:
-
-../src/config/Config.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/sys/_types/_ino64_t.h:
 

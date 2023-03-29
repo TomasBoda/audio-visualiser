@@ -3061,16 +3061,19 @@
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/config.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
-		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/config/Config.h">
-			<Option target="fft_music_visualiser"/>
-		</Unit>
-		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/Visualisation.h">
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/Visualiser.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/Window.cpp">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/Window.h">
+			<Option target="fft_music_visualiser"/>
+		</Unit>
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/visualisers/Circular.h">
+			<Option target="fft_music_visualiser"/>
+		</Unit>
+		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/gui/visualisers/Equalizer.h">
 			<Option target="fft_music_visualiser"/>
 		</Unit>
 		<Unit filename="/Users/tomasboda/Desktop/music-visualiser-master/src/utils/Dialog.h">

@@ -58,13 +58,7 @@ void audio_callback(void * user_data, Uint8 * stream, int length) {
         }
 
         db_chunks[i] = db_sum / chunk_width;
-    }
-
-    double db_range = 60;
-    double pixel_factor = global::HEIGHT / db_range;
-    for (int i = 0; i < num_chunks; i++) {
-        double value = db_chunks[i];
-        global::SPECTRUM[i] = value * pixel_factor;
+        global::SPECTRUM[i] = db_chunks[i];
     }
 
     free_fftw_data(fft_input, fft_output, fft_plan);
