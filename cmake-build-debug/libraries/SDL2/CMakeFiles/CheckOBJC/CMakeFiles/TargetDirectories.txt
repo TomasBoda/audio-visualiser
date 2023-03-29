@@ -1,2 +1,0 @@
-/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/CMakeFiles/CheckOBJC/CMakeFiles/rebuild_cache.dir
-/Users/tomasboda/Desktop/music-visualiser-master/cmake-build-debug/libraries/SDL2/CMakeFiles/CheckOBJC/CMakeFiles/edit_cache.dir
