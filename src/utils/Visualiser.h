@@ -2,7 +2,7 @@
 #define FFT_MUSIC_VISUALISER_VISUALISER_H
 
 #include <wx/wx.h>
-#include "../config.h"
+#include "../config/config.h"
 
 class Visualiser {
 public:

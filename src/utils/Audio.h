@@ -1,4 +1,6 @@
 #include <utility>
+#include <fftw3.h>
+#include <SDL.h>
 
 #ifndef FFT_MUSIC_VISUALISER_AUDIOUTIL_H
 #define FFT_MUSIC_VISUALISER_AUDIOUTIL_H

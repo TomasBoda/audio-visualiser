@@ -9,7 +9,7 @@ bool App::OnInit() {
 
     audio_player = new AudioPlayer();
     audio_player->play_audio(file);
-    window = new Window(*this);
+    window = new Window();
 
     return true;
 }

@@ -2,13 +2,13 @@
 #include <thread>
 #include <cmath>
 #include <SDL.h>
-#include "../config.h"
+#include "../config/config.h"
 #include "AudioPlayer.h"
 #include <algorithm>
 #include "../utils/Dialog.h"
 #include <fftw3.h>
 #include <utility>
-#include "AudioUtil.h"
+#include "../utils/Audio.h"
 
 using namespace std;
 

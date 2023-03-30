@@ -3,7 +3,7 @@
 
 #include <wx/wx.h>
 #include <string>
-#include "../Visualiser.h"
+#include "../../utils/Visualiser.h"
 
 class Equalizer : public Visualiser {
 public:
