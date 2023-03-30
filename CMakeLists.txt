@@ -3,12 +3,14 @@ project(fft_music_visualiser)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(libraries/SDL2)
+add_subdirectory(libs/SDL)
+include_directories(libs/SDL/include)
 
-add_subdirectory(libraries/fftw3)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libraries/fftw3/api)
+add_subdirectory(libs/fftw3)
+include_directories(libs/fftw3/api)
 
-find_package(wxWidgets REQUIRED gl core base OPTIONAL_COMPONENTS net)
+set(wxWidgets_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/wxWidgets)
+find_package(wxWidgets REQUIRED COMPONENTS core base)
 include(${wxWidgets_USE_FILE})
 
 add_executable(fft_music_visualiser
@@ -18,6 +20,13 @@ add_executable(fft_music_visualiser
         src/app/App.h
         src/config/config.h
         src/config/config.cpp
-        src/gui/Window.h src/utils/Dialog.h src/app/App.cpp src/utils/Audio.h src/utils/Visualiser.h src/utils/Visualiser.h src/gui/visualisers/Equalizer.h src/gui/visualisers/Circular.h src/utils/Frame.h)
+        src/gui/Window.h
+        src/utils/Dialog.h
+        src/app/App.cpp
+        src/utils/Audio.h
+        src/utils/Visualiser.h
+        src/gui/visualisers/Equalizer.h
+        src/gui/visualisers/Circular.h
+        src/utils/Frame.h)
 
-target_link_libraries(fft_music_visualiser PRIVATE SDL2 ${wxWidgets_LIBRARIES} fftw3)
+target_link_libraries(fft_music_visualiser PRIVATE SDL2 fftw3 ${wxWidgets_LIBRARIES})

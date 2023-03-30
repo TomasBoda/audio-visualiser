@@ -1,0 +1,10 @@
+[submodule "libs/SDL"]
+	path = libs/SDL
+	url = https://github.com/libsdl-org/SDL.git
+    branch = SDL2
+[submodule "libs/fftw-dist"]
+	path = libs/fftw-dist
+	url = https://github.com/bastibl/fftw-dist.git
+[submodule "libs/wxWidgets"]
+	path = libs/wxWidgets
+	url = https://github.com/wxWidgets/wxWidgets.git
