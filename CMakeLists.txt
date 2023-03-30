@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(fft_music_visualiser)
+project(fft_music_visualiser LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -8,6 +8,8 @@ include_directories(libs/SDL/include)
 
 add_subdirectory(libs/fftw3)
 include_directories(libs/fftw3/api)
+
+#add_subdirectory(libs/wxWidgets)
 
 set(wxWidgets_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/wxWidgets)
 find_package(wxWidgets REQUIRED COMPONENTS core base)
