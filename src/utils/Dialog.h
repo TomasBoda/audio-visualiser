@@ -6,7 +6,7 @@
 
 class Dialog {
 public:
-    static void showErrorMessage(const std::string & message) {
+    static void show_error_message(const std::string & message) {
         wxMessageDialog dialog(NULL, message,"Error",wxOK | wxCENTRE | wxSTAY_ON_TOP);
         dialog.SetIcon(wxNullIcon);
         int result = dialog.ShowModal();
@@ -16,11 +16,11 @@ public:
         }
     }
 
-    static std::string showFileSelect() {
+    static std::string show_file_select() {
         wxFileDialog fileDialog(NULL, "Select an audio file", "", "", "All files (*.wav)|*.wav|(*.mp3)|*.mp3", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
 
         if (fileDialog.ShowModal() == wxID_CANCEL) {
-            Dialog::showErrorMessage("No file selected, exiting...");
+            Dialog::show_error_message("No file selected, exiting...");
         }
 
         wxString filePath = fileDialog.GetPath();

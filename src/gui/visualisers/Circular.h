@@ -76,7 +76,7 @@ public:
 
 private:
     wxPen pen_inner_lines { wxColour(40, 40, 40), 3 };
-    wxPen pen_outer_lines { wxColour(255, 255, 255), 5 };
+    wxPen pen_outer_lines { wxColour(255, 255, 255), 3 };
     wxPen pen_inner_circle { wxColour(255, 255, 255), 5 };
     wxBrush brush_inner_circle { wxColour(0, 0, 0) };
 

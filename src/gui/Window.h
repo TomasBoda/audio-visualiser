@@ -14,7 +14,7 @@
 
 class Window : public wxFrame {
 public:
-    Window() : wxFrame(NULL, wxID_ANY, global::APP_NAME, wxDefaultPosition, wxDefaultSize) {
+    Window(wxApp & app) : wxFrame(NULL, wxID_ANY, global::APP_NAME, wxDefaultPosition, wxDefaultSize) {
         create_and_start_gui_timer(10);
         create_and_start_frq_timer(10);
 
@@ -23,6 +23,7 @@ public:
         visualiser = equalizer_visualiser;
 
         init_menu_bar();
+        init_keyboard_shortcuts();
         init_default_window();
     };
 
@@ -95,6 +96,17 @@ private:
         menu_bar->Append(visualiser_menu, "&Visualiser");
 
         SetMenuBar(menu_bar);
+    }
+
+    void init_keyboard_shortcuts() {
+        wxAcceleratorEntry shortcuts[3];
+
+        shortcuts[0].Set(wxACCEL_CTRL, (int) 'Q', wxID_ANY);
+        shortcuts[1].Set(wxACCEL_CTRL, (int) 'E', wxID_ANY);
+        shortcuts[2].Set(wxACCEL_CTRL, (int) 'C', wxID_ANY);
+
+        wxAcceleratorTable shortcut_table(3, shortcuts);
+        SetAcceleratorTable(shortcut_table);
     }
 
     void OnQuit(wxCommandEvent & event) {

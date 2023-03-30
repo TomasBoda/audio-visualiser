@@ -11,6 +11,6 @@ namespace global {
     std::mutex MUTEX;
     const int NUM_CHUNKS = 360;
     double * SPECTRUM = new double[NUM_CHUNKS];
-    int SMOOTHING_FACTOR = 10;
+    int SMOOTHING_FACTOR = 18;
     double GRAVITY = 3;
 }
