@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
+
+enable_language(OBJCXX)
 project(fft_music_visualiser LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -9,11 +11,7 @@ include_directories(libs/SDL/include)
 add_subdirectory(libs/fftw3)
 include_directories(libs/fftw3/api)
 
-#add_subdirectory(libs/wxWidgets)
-
-set(wxWidgets_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/libs/wxWidgets)
-find_package(wxWidgets REQUIRED COMPONENTS core base)
-include(${wxWidgets_USE_FILE})
+add_subdirectory(libs/wxWidgets)
 
 add_executable(fft_music_visualiser
         main.cpp
@@ -31,4 +29,4 @@ add_executable(fft_music_visualiser
         src/gui/visualisers/Circular.h
         src/utils/Frame.h)
 
-target_link_libraries(fft_music_visualiser PRIVATE SDL2 fftw3 ${wxWidgets_LIBRARIES})
+target_link_libraries(fft_music_visualiser PRIVATE SDL2 fftw3 wx::net wx::core wx::base)
