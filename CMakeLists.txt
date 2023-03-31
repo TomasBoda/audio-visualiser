@@ -12,6 +12,7 @@ add_subdirectory(libs/fftw3)
 include_directories(libs/fftw3/api)
 
 add_subdirectory(libs/wxWidgets)
+include_directories(libs/wxWidgets/include)
 
 add_executable(fft_music_visualiser
         main.cpp
