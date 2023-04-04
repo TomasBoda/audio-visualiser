@@ -5,6 +5,3 @@
 [submodule "libs/wxWidgets"]
 	path = libs/wxWidgets
 	url = https://github.com/wxWidgets/wxWidgets.git
-[submodule "libs/fftw3"]
-	path = libs/fftw3
-	url = https://github.com/TomasBoda/fftw3-source.git
