@@ -1,18 +1,27 @@
 cmake_minimum_required(VERSION 3.21)
 
-enable_language(OBJCXX)
+if (UNIX)
+    enable_language(OBJCXX)
+endif (UNIX)
+
 project(fft_music_visualiser LANGUAGES CXX C)
 
 set(CMAKE_CXX_STANDARD 20)
 
+message(STATUS ">> Adding SDL library to the build path...")
 add_subdirectory(libs/SDL)
 include_directories(libs/SDL/include)
+message(STATUS ">> SDL added")
 
+message(STATUS ">> Adding FFTW3 library to the build path...")
 add_subdirectory(libs/fftw3)
 include_directories(libs/fftw3/api)
+message(STATUS ">> FFTW3 added")
 
+message(STATUS ">> Adding wxWidgets library to the build path...")
 add_subdirectory(libs/wxWidgets)
 include_directories(libs/wxWidgets/include)
+message(STATUS ">> wxWidgets added")
 
 add_executable(fft_music_visualiser
         main.cpp
