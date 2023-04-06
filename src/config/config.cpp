@@ -6,7 +6,7 @@ namespace global {
     int HEIGHT = 1000;
     const char * APP_NAME = "Music Visualiser";
 
-    const char * FILENAME = "../src/assets/bilderbuch-bungalow.wav";
+    const char * FILENAME = "../../src/assets/bilderbuch-bungalow.wav";
 
     std::mutex MUTEX;
     const int NUM_CHUNKS = 360;

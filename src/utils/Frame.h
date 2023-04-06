@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include <wx/display.h>
+#include <wx/dcbuffer.h>
 #include "../config/config.h"
 
 class Frame : public wxFrame {
@@ -21,7 +22,7 @@ public:
     }
 
     virtual void initialize() {};
-    virtual void render(wxPaintDC & graphics) {};
+    virtual void render(wxDC & graphics) {};
     virtual void update() {};
 private:
     wxTimer * render_timer;
@@ -32,7 +33,14 @@ private:
 
     void OnPaint(wxPaintEvent & event) {
         wxPaintDC graphics(this);
-        render(graphics);
+        wxBitmap bitmap(GetClientSize().GetWidth(), GetClientSize().GetHeight());
+        wxMemoryDC memory_graphics(bitmap);
+        memory_graphics.SetBackground(wxColour(0, 0, 0));
+        memory_graphics.Clear();
+
+        render(memory_graphics);
+
+        graphics.Blit(0, 0, GetClientSize().GetWidth(), GetClientSize().GetHeight(), &memory_graphics, 0, 0);
     }
 
     void OnSize(wxSizeEvent & event) {

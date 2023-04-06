@@ -16,7 +16,7 @@ public:
         indexes = new double[num_of_parts + 1] { 0, global::NUM_CHUNKS / factors[0], global::NUM_CHUNKS / factors[1], global::NUM_CHUNKS / factors[2], global::NUM_CHUNKS / factors[3] };
     }
 
-    void render(wxPaintDC & graphics) override {
+    void render(wxDC & graphics) override {
         widths = new double[num_of_parts] { global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
 
         draw_frequency_lines(graphics);
@@ -72,8 +72,9 @@ private:
         }
     }
 
-    void draw_frequency_texts(wxPaintDC & graphics) {
+    void draw_frequency_texts(wxDC & graphics) {
         graphics.SetFont(font_frequency_text);
+        graphics.SetTextForeground(wxColour(255, 255, 255));
 
         for (int i = 0; i < 5; i++) {
             double offset = 0;
@@ -100,12 +101,12 @@ private:
         }
     }
 
-    void draw_middle_line(wxPaintDC & graphics) {
+    void draw_middle_line(wxDC & graphics) {
         graphics.SetPen(pen_middle_line);
         graphics.DrawLine(0, global::HEIGHT / 2, global::WIDTH, global::HEIGHT / 2);
     }
 
-    void draw_frequency_lines(wxPaintDC & graphics) {
+    void draw_frequency_lines(wxDC & graphics) {
         int x_prev = 0;
         int y_prev = global::HEIGHT;
 
@@ -130,7 +131,7 @@ private:
         }
     }
 
-    void draw_frequency_line(wxPaintDC & graphics, int x1, int y1, int x2, int y2) {
+    void draw_frequency_line(wxDC & graphics, int x1, int y1, int x2, int y2) {
         double factor = (255.0 / global::WIDTH) * x1;
         double r = factor;
         double g = 0;

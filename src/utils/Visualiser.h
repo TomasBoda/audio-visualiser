@@ -10,7 +10,7 @@ public:
         init_default_frequency_spectrum();
     }
 
-    void render_visualiser(wxPaintDC & graphics) {
+    void render_visualiser(wxDC & graphics) {
         render(graphics);
     }
 
@@ -22,7 +22,7 @@ public:
 protected:
     double * frequency_spectrum;
 
-    virtual void render(wxPaintDC & graphics) {}
+    virtual void render(wxDC & graphics) {}
     virtual void update() {}
 
     virtual void init_default_frequency_spectrum() {

@@ -24,7 +24,7 @@ public:
         init_keyboard_shortcuts();
     };
 
-    void render(wxPaintDC & graphics) override {
+    void render(wxDC & graphics) override {
         visualiser->render_visualiser(graphics);
     }
 

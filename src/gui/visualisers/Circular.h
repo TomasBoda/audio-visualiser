@@ -11,7 +11,7 @@ public:
 
     }
 
-    void render(wxPaintDC & graphics) override {
+    void render(wxDC & graphics) override {
         wxPoint center(global::WIDTH / 2, global::HEIGHT / 2);
         double radius = 100;
 

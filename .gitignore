@@ -1,3 +1,5 @@
 cmake-build-debug/
 .idea/
-build/
+build/macos/
+build/windows/
+build/linux/
