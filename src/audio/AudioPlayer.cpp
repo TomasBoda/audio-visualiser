@@ -1,18 +1,27 @@
-#include <iostream>
 #include <thread>
 #include <cmath>
 #include <SDL.h>
 #include "../config/config.h"
 #include "AudioPlayer.h"
 #include <algorithm>
-#include "../utils/Dialog.h"
+#include "../utils/dialog/Dialog.h"
 #include <fftw3.h>
 #include <utility>
-#include "../utils/Audio.h"
+#include "../utils/audio/Audio.h"
 
 using namespace std;
 
-void audio_callback(void * user_data, Uint8 * stream, int length) {
+AudioPlayer::AudioPlayer() {
+    initialize();
+}
+
+void AudioPlayer::initialize() {
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        Dialog::show_error_message("Audio library could not be initialized...");
+    }
+}
+
+void AudioPlayer::audio_callback(void *user_data, Uint8 *stream, int length) {
     AudioData * audio = (AudioData *) user_data;
     Uint32 window_size = audio->samples;
 
@@ -26,7 +35,7 @@ void audio_callback(void * user_data, Uint8 * stream, int length) {
     int low_frequency = 0;
     int high_frequency = 20000;
 
-    pair<size_t, size_t> bin_range = frequency_range_to_bin_indexes(low_frequency, high_frequency, audio);
+    std::pair<size_t, size_t> bin_range = frequency_range_to_bin_indexes(low_frequency, high_frequency, audio);
     size_t start_bin = bin_range.first;
     size_t end_bin = bin_range.second;
 
@@ -65,44 +74,52 @@ void audio_callback(void * user_data, Uint8 * stream, int length) {
     copy_to_stream_and_advance(stream, audio, length);
 }
 
-void AudioPlayer::play_audio(const string & filename) {
-    thread audio_thread( [filename]() {
-        if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-            Dialog::show_error_message("Audio library could not be initialized...");
-        }
+void AudioPlayer::load_audio(const std::string &filename) {
+    SDL_CloseAudio();
 
-        Uint32 wav_length;
-        Uint8 * wav_buffer;
-        SDL_AudioSpec wav_spec;
+    SDL_AudioSpec wav_spec;
+    Uint32 wav_length;
+    Uint8 * wav_buffer;
 
-        if (SDL_LoadWAV(filename.c_str(), &wav_spec, &wav_buffer, &wav_length) == NULL) {
-            Dialog::show_error_message("Cannot open the provided audio file...");
-        }
+    if (SDL_LoadWAV(filename.c_str(), &wav_spec, &wav_buffer, &wav_length) == NULL) {
+        Dialog::show_error_message("Cannot load the provided audio file...");
+    }
 
-        AudioData audio;
-        audio.position = wav_buffer;
-        audio.length = wav_length;
-        audio.sample_rate = wav_spec.freq;
-        audio.channels = wav_spec.channels;
-        audio.samples = wav_spec.samples;
-        audio.format = wav_spec.format;
+    audio.position = wav_buffer;
+    audio.length = wav_length;
+    audio.sample_rate = wav_spec.freq;
+    audio.channels = wav_spec.channels;
+    audio.samples = wav_spec.samples;
+    audio.format = wav_spec.format;
 
-        wav_spec.callback = audio_callback;
-        wav_spec.userdata = &audio;
+    wav_spec.callback = &AudioPlayer::audio_callback;
+    wav_spec.userdata = &audio;
 
-        if (SDL_OpenAudio(&wav_spec, NULL) < 0) {
-            Dialog::show_error_message("Cannot open the provided audio file...");
-        }
+    if (SDL_OpenAudio(&wav_spec, NULL) < 0) {
+        Dialog::show_error_message("Cannot open the provided audio file...");
+    }
+}
 
-        SDL_PauseAudio(0);
-        while (audio.length > 0) {
-            SDL_Delay(1);
-        }
-
-        SDL_CloseAudio();
-        SDL_FreeWAV(wav_buffer);
-    });
-
+void AudioPlayer::play_audio() {
+    audio_thread = std::thread(&AudioPlayer::audio_playback, this);
     audio_thread.detach();
 }
 
+void AudioPlayer::resume_audio() {
+    SDL_PauseAudio(0);
+}
+
+void AudioPlayer::pause_audio() {
+    SDL_PauseAudio(1);
+}
+
+void AudioPlayer::audio_playback() {
+    SDL_PauseAudio(0);
+
+    while (audio.length > 0) {
+        SDL_Delay(1);
+    }
+
+    SDL_CloseAudio();
+    SDL_FreeWAV(audio.position);
+}

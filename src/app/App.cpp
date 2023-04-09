@@ -1,18 +1,17 @@
 #include "App.h"
-#include "../gui/window/Window.h"
-#include "../audio/AudioPlayer.h"
-#include "../utils/Dialog.h"
+#include "../utils/dialog/Dialog.h"
 
 bool App::OnInit() {
-    //std::string file = Dialog::show_file_select();
-    const char * file = global::FILENAME;
+    //std::string filename = Dialog::show_file_select();
+    const char * filename = global::FILENAME;
 
     audio_player = new AudioPlayer();
+
     observer = new Observer(audio_player);
-    //audio_player->play_audio(file);
+    observer->play(filename);
+
     window = new Window();
     window->set_observer(observer);
-    observer->play_audio(file);
 
     return true;
 }

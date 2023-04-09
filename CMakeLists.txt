@@ -31,12 +31,12 @@ add_executable(fft_music_visualiser
         src/config/config.h
         src/config/config.cpp
         src/gui/window/Window.h
-        src/utils/Dialog.h
+        src/utils/dialog/Dialog.h
         src/app/App.cpp
-        src/utils/Audio.h
-        src/utils/Visualiser.h
+        src/utils/audio/Audio.h
+        src/utils/visualiser/Visualiser.h
         src/gui/visualisers/equalizer/Equalizer.h
         src/gui/visualisers/circular/Circular.h
-        src/utils/frame/Frame.h src/utils/frame/Frame.cpp src/gui/window/Window.cpp src/gui/visualisers/equalizer/Equalizer.cpp src/gui/visualisers/circular/Circular.cpp src/utils/observer/Observer.h)
+        src/utils/frame/Frame.h src/utils/frame/Frame.cpp src/gui/window/Window.cpp src/gui/visualisers/equalizer/Equalizer.cpp src/gui/visualisers/circular/Circular.cpp src/utils/observer/Observer.h src/utils/audio/Audio.cpp src/utils/observer/Observer.cpp src/utils/dialog/Dialog.cpp src/utils/visualiser/Visualiser.cpp)
 
 target_link_libraries(fft_music_visualiser PRIVATE SDL2 fftw3 wx::net wx::core wx::base)

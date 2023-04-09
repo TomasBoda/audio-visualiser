@@ -8,9 +8,9 @@ class Observer {
 public:
     Observer(AudioPlayer * audio_player): audio_player(audio_player) {}
 
-    void play_audio(const std::string & filename) {
-        audio_player->play_audio(filename);
-    }
+    void play(const std::string & filename);
+    void resume();
+    void pause();
 private:
     AudioPlayer * audio_player;
 };

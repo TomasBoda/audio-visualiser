@@ -8,12 +8,12 @@
 #include <algorithm>
 #include "../../config/config.h"
 #include <random>
-#include "../../utils/Visualiser.h"
+#include "../../utils/visualiser/Visualiser.h"
 #include "../visualisers/equalizer/Equalizer.h"
 #include "../visualisers/circular/Circular.h"
 #include "../../utils/frame/Frame.h"
 #include "../../utils/observer/Observer.h"
-#include "../../utils/Dialog.h"
+#include "../../utils/dialog/Dialog.h"
 
 class Window : public Frame {
 public:
@@ -34,7 +34,10 @@ private:
 
     wxMenuBar * menu_bar;
 
+    void on_choose(wxCommandEvent & event);
     void on_quit(wxCommandEvent & event);
+    void on_resume(wxCommandEvent & event);
+    void on_pause(wxCommandEvent & event);
     void on_equalizer_select(wxCommandEvent & event);
     void on_circular_select(wxCommandEvent & event);
 

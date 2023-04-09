@@ -3,7 +3,7 @@
 
 #include <wx/wx.h>
 #include <string>
-#include "../../../utils/Visualiser.h"
+#include "../../../utils/visualiser/Visualiser.h"
 
 class Circular : public Visualiser {
 public:
