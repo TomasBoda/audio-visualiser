@@ -3,7 +3,6 @@
 namespace global {
     extern int WIDTH;
     extern int HEIGHT;
-    extern const char * APP_NAME;
 
     extern const char * FILENAME;
 
