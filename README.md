@@ -4,7 +4,7 @@ by Tomáš Boďa
 ## About
 A cross-platform application written in C++ that visualizes audio in real-time using frequency spectrum analyzers and the FFT algorithm.
 
-The project uses the following external libraries:
+The project utilizes the following external libraries:
 1. `wxWidgets` for cross-platform window and GUI
 2. `SDL2` for cross-platform audio processing and playback
 3. `FFTW3` for Fast Fourier Transform calculations to analyze frequency spectrum
