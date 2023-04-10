@@ -1,6 +1,8 @@
 # Music Visualizer
 by Tomáš Boďa
 
+![Music Visualiser](music-visualiser.gif)
+
 ## About
 A cross-platform application written in C++ that visualizes audio in real-time using frequency spectrum analyzers and the FFT algorithm.
 
