@@ -19,7 +19,16 @@ class Window : public Frame {
 public:
     Window();
 
-    void render(wxDC & graphics) override;
+    /*
+     * Render components in the window
+     * This method renders custom components in the window
+     * @param graphics graphics object @see wxDC
+     */
+    void render(Graphics graphics) override;
+    /*
+     * Update components in the window
+     * This method is used for updating custom components in the window
+     */
     void update() override;
 
     void set_observer(Observer * observer) {
@@ -34,12 +43,12 @@ private:
 
     wxMenuBar * menu_bar;
 
-    void on_choose(wxCommandEvent & event);
-    void on_quit(wxCommandEvent & event);
-    void on_resume(wxCommandEvent & event);
-    void on_pause(wxCommandEvent & event);
-    void on_equalizer_select(wxCommandEvent & event);
-    void on_circular_select(wxCommandEvent & event);
+    void on_choose(Event event);
+    void on_quit(Event event);
+    void on_resume(Event event);
+    void on_pause(Event event);
+    void on_equalizer_select(Event event);
+    void on_circular_select(Event event);
 
     void init_menu_bar();
 };

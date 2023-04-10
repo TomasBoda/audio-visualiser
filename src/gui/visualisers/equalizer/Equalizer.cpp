@@ -12,7 +12,7 @@ Equalizer::Equalizer() {
     indexes = new double[num_of_parts + 1] { 0, global::NUM_CHUNKS / factors[0], global::NUM_CHUNKS / factors[1], global::NUM_CHUNKS / factors[2], global::NUM_CHUNKS / factors[3] };
 }
 
-void Equalizer::render(wxDC &graphics) {
+void Equalizer::render(Graphics graphics) {
     widths = new double[num_of_parts] { global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
 
     draw_frequency_lines(graphics);
@@ -55,7 +55,7 @@ void Equalizer::apply_gravity_to_frequency_spectrum() {
     }
 }
 
-void Equalizer::draw_frequency_texts(wxDC &graphics) {
+void Equalizer::draw_frequency_texts(Graphics graphics) {
     graphics.SetFont(font_frequency_text);
     graphics.SetTextForeground(wxColour(255, 255, 255));
 
@@ -84,12 +84,12 @@ void Equalizer::draw_frequency_texts(wxDC &graphics) {
     }
 }
 
-void Equalizer::draw_middle_line(wxDC &graphics) {
+void Equalizer::draw_middle_line(Graphics graphics) {
     graphics.SetPen(pen_middle_line);
     graphics.DrawLine(0, global::HEIGHT / 2, global::WIDTH, global::HEIGHT / 2);
 }
 
-void Equalizer::draw_frequency_lines(wxDC &graphics) {
+void Equalizer::draw_frequency_lines(Graphics graphics) {
     int x_prev = 0;
     int y_prev = global::HEIGHT;
 
@@ -114,7 +114,7 @@ void Equalizer::draw_frequency_lines(wxDC &graphics) {
     }
 }
 
-void Equalizer::draw_frequency_line(wxDC &graphics, int x1, int y1, int x2, int y2) {
+void Equalizer::draw_frequency_line(Graphics graphics, int x1, int y1, int x2, int y2) {
     double factor = (255.0 / global::WIDTH) * x1;
     double r = factor;
     double g = 0;

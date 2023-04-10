@@ -9,7 +9,7 @@ class Equalizer : public Visualiser {
 public:
     Equalizer();
 
-    void render(wxDC & graphics) override;
+    void render(Graphics graphics) override;
     void update() override;
     void copy_frequency_spectrum() override;
     void init_default_frequency_spectrum() override;
@@ -29,10 +29,10 @@ private:
     double normalize_frequency(double db_value) const;
     void apply_gravity_to_frequency_spectrum();
 
-    void draw_frequency_texts(wxDC & graphics);
-    void draw_middle_line(wxDC & graphics);
-    void draw_frequency_lines(wxDC & graphics);
-    void draw_frequency_line(wxDC & graphics, int x1, int y1, int x2, int y2);
+    void draw_frequency_texts(Graphics graphics);
+    void draw_middle_line(Graphics graphics);
+    void draw_frequency_lines(Graphics graphics);
+    void draw_frequency_line(Graphics graphics, int x1, int y1, int x2, int y2);
 };
 
 #endif

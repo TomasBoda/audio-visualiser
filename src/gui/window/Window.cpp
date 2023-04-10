@@ -8,7 +8,7 @@ Window::Window() {
     init_menu_bar();
 }
 
-void Window::render(wxDC &graphics) {
+void Window::render(Graphics graphics) {
     visualiser->render_visualiser(graphics);
 }
 
@@ -16,28 +16,28 @@ void Window::update() {
     visualiser->update_visualiser();
 }
 
-void Window::on_choose(wxCommandEvent &event) {
+void Window::on_choose(Event event) {
     std::string filename = Dialog::show_file_select();
     observer->play(filename);
 }
 
-void Window::on_quit(wxCommandEvent &event) {
+void Window::on_quit(Event event) {
     std::exit(0);
 }
 
-void Window::on_resume(wxCommandEvent &event) {
+void Window::on_resume(Event event) {
     observer->resume();
 }
 
-void Window::on_pause(wxCommandEvent &event) {
+void Window::on_pause(Event event) {
     observer->pause();
 }
 
-void Window::on_equalizer_select(wxCommandEvent &event) {
+void Window::on_equalizer_select(Event event) {
     visualiser = equalizer_visualiser;
 }
 
-void Window::on_circular_select(wxCommandEvent &event) {
+void Window::on_circular_select(Event event) {
     visualiser = circular_visualiser;
 }
 

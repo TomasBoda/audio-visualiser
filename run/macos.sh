@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ ! -d "build" ]; then
+    mkdir build
+fi
+
 cd build
 
 if [ ! -d "macos" ]; then

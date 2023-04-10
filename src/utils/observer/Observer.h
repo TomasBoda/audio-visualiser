@@ -4,6 +4,10 @@
 #include <string>
 #include "../../audio/AudioPlayer.h"
 
+/*
+ * Observer
+ * This class is used for communication between the GUI and Audio threads
+ */
 class Observer {
 public:
     Observer(AudioPlayer * audio_player): audio_player(audio_player) {}

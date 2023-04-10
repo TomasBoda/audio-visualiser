@@ -1,7 +1,7 @@
 #include <wx/wx.h>
 #include "Circular.h"
 
-void Circular::render(wxDC &graphics) {
+void Circular::render(Graphics graphics) {
     wxPoint center(global::WIDTH / 2, global::HEIGHT / 2);
     double radius = 100;
 

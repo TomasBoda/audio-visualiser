@@ -10,7 +10,8 @@ The project uses the following external libraries:
 3. `FFTW3` for Fast Fourier Transform calculations to analyze frequency spectrum
 
 ## Setup and build
-The following section demonstrates the installation, setup and build of the project:
+The following section demonstrates the installation, setup and build of the project.
+
 1. Make sure you have C++ compiler, CMake and Make installed on your computer and added to `PATH` variable
 2. Clone the project with all its submodules using `git clone --recurse-submodules -j8 https://gitlab.mff.cuni.cz/bodat/music-visualiser.git`
 3. Navigate to the project root using `cd music-visualiser`

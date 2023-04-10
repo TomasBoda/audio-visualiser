@@ -7,7 +7,7 @@
 
 class Circular : public Visualiser {
 public:
-    void render(wxDC & graphics) override;
+    void render(Graphics graphics) override;
     void update() override;
     void copy_frequency_spectrum() override;
     void init_default_frequency_spectrum() override;

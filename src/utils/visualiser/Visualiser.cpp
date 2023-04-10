@@ -6,7 +6,7 @@ Visualiser::Visualiser(): frequency_spectrum(new double[global::NUM_CHUNKS]) {
     init_default_frequency_spectrum();
 }
 
-void Visualiser::render_visualiser(wxDC &graphics) {
+void Visualiser::render_visualiser(Graphics graphics) {
     render(graphics);
 }
 

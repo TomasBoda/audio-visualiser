@@ -1,4 +1,8 @@
 #include <mutex>
+#include <wx/wx.h>
+
+using Graphics = wxDC &;
+using Event = wxCommandEvent &;
 
 namespace global {
     extern int WIDTH;

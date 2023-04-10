@@ -1,4 +1,5 @@
-
+#include <iostream>
+#include <vector>
 #include "Observer.h"
 
 void Observer::play(const std::string &filename) {

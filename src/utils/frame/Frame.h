@@ -6,13 +6,30 @@
 #include "wx/dcbuffer.h"
 #include "../../config/config.h"
 
+/*
+ * Native window
+ * This class represents a native cross-platform window
+ */
 class Frame : public wxFrame {
 public:
     Frame();
     ~Frame();
 
+    /*
+     * Initialize the window
+     * This method is used to initialize a custom window
+     */
     virtual void initialize() {};
-    virtual void render(wxDC & graphics) {};
+    /*
+     * Render components in the window
+     * This method renders custom components in the window
+     * @param graphics graphics object @see wxDC
+     */
+    virtual void render(Graphics graphics) {};
+    /*
+     * Update components in the window
+     * This method is used for updating custom components in the window
+     */
     virtual void update() {};
 private:
     wxTimer * render_timer;
@@ -28,8 +45,20 @@ private:
     void on_render_timer(wxTimerEvent & event);
     void on_update_timer(wxTimerEvent & event);
 
+    /*
+     * Initialize window
+     * This method initializes a default window
+     */
     void initialize_window();
+    /*
+     * Initialize default window size to fill the current display
+     * This method initializes the window dimensions to fil the current display size
+     */
     void init_default_size();
+    /*
+     * Initialize render and update timers
+     * This method initializes timers used for rendering and updating components in the window
+     */
     void initialize_timers();
 };
 

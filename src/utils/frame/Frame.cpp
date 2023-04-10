@@ -4,7 +4,7 @@
 #include "../../config/config.h"
 #include "Frame.h"
 
-Frame::Frame(): wxFrame(NULL, wxID_ANY, "wxFrame", wxDefaultPosition, wxDefaultSize) {
+Frame::Frame(): wxFrame(NULL, wxID_ANY, "Music Visualiser", wxDefaultPosition, wxDefaultSize) {
     initialize();
     initialize_timers();
     initialize_window();

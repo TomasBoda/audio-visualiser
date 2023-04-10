@@ -4,7 +4,6 @@
 #include "../config/config.h"
 #include "AudioPlayer.h"
 #include <algorithm>
-#include "../utils/dialog/Dialog.h"
 #include <fftw3.h>
 #include <utility>
 #include "../utils/audio/Audio.h"
@@ -57,7 +56,6 @@ void AudioPlayer::audio_callback(void *user_data, Uint8 *stream, int length) {
     int num_chunks = global::NUM_CHUNKS;
     int chunk_width = num_bins / num_chunks;
 
-    double * db_chunks = new double[num_chunks];
     for (int i = 0; i < num_chunks; i++) {
         double db_sum = 0;
 
@@ -66,8 +64,8 @@ void AudioPlayer::audio_callback(void *user_data, Uint8 *stream, int length) {
             db_sum += db_values[index];
         }
 
-        db_chunks[i] = db_sum / chunk_width;
-        global::SPECTRUM[i] = db_chunks[i];
+        double chunk_db = db_sum / chunk_width;
+        global::SPECTRUM[i] = chunk_db;
     }
 
     free_fftw_data(fft_input, fft_output, fft_plan);
