@@ -21,7 +21,7 @@ if [ ! -f "Makefile" ]; then
 fi
 
 echo ">> Building the application..."
-mingw32-Makefile
+mingw32-make
 echo ">> Application built"
 
 echo ">> Binding libraries to the executable..."
