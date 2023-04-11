@@ -1,8 +1,6 @@
 #include "App.h"
-#include "../utils/dialog/Dialog.h"
 
 bool App::OnInit() {
-    //std::string filename = Dialog::show_file_select();
     const char * filename = global::FILENAME;
 
     audio_player = new AudioPlayer();

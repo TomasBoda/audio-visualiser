@@ -1,5 +1,3 @@
-#include <wx/wx.h>
-#include "../../config/config.h"
 #include "Visualiser.h"
 
 Visualiser::Visualiser(): frequency_spectrum(new double[global::NUM_CHUNKS]) {

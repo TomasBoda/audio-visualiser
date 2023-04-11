@@ -1,6 +1,7 @@
+#include <SDL.h>
+#include <fftw3.h>
 #include <utility>
-#include "fftw3.h"
-#include "SDL.h"
+#include <vector>
 
 #ifndef FFT_MUSIC_VISUALISER_AUDIOUTIL_H
 #define FFT_MUSIC_VISUALISER_AUDIOUTIL_H
@@ -53,6 +54,13 @@ void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio);
  * @return pair of lower and upper FFT bin bounds
  */
 std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int high_frequency, AudioData * & audio);
+
+/*
+ * Get decibel levels of audio file by seconds
+ * This method calculates the highest decibel level of each second of the audio file
+ * @return vector of decibel levels
+ */
+std::vector<double> & get_volume_levels(AudioData & audio);
 
 /*
  * Convert frequency magnitude to decibel value

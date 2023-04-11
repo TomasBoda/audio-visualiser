@@ -1,6 +1,3 @@
-#include "wx/wx.h"
-#include <string>
-#include <mutex>
 #include "Equalizer.h"
 
 Equalizer::Equalizer() {
@@ -13,14 +10,13 @@ Equalizer::Equalizer() {
 }
 
 void Equalizer::render(Graphics graphics) {
-    widths = new double[num_of_parts] { global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
-
     draw_frequency_lines(graphics);
     draw_middle_line(graphics);
     draw_frequency_texts(graphics);
 }
 
 void Equalizer::update() {
+    widths = new double[num_of_parts] { global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
     apply_gravity_to_frequency_spectrum();
 }
 

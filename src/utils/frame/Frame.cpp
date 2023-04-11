@@ -1,7 +1,3 @@
-#include "wx/wx.h"
-#include "wx/display.h"
-#include "wx/dcbuffer.h"
-#include "../../config/config.h"
 #include "Frame.h"
 
 Frame::Frame(): wxFrame(NULL, wxID_ANY, "Music Visualiser", wxDefaultPosition, wxDefaultSize) {
@@ -18,6 +14,7 @@ Frame::~Frame() {
 }
 
 void Frame::OnPaint(wxPaintEvent &event) {
+    // double buffered rendering - implemented due to issues on Windows computers
     wxPaintDC graphics(this);
     wxBitmap bitmap(GetClientSize().GetWidth(), GetClientSize().GetHeight());
     wxMemoryDC memory_graphics(bitmap);

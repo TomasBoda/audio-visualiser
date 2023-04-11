@@ -1,6 +1,3 @@
-#include <utility>
-#include "fftw3.h"
-#include "SDL.h"
 #include "Audio.h"
 
 void copy_to_stream_and_advance(Uint8 * & stream, AudioData * & audio, int length) {
@@ -19,15 +16,9 @@ void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio) {
     Uint32 window_size = audio->samples;
 
     for (int i = 0; i < window_size; i++) {
-        if (audio->format == AUDIO_F32) {
-            float * audio_data = (float*) audio->position;
-            fft_input[i][0] = audio_data[i * audio->channels];
-            fft_input[i][1] = 0.0;
-        } else if (audio->format == AUDIO_S16SYS) {
-            Sint16 * audio_data = (Sint16*) audio->position;
-            fft_input[i][0] = (double) audio_data[i * audio->channels] / 32768.0;
-            fft_input[i][1] = 0.0;
-        }
+        Sint16 * audio_data = (Sint16*) audio->position;
+        fft_input[i][0] = (double) audio_data[i * audio->channels] / 32768.0;
+        fft_input[i][1] = 0.0;
     }
 }
 
@@ -53,6 +44,33 @@ std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int 
     }
 
     return indexes;
+}
+
+std::vector<double> & get_volume_levels(AudioData & audio) {
+    std::vector<double> * levels = new std::vector<double>;
+
+    int samples_per_second = audio.sample_rate;
+    int bytes_per_second = samples_per_second * (SDL_AUDIO_BITSIZE(audio.format) / 8) * audio.channels;
+    int num_seconds = (int) (audio.length / bytes_per_second);
+
+    for (int i = 0; i < num_seconds; i++) {
+        int start_byte = i * bytes_per_second;
+        Uint8 * chunk = audio.position + start_byte;
+
+        int num_samples = bytes_per_second / sizeof(Sint16);
+        float sum_squares = 0.0f;
+
+        for (int i = 0; i < num_samples; i++) {
+            Sint16 sample = ((Sint16*) chunk)[i];
+            float sample_to_float = (float) sample / 32768.0f;
+            sum_squares += sample_to_float * sample_to_float;
+        }
+
+        float root_mean_square = sqrtf(sum_squares / num_samples);
+        levels->push_back(root_mean_square);
+    }
+
+    return *levels;
 }
 
 double magnitude_to_db(double magnitude) {

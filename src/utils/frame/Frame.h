@@ -1,9 +1,9 @@
 #ifndef FFT_MUSIC_VISUALISER_FRAME_H
 #define FFT_MUSIC_VISUALISER_FRAME_H
 
-#include "wx/wx.h"
-#include "wx/display.h"
-#include "wx/dcbuffer.h"
+#include <wx/wx.h>
+#include <wx/display.h>
+#include <wx/dcbuffer.h>
 #include "../../config/config.h"
 
 /*

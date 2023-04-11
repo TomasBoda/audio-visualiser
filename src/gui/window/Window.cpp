@@ -3,7 +3,9 @@
 Window::Window() {
     equalizer_visualiser = new Equalizer();
     circular_visualiser = new Circular();
-    visualiser = equalizer_visualiser;
+    volumes_visualiser = new Volumes();
+
+    visualiser = volumes_visualiser;
 
     init_menu_bar();
 }
@@ -17,6 +19,7 @@ void Window::update() {
 }
 
 void Window::on_choose(Event event) {
+    // select new local audio file to be played
     std::string filename = Dialog::show_file_select();
     observer->play(filename);
 }
@@ -41,6 +44,10 @@ void Window::on_circular_select(Event event) {
     visualiser = circular_visualiser;
 }
 
+void Window::on_volumes_select(Event event) {
+    visualiser = volumes_visualiser;
+}
+
 void Window::init_menu_bar() {
     menu_bar = new wxMenuBar();
 
@@ -61,8 +68,10 @@ void Window::init_menu_bar() {
     wxMenu * visualiser_menu = new wxMenu();
     visualiser_menu->Append(wxID_ANY, "Equalizer\tCtrl+E");
     visualiser_menu->Append(wxID_ANY, "Circular\tCtrl+C");
+    visualiser_menu->Append(wxID_ANY, "Volumes\tCtrl+V");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_equalizer_select, this, visualiser_menu->GetMenuItems()[0]->GetId());
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_circular_select, this, visualiser_menu->GetMenuItems()[1]->GetId());
+    Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_volumes_select, this, visualiser_menu->GetMenuItems()[2]->GetId());
     menu_bar->Append(visualiser_menu, "&Visualiser");
 
     SetMenuBar(menu_bar);

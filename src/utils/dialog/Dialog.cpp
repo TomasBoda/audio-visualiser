@@ -1,5 +1,3 @@
-#include <wx/wx.h>
-#include <string>
 #include "Dialog.h"
 
 void Dialog::show_error_message(const std::string &message) {

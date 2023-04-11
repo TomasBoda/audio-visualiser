@@ -1,12 +1,12 @@
 #ifndef FFT_MUSIC_VISUALISER_AUDIOPLAYER_H
 #define FFT_MUSIC_VISUALISER_AUDIOPLAYER_H
 
-#include <string>
 #include <SDL.h>
 #include <wx/wx.h>
-#include <thread>
-#include <utility>
 #include <fftw3.h>
+#include <thread>
+#include <string>
+#include <utility>
 #include <algorithm>
 #include <cmath>
 #include <vector>
@@ -43,6 +43,12 @@ public:
      * This method pauses the audio playback when it's resumed
      */
     void pause_audio();
+
+    /*
+     * Load decibel levels of the audio file
+     * This method calculates the decibel levels of audio file for each second and stores them
+     */
+    void load_volume_levels();
 private:
     AudioData audio;
     std::thread audio_thread;

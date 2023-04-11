@@ -1,4 +1,3 @@
-#include <wx/wx.h>
 #include "Circular.h"
 
 void Circular::render(Graphics graphics) {
@@ -44,9 +43,11 @@ void Circular::update() {
 }
 
 void Circular::copy_frequency_spectrum() {
+    // copy frequency spectrum
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
         double new_frequency = 0;
 
+        // average frequency chunks for smooth circle animation
         for (int j = 0; j < global::SMOOTHING_FACTOR; j++) {
             int index = (i + j) % global::NUM_CHUNKS;
             new_frequency += normalize_frequency(global::SPECTRUM[index]);
@@ -54,6 +55,8 @@ void Circular::copy_frequency_spectrum() {
 
         new_frequency /= global::SMOOTHING_FACTOR;
 
+        // update the frequency only if the new frequency is higher in volume than the previous one
+        // this ensures smooth gravity animation
         if (new_frequency > frequency_spectrum[i]) {
             frequency_spectrum[i] = new_frequency;
         }

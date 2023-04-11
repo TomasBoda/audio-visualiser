@@ -1,9 +1,8 @@
-#include <iostream>
-#include <vector>
 #include "Observer.h"
 
 void Observer::play(const std::string &filename) {
     audio_player->load_audio(filename);
+    audio_player->load_volume_levels();
     audio_player->play_audio();
 }
 

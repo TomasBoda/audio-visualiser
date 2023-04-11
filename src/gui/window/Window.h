@@ -1,16 +1,17 @@
 #ifndef FFT_MUSIC_VISUALISER_WINDOW_H
 #define FFT_MUSIC_VISUALISER_WINDOW_H
 
+#include <wx/wx.h>
+#include <wx/display.h>
 #include <iostream>
 #include <vector>
-#include "wx/wx.h"
-#include "wx/display.h"
 #include <algorithm>
-#include "../../config/config.h"
 #include <random>
+#include "../../config/config.h"
 #include "../../utils/visualiser/Visualiser.h"
 #include "../visualisers/equalizer/Equalizer.h"
 #include "../visualisers/circular/Circular.h"
+#include "../visualisers/volumes/Volumes.h"
 #include "../../utils/frame/Frame.h"
 #include "../../utils/observer/Observer.h"
 #include "../../utils/dialog/Dialog.h"
@@ -37,6 +38,7 @@ public:
 private:
     Equalizer * equalizer_visualiser;
     Circular * circular_visualiser;
+    Volumes * volumes_visualiser;
 
     Visualiser * visualiser;
     Observer * observer;
@@ -44,11 +46,14 @@ private:
     wxMenuBar * menu_bar;
 
     void on_choose(Event event);
+
     void on_quit(Event event);
     void on_resume(Event event);
     void on_pause(Event event);
+
     void on_equalizer_select(Event event);
     void on_circular_select(Event event);
+    void on_volumes_select(Event event);
 
     void init_menu_bar();
 };
