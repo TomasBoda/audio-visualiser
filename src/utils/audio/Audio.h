@@ -1,10 +1,10 @@
+#ifndef FFT_MUSIC_VISUALISER_AUDIOUTIL_H
+#define FFT_MUSIC_VISUALISER_AUDIOUTIL_H
+
 #include <SDL.h>
 #include <fftw3.h>
 #include <utility>
 #include <vector>
-
-#ifndef FFT_MUSIC_VISUALISER_AUDIOUTIL_H
-#define FFT_MUSIC_VISUALISER_AUDIOUTIL_H
 
 /*
  * Audio data container

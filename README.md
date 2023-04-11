@@ -20,7 +20,7 @@ For building and running the application, you will need the following installed 
 
 All mentioned tools need to be added to the system `PATH`. The prepared build scripts use `gcc`, `cmake` and `mingw32-make` commands to build and run the application.
 
-If you want to build the application with these tools installed elsewhere on your system, edit the `/run/macos.sh`, `/run/windows.sh`, `/run/linux.sh` scripts to use the tools from other locations on your system.
+If you want to build the application with these tools installed elsewhere on your system, edit the `./run/macos.sh`, `./run/windows.sh`, `./run/linux.sh` scripts to use the tools from other locations on your system.
 
 ## Setup and build
 The following section demonstrates the installation, setup and build of the project.
@@ -32,3 +32,8 @@ The following section demonstrates the installation, setup and build of the proj
    2. on MacOS, open terminal and run `./run/macos.sh`
    3. on Linux, open terminal and run `./run/linux.sh`
 4. After the build is complete, the application will start automatically
+
+## Not implemented yet
+The following is not implemented yet:
+
+- build script for Linux systems (`./run/linux.sh`) - soon to be implemented and tested
