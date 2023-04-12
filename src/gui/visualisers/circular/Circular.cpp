@@ -48,12 +48,12 @@ void Circular::copy_frequency_spectrum() {
         double new_frequency = 0;
 
         // average frequency chunks for smooth circle animation
-        for (int j = 0; j < global::SMOOTHING_FACTOR; j++) {
+        for (int j = 0; j < smoothing_factor; j++) {
             int index = (i + j) % global::NUM_CHUNKS;
             new_frequency += normalize_frequency(global::SPECTRUM[index]);
         }
 
-        new_frequency /= global::SMOOTHING_FACTOR;
+        new_frequency /= smoothing_factor;
 
         // update the frequency only if the new frequency is higher in volume than the previous one
         // this ensures smooth gravity animation

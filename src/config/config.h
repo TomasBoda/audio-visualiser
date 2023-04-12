@@ -19,9 +19,6 @@ namespace global {
     extern const int NUM_CHUNKS;
     extern double * SPECTRUM;
 
-    extern int SMOOTHING_FACTOR;
-    extern double GRAVITY;
-
     extern std::vector<double> VOLUME_LEVELS;
     extern double MAX_VOLUME;
 

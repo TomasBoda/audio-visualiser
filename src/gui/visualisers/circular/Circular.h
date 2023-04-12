@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include <string>
+#include "../../../config/config.h"
 #include "../../../utils/visualiser/Visualiser.h"
 
 class Circular : public Visualiser {
@@ -13,6 +14,8 @@ public:
     void init_default_frequency_spectrum() override;
 
 private:
+    const double smoothing_factor = 20;
+
     const wxPen pen_inner_lines { wxColour(40, 40, 40), 3 };
     const wxPen pen_outer_lines { wxColour(255, 255, 255), 5 };
     const wxPen pen_inner_circle { wxColour(255, 255, 255), 5 };

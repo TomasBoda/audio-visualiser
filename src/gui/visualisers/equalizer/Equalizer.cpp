@@ -7,6 +7,7 @@ Equalizer::Equalizer() {
     ranges = new double[num_of_parts] { delimiters[1] - delimiters[0], delimiters[2] - delimiters[1], delimiters[3] - delimiters[2], delimiters[4] - delimiters[3] };
     factors = new double[num_of_parts] { spectrum / ranges[0], spectrum / ranges[1], spectrum / ranges[2], spectrum / ranges[3] };
     indexes = new double[num_of_parts + 1] { 0, global::NUM_CHUNKS / factors[0], global::NUM_CHUNKS / factors[1], global::NUM_CHUNKS / factors[2], global::NUM_CHUNKS / factors[3] };
+    widths = new double[num_of_parts] { global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
 }
 
 void Equalizer::render(Graphics graphics) {
@@ -39,7 +40,7 @@ void Equalizer::init_default_frequency_spectrum() {
     }
 }
 
-double Equalizer::normalize_frequency(double db_value) const {
+double Equalizer::normalize_frequency(double db_value) {
     double db_range = 60;
     double pixel_factor = global::HEIGHT / db_range;
     return db_value * pixel_factor;
@@ -47,7 +48,7 @@ double Equalizer::normalize_frequency(double db_value) const {
 
 void Equalizer::apply_gravity_to_frequency_spectrum() {
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        frequency_spectrum[i] -= global::GRAVITY;
+        frequency_spectrum[i] -= gravity;
     }
 }
 

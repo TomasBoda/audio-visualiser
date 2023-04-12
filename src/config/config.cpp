@@ -15,9 +15,6 @@ namespace global {
     int LOW_FREQUENCY = 0;
     int HIGH_FREQUENCY = 20000;
 
-    int SMOOTHING_FACTOR = 20;
-    double GRAVITY = 3;
-
     std::vector<double> VOLUME_LEVELS;
     double MAX_VOLUME = 0;
 
