@@ -47,6 +47,16 @@ void free_fftw_data(fftw_complex * & fft_input, fftw_complex * & fft_output, fft
 void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio, int channel);
 
 /*
+ * Calculate frequency spectrum
+ * This method calculates the frequency spectrum using the FFT algorithm and stores its decibel magnitudes in global spectrum variables
+ * @param audio AudioData of the stream
+ * @param window_size size of the FFT window
+ * @param channel channel to be calculated
+ * @param frequency_spectrum variable where the decibel values of the frequency spectrum should be stored
+ */
+void calculate_fft_frequency_spectrum(AudioData * & audio, Uint32 window_size, int channel, double * & frequency_spectrum);
+
+/*
  * Convert frequency range in Hz to FFT bin range
  * This method converts the desired frequency range into a FFT bin range
  * @param low_frequency lower frequency bound in Hz

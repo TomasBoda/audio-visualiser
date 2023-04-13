@@ -11,7 +11,8 @@ Equalizer::Equalizer() {
 }
 
 void Equalizer::render(Graphics graphics) {
-    draw_frequency_lines(graphics);
+    draw_frequency_lines(graphics, frequency_spectrum_left, colour_spectrum_left);
+    draw_frequency_lines(graphics, frequency_spectrum_right, colour_spectrum_right);
     draw_middle_line(graphics);
     draw_frequency_texts(graphics);
 }
@@ -25,18 +26,26 @@ void Equalizer::copy_frequency_spectrum() {
     std::lock_guard<std::mutex> lock(global::MUTEX);
 
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        double fft_value = global::SPECTRUM[i];
-        double frq_value = frequency_spectrum[i];
+        double fft_value_left = global::SPECTRUM_LEFT[i];
+        double fft_value_right = global::SPECTRUM_RIGHT[i];
 
-        if (normalize_frequency(fft_value) > frq_value) {
-            frequency_spectrum[i] = normalize_frequency(fft_value);
+        double frq_value_left = frequency_spectrum_left[i];
+        double frq_value_right = frequency_spectrum_right[i];
+
+        if (normalize_frequency(fft_value_left) > frq_value_left) {
+            frequency_spectrum_left[i] = normalize_frequency(fft_value_left);
+        }
+
+        if (normalize_frequency(fft_value_right) > frq_value_right) {
+            frequency_spectrum_right[i] = normalize_frequency(fft_value_right);
         }
     }
 }
 
 void Equalizer::init_default_frequency_spectrum() {
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        frequency_spectrum[i] = global::HEIGHT;
+        frequency_spectrum_left[i] = global::HEIGHT;
+        frequency_spectrum_right[i] = global::HEIGHT;
     }
 }
 
@@ -48,7 +57,8 @@ double Equalizer::normalize_frequency(double db_value) {
 
 void Equalizer::apply_gravity_to_frequency_spectrum() {
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        frequency_spectrum[i] -= gravity;
+        frequency_spectrum_left[i] -= gravity;
+        frequency_spectrum_right[i] -= gravity;
     }
 }
 
@@ -86,7 +96,7 @@ void Equalizer::draw_middle_line(Graphics graphics) {
     graphics.DrawLine(0, global::HEIGHT / 2, global::WIDTH, global::HEIGHT / 2);
 }
 
-void Equalizer::draw_frequency_lines(Graphics graphics) {
+void Equalizer::draw_frequency_lines(Graphics graphics, double * & frequency_spectrum, const wxColour & colour) {
     int x_prev = 0;
     int y_prev = global::HEIGHT;
 
@@ -102,7 +112,7 @@ void Equalizer::draw_frequency_lines(Graphics graphics) {
             int y = global::HEIGHT - height;
 
             if (!(i == 0 && j == indexes[0])) {
-                draw_frequency_line(graphics, x_prev, y_prev, x, y);
+                draw_frequency_line(graphics, x_prev, y_prev, x, y, colour);
             }
 
             x_prev = x;
@@ -111,12 +121,14 @@ void Equalizer::draw_frequency_lines(Graphics graphics) {
     }
 }
 
-void Equalizer::draw_frequency_line(Graphics graphics, int x1, int y1, int x2, int y2) {
-    double factor = (255.0 / global::WIDTH) * x1;
-    double r = factor;
-    double g = 0;
-    double b = 255 - factor;
+void Equalizer::draw_frequency_line(Graphics graphics, int x1, int y1, int x2, int y2, const wxColour & colour) {
+    //double factor = (255.0 / global::WIDTH) * x1;
+    //double r = factor;
+    //double g = 0;
+    //double b = 255 - factor;
 
-    graphics.SetPen(wxPen(wxColour(r, g, b), 5));
+    //graphics.SetPen(wxPen(wxColour(r, g, b), 5));
+
+    graphics.SetPen(wxPen(colour, 5));
     graphics.DrawLine(x1, y1, x2, y2);
 }

@@ -26,6 +26,9 @@ private:
     double * indexes;
     double * widths;
 
+    const wxColour colour_spectrum_left{232, 80, 53};
+    const wxColour colour_spectrum_right{78, 118, 230};
+
     const wxPen pen_frequency_line { wxColour(255, 255, 255), 2 };
     const wxPen pen_middle_line { wxColour(90, 90, 90), 2 };
     const wxFont font_frequency_text { 15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL, false, wxT("Arial") };
@@ -35,8 +38,8 @@ private:
 
     void draw_frequency_texts(Graphics graphics);
     void draw_middle_line(Graphics graphics);
-    void draw_frequency_lines(Graphics graphics);
-    void draw_frequency_line(Graphics graphics, int x1, int y1, int x2, int y2);
+    void draw_frequency_lines(Graphics graphics, double * & frequency_spectrum, const wxColour & colour);
+    void draw_frequency_line(Graphics graphics, int x1, int y1, int x2, int y2, const wxColour & colour);
 };
 
 #endif

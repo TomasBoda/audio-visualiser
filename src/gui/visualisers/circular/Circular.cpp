@@ -8,8 +8,8 @@ void Circular::render(Graphics graphics) {
         int i1 = i % global::NUM_CHUNKS;
         int i2 = (i + 1) % global::NUM_CHUNKS;
 
-        double db1 = frequency_spectrum[i1];
-        double db2 = frequency_spectrum[i2];
+        double db1 = frequency_spectrum_left[i1];
+        double db2 = frequency_spectrum_left[i2];
 
         double angle1 = i1 * (360 / global::NUM_CHUNKS) * (M_PI / 180);
         double angle2 = i2 * (360 / global::NUM_CHUNKS) * (M_PI / 180);
@@ -50,29 +50,29 @@ void Circular::copy_frequency_spectrum() {
         // average frequency chunks for smooth circle animation
         for (int j = 0; j < smoothing_factor; j++) {
             int index = (i + j) % global::NUM_CHUNKS;
-            new_frequency += normalize_frequency(global::SPECTRUM[index]);
+            new_frequency += normalize_frequency(global::SPECTRUM_LEFT[index]);
         }
 
         new_frequency /= smoothing_factor;
 
         // update the frequency only if the new frequency is higher in volume than the previous one
         // this ensures smooth gravity animation
-        if (new_frequency > frequency_spectrum[i]) {
-            frequency_spectrum[i] = new_frequency;
+        if (new_frequency > frequency_spectrum_left[i]) {
+            frequency_spectrum_left[i] = new_frequency;
         }
     }
 }
 
 void Circular::init_default_frequency_spectrum() {
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        frequency_spectrum[i] = global::HEIGHT;
+        frequency_spectrum_left[i] = global::HEIGHT;
     }
 }
 
 void Circular::apply_gravity_to_frequency_spectrum() {
     for (int i = 0; i < global::NUM_CHUNKS; i++) {
-        double offset = frequency_spectrum[i] * 0.015;
-        frequency_spectrum[i] -= offset;
+        double offset = frequency_spectrum_left[i] * 0.015;
+        frequency_spectrum_left[i] -= offset;
     }
 }
 

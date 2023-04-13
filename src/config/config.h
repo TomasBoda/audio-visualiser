@@ -17,7 +17,9 @@ namespace global {
     extern int HIGH_FREQUENCY;
 
     extern const int NUM_CHUNKS;
-    extern double * SPECTRUM;
+
+    extern double * SPECTRUM_LEFT;
+    extern double * SPECTRUM_RIGHT;
 
     extern std::vector<double> VOLUME_LEVELS;
     extern double MAX_VOLUME;

@@ -16,51 +16,14 @@ void AudioPlayer::audio_callback(void *user_data, Uint8 *stream, int length) {
 
     Uint32 window_size = audio->samples;
 
-    // input and output vectors for the FFT algorithm
-    fftw_complex * fft_input = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
-    fftw_complex * fft_output = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
-    fftw_plan fft_plan = fftw_plan_dft_1d(window_size, fft_input, fft_output, FFTW_FORWARD, FFTW_ESTIMATE);
-
-    copy_stream_to_fft_input(fft_input, audio, 0);
-    fftw_execute(fft_plan);
-
-    std::pair<size_t, size_t> bin_range = frequency_range_to_bin_indexes(global::LOW_FREQUENCY, global::HIGH_FREQUENCY, audio);
-    size_t start_bin = bin_range.first;
-    size_t end_bin = bin_range.second;
-
-    int num_bins = end_bin - start_bin;
-
-    // calculate the decibel volume of each frequency bin
-    double * db_values = new double[num_bins];
-    for (int i = start_bin; i < end_bin; i++) {
-        int index = i - start_bin;
-
-        double real_part = fft_output[i][0];
-        double imag_part = fft_output[i][1];
-
-        double magnitude = sqrt(real_part * real_part + imag_part * imag_part);
-        double db_value = magnitude_to_db(magnitude);
-
-        db_values[index] = db_value;
+    if (audio->channels == 1) {
+        calculate_fft_frequency_spectrum(audio, window_size, 0, global::SPECTRUM_LEFT);
+        calculate_fft_frequency_spectrum(audio, window_size, 0, global::SPECTRUM_RIGHT);
+    } else {
+        calculate_fft_frequency_spectrum(audio, window_size, 0, global::SPECTRUM_LEFT);
+        calculate_fft_frequency_spectrum(audio, window_size, 1, global::SPECTRUM_RIGHT);
     }
 
-    int num_chunks = global::NUM_CHUNKS;
-    int chunk_width = num_bins / num_chunks;
-
-    // average the frequency bins for visualisation
-    for (int i = 0; i < num_chunks; i++) {
-        double db_sum = 0;
-
-        for (int j = 0; j < chunk_width; j++) {
-            int index = i * chunk_width + j;
-            db_sum += db_values[index];
-        }
-
-        double chunk_db = db_sum / chunk_width;
-        global::SPECTRUM[i] = chunk_db;
-    }
-
-    free_fftw_data(fft_input, fft_output, fft_plan);
     copy_to_stream_and_advance(stream, audio, length);
 }
 

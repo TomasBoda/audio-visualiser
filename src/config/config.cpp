@@ -10,7 +10,9 @@ namespace global {
     std::mutex MUTEX;
 
     const int NUM_CHUNKS = 360;
-    double * SPECTRUM = new double[NUM_CHUNKS];
+
+    double * SPECTRUM_LEFT = new double[NUM_CHUNKS];
+    double * SPECTRUM_RIGHT = new double[NUM_CHUNKS];
 
     int LOW_FREQUENCY = 0;
     int HIGH_FREQUENCY = 20000;
