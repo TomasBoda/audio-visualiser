@@ -12,12 +12,12 @@ void free_fftw_data(fftw_complex * & fft_input, fftw_complex * & fft_output, fft
     fftw_free(fft_output);
 }
 
-void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio) {
+void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio, int channel) {
     Uint32 window_size = audio->samples;
 
     for (int i = 0; i < window_size; i++) {
         Sint16 * audio_data = (Sint16*) audio->position;
-        fft_input[i][0] = (double) audio_data[i * audio->channels] / 32768.0;
+        fft_input[i][0] = (double) audio_data[i * audio->channels + channel] / 32768.0;
         fft_input[i][1] = 0.0;
     }
 }
@@ -71,6 +71,13 @@ std::vector<double> & get_volume_levels(AudioData & audio) {
     }
 
     return *levels;
+}
+
+void update_audio_position(AudioData * & audio) {
+    // get the current playback duration in bytes
+    Uint32 bytes_played = audio->length - audio->samples * audio->channels * SDL_AUDIO_BITSIZE(audio->format) / 8;
+    // update the playback duration in bytes
+    global::AUDIO_POSITION = global::AUDIO_SIZE - bytes_played;
 }
 
 double magnitude_to_db(double magnitude) {

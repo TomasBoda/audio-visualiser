@@ -5,6 +5,7 @@
 #include <fftw3.h>
 #include <utility>
 #include <vector>
+#include "../../config/config.h"
 
 /*
  * Audio data container
@@ -43,7 +44,7 @@ void free_fftw_data(fftw_complex * & fft_input, fftw_complex * & fft_output, fft
  * @param fft_input input vector of the FFT algorithm
  * @param audio audio data @see AudioData
  */
-void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio);
+void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio, int channel);
 
 /*
  * Convert frequency range in Hz to FFT bin range
@@ -61,6 +62,8 @@ std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int 
  * @return vector of decibel levels
  */
 std::vector<double> & get_volume_levels(AudioData & audio);
+
+void update_audio_position(AudioData * & audio);
 
 /*
  * Convert frequency magnitude to decibel value

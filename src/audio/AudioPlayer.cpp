@@ -12,11 +12,7 @@ void AudioPlayer::initialize() {
 
 void AudioPlayer::audio_callback(void *user_data, Uint8 *stream, int length) {
     AudioData * audio = (AudioData *) user_data;
-
-    // get the current playback duration in bytes
-    Uint32 bytes_played = audio->length - audio->samples * audio->channels * SDL_AUDIO_BITSIZE(audio->format) / 8;
-    // update the playback duration in bytes
-    global::AUDIO_POSITION = global::AUDIO_SIZE - bytes_played;
+    update_audio_position(audio);
 
     Uint32 window_size = audio->samples;
 
@@ -25,7 +21,7 @@ void AudioPlayer::audio_callback(void *user_data, Uint8 *stream, int length) {
     fftw_complex * fft_output = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
     fftw_plan fft_plan = fftw_plan_dft_1d(window_size, fft_input, fft_output, FFTW_FORWARD, FFTW_ESTIMATE);
 
-    copy_stream_to_fft_input(fft_input, audio);
+    copy_stream_to_fft_input(fft_input, audio, 0);
     fftw_execute(fft_plan);
 
     std::pair<size_t, size_t> bin_range = frequency_range_to_bin_indexes(global::LOW_FREQUENCY, global::HIGH_FREQUENCY, audio);
