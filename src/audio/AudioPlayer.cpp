@@ -10,7 +10,7 @@ void AudioPlayer::initialize() {
     }
 }
 
-void AudioPlayer::audio_callback(void *user_data, Uint8 *stream, int length) {
+void AudioPlayer::audio_callback(void * user_data, Uint8 * stream, int length) {
     AudioData * audio = (AudioData *) user_data;
     update_audio_position(audio);
 
@@ -27,7 +27,7 @@ void AudioPlayer::audio_callback(void *user_data, Uint8 *stream, int length) {
     copy_to_stream_and_advance(stream, audio, length);
 }
 
-void AudioPlayer::load_audio(const std::string &filename) {
+void AudioPlayer::load_audio(const std::string & filename) {
     // close audio if it was already playing
     SDL_CloseAudio();
 

@@ -1,13 +1,13 @@
 #include "Equalizer.h"
 
-Equalizer::Equalizer() {
-    num_of_parts = 4;
-    spectrum = 20000.0;
-    delimiters = new double[num_of_parts + 1] { 0, 200, 1000, 8000, 20000 };
-    ranges = new double[num_of_parts] { delimiters[1] - delimiters[0], delimiters[2] - delimiters[1], delimiters[3] - delimiters[2], delimiters[4] - delimiters[3] };
-    factors = new double[num_of_parts] { spectrum / ranges[0], spectrum / ranges[1], spectrum / ranges[2], spectrum / ranges[3] };
-    indexes = new double[num_of_parts + 1] { 0, global::NUM_CHUNKS / factors[0], global::NUM_CHUNKS / factors[1], global::NUM_CHUNKS / factors[2], global::NUM_CHUNKS / factors[3] };
-    widths = new double[num_of_parts] { global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
+Equalizer::Equalizer(): num_of_parts(4), hz_range(20000.0) {
+    delimiters = double_vector{ 0, 200, 1000, 8000, 20000};
+    indexes = double_vector{ 0,
+        global::NUM_CHUNKS / (hz_range / (delimiters[1] - delimiters[0])),
+        global::NUM_CHUNKS / (hz_range / (delimiters[2] - delimiters[1])),
+        global::NUM_CHUNKS / (hz_range / (delimiters[3] - delimiters[2])),
+        global::NUM_CHUNKS / (hz_range / (delimiters[4] - delimiters[3])) };
+    update_widths();
 }
 
 void Equalizer::render(Graphics graphics) {
@@ -15,10 +15,11 @@ void Equalizer::render(Graphics graphics) {
     draw_frequency_lines(graphics, frequency_spectrum_right, colour_spectrum_right);
     draw_middle_line(graphics);
     draw_frequency_texts(graphics);
+    draw_hints(graphics);
 }
 
 void Equalizer::update() {
-    widths = new double[num_of_parts] { global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
+    update_widths();
     apply_gravity_to_frequency_spectrum();
 }
 
@@ -49,9 +50,9 @@ void Equalizer::init_default_frequency_spectrum() {
     }
 }
 
-double Equalizer::normalize_frequency(double db_value) {
-    double db_range = 60;
-    double pixel_factor = global::HEIGHT / db_range;
+double Equalizer::normalize_frequency(double db_value) const {
+    const double db_range = 60;
+    const double pixel_factor = global::HEIGHT / db_range;
     return db_value * pixel_factor;
 }
 
@@ -66,7 +67,7 @@ void Equalizer::draw_frequency_texts(Graphics graphics) {
     graphics.SetFont(font_frequency_text);
     graphics.SetTextForeground(wxColour(255, 255, 255));
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < num_of_parts + 1; i++) {
         double offset = 0;
         for (int j = 0; j < i - 1; j++) offset += widths[j];
 
@@ -96,7 +97,7 @@ void Equalizer::draw_middle_line(Graphics graphics) {
     graphics.DrawLine(0, global::HEIGHT / 2, global::WIDTH, global::HEIGHT / 2);
 }
 
-void Equalizer::draw_frequency_lines(Graphics graphics, double * & frequency_spectrum, const wxColour & colour) {
+void Equalizer::draw_frequency_lines(Graphics graphics, double_array & frequency_spectrum, const wxColour & colour) {
     int x_prev = 0;
     int y_prev = global::HEIGHT;
 
@@ -122,13 +123,24 @@ void Equalizer::draw_frequency_lines(Graphics graphics, double * & frequency_spe
 }
 
 void Equalizer::draw_frequency_line(Graphics graphics, int x1, int y1, int x2, int y2, const wxColour & colour) {
-    //double factor = (255.0 / global::WIDTH) * x1;
-    //double r = factor;
-    //double g = 0;
-    //double b = 255 - factor;
-
-    //graphics.SetPen(wxPen(wxColour(r, g, b), 5));
-
     graphics.SetPen(wxPen(colour, 5));
     graphics.DrawLine(x1, y1, x2, y2);
+}
+
+void Equalizer::draw_hints(Graphics graphics) {
+    graphics.SetPen(wxPen(colour_spectrum_left, 5));
+    graphics.DrawLine(50, 50, 100, 50);
+
+    graphics.SetPen(wxPen(colour_spectrum_right, 5));
+    graphics.DrawLine(50, 80, 100, 80);
+
+    graphics.SetFont(font_frequency_text);
+    graphics.SetTextForeground(wxColour(255, 255, 255));
+
+    graphics.DrawText("Left Channel", 120, 42);
+    graphics.DrawText("Right Channel", 120, 72);
+}
+
+void Equalizer::update_widths() {
+    widths = double_vector{ global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 2.0, global::WIDTH / 10.0 * 3.0, global::WIDTH / 10.0 * 3.0 };
 }

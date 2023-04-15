@@ -1,10 +1,9 @@
 #include "Circular.h"
 
-Circular::Circular(): frequency_spectrum(new double[global::NUM_CHUNKS * 2]) {}
+Circular::Circular(): frequency_spectrum(std::make_unique<double[]>(global::NUM_CHUNKS * 2)) {}
 
 void Circular::render(Graphics graphics) {
-    wxPoint center(global::WIDTH / 2, global::HEIGHT / 2);
-    double radius = 100;
+    wxPoint center(global::WIDTH / 2, global::HEIGHT / 5 * 3);
 
     for (int i = 0; i < global::NUM_CHUNKS * 2; i++) {
         int i1 = (i) % (global::NUM_CHUNKS * 2);
@@ -51,12 +50,13 @@ void Circular::copy_frequency_spectrum() {
         double new_frequency = 0;
 
         for (int j = 0; j < smoothing_factor; j++) {
-            int index = (i + j) % (global::NUM_CHUNKS * 2);
+            const int index = (i + j) % (global::NUM_CHUNKS * 2);
+            const int index_reversed = global::NUM_CHUNKS - (index % global::NUM_CHUNKS) - 1;
 
             if (index < global::NUM_CHUNKS) {
                 new_frequency += normalize_frequency(global::SPECTRUM_LEFT[index]);
             } else {
-                new_frequency += normalize_frequency(global::SPECTRUM_RIGHT[global::NUM_CHUNKS - (index % global::NUM_CHUNKS) - 1]);
+                new_frequency += normalize_frequency(global::SPECTRUM_RIGHT[index_reversed]);
             }
         }
 
@@ -78,24 +78,24 @@ void Circular::init_default_frequency_spectrum() {
 
 void Circular::apply_gravity_to_frequency_spectrum() {
     for (int i = 0; i < global::NUM_CHUNKS * 2; i++) {
-        double offset = frequency_spectrum[i] * 0.015;
+        double offset = frequency_spectrum[i] * gravity;
         frequency_spectrum[i] -= offset;
     }
 }
 
 double Circular::normalize_frequency(double db_value) const {
-    double db_range = 50;
-    double pixel_factor = (double) global::HEIGHT / 2.0 / db_range;
+    const double db_range = 50;
+    const double pixel_factor = (double) global::HEIGHT / 2.0 / db_range;
     return db_value * pixel_factor;
 }
 
-double Circular::index_to_angle(int index) {
-    double offset = -90;
+double Circular::index_to_angle(int index) const {
+    const double offset = -90;
     return ((double) index * (360.0 / (global::NUM_CHUNKS * 2)) + offset + ((smoothing_factor - 1) / 4)) * (M_PI / 180);
 }
 
 wxPoint Circular::get_endpoint(wxPoint &center, double db, double angle_in_radians) const {
-    double x = (double) center.x + db * cos(angle_in_radians);
-    double y = (double) center.y + db * sin(angle_in_radians);
+    const double x = (double) center.x + db * cos(angle_in_radians);
+    const double y = (double) center.y + db * sin(angle_in_radians);
     return wxPoint(x, y);
 }

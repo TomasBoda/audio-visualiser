@@ -5,7 +5,7 @@ Window::Window() {
     circular_visualiser = new Circular();
     volumes_visualiser = new Volumes();
 
-    visualiser = circular_visualiser;
+    visualiser = equalizer_visualiser;
 
     init_menu_bar();
 }

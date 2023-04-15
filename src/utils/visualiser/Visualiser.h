@@ -15,8 +15,8 @@ public:
     void render_visualiser(Graphics graphics);
     void update_visualiser();
 protected:
-    double * frequency_spectrum_left;
-    double * frequency_spectrum_right;
+    double_array frequency_spectrum_left;
+    double_array frequency_spectrum_right;
 
     /*
      * Render the visualiser

@@ -1,8 +1,8 @@
 #include "Volumes.h"
 
-Volumes::Volumes() {
+Volumes::Volumes(): num_seconds(global::VOLUME_LEVELS.size()) {
     update_display_window();
-    scaling_factor = get_scaling_factor();
+    update_scaling_factor();
 }
 
 void Volumes::render(Graphics graphics) {
@@ -13,8 +13,7 @@ void Volumes::render(Graphics graphics) {
 void Volumes::update() {
     update_display_window();
     update_pointer_position();
-
-    scaling_factor = get_scaling_factor();
+    update_scaling_factor();
 }
 
 void Volumes::draw_volumes(Graphics graphics) {
@@ -50,6 +49,6 @@ void Volumes::update_display_window() {
     x_window = global::WIDTH / 2 - width_window / 2;
 }
 
-double Volumes::get_scaling_factor() {
-    return height_window / global::MAX_VOLUME;
+void Volumes::update_scaling_factor() {
+    scaling_factor = height_window / global::MAX_VOLUME;
 }

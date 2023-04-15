@@ -5,6 +5,7 @@
 #include <fftw3.h>
 #include <utility>
 #include <vector>
+#include <memory>
 #include "../../config/config.h"
 
 /*
@@ -54,7 +55,7 @@ void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio, i
  * @param channel channel to be calculated
  * @param frequency_spectrum variable where the decibel values of the frequency spectrum should be stored
  */
-void calculate_fft_frequency_spectrum(AudioData * & audio, Uint32 window_size, int channel, double * & frequency_spectrum);
+void calculate_fft_frequency_spectrum(AudioData * & audio, Uint32 window_size, int channel, double_array & frequency_spectrum);
 
 /*
  * Convert frequency range in Hz to FFT bin range

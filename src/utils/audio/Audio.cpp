@@ -22,7 +22,7 @@ void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio, i
     }
 }
 
-void calculate_fft_frequency_spectrum(AudioData * & audio, Uint32 window_size, int channel, double * & frequency_spectrum) {
+void calculate_fft_frequency_spectrum(AudioData * & audio, Uint32 window_size, int channel, double_array & frequency_spectrum) {
     fftw_complex * fft_input = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
     fftw_complex * fft_output = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
     fftw_plan fft_plan = fftw_plan_dft_1d(window_size, fft_input, fft_output, FFTW_FORWARD, FFTW_ESTIMATE);
@@ -37,7 +37,7 @@ void calculate_fft_frequency_spectrum(AudioData * & audio, Uint32 window_size, i
     int num_bins = end_bin - start_bin;
 
     // calculate the decibel volume of each frequency bin
-    double * db_values = new double[num_bins];
+    double_array db_values = std::make_unique<double[]>(num_bins);
     for (int i = start_bin; i < end_bin; i++) {
         int index = i - start_bin;
 

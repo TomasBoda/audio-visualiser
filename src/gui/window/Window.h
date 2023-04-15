@@ -7,6 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <memory>
 #include "../../config/config.h"
 #include "../../utils/visualiser/Visualiser.h"
 #include "../visualisers/equalizer/Equalizer.h"

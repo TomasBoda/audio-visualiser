@@ -1,6 +1,9 @@
 #include "Visualiser.h"
 
-Visualiser::Visualiser(): frequency_spectrum_left(new double[global::NUM_CHUNKS]), frequency_spectrum_right(new double[global::NUM_CHUNKS]) {
+Visualiser::Visualiser():
+    frequency_spectrum_left(std::make_unique<double[]>(global::NUM_CHUNKS)),
+    frequency_spectrum_right(std::make_unique<double[]>(global::NUM_CHUNKS))
+{
     init_default_frequency_spectrum();
 }
 

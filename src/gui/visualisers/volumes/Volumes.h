@@ -13,15 +13,14 @@ public:
     void render(Graphics graphics) override;
     void update() override;
 private:
-    int num_seconds = global::VOLUME_LEVELS.size();
+    int num_seconds;
 
     double scaling_factor;
+    int pointer_position;
 
     int x_window;
     int width_window;
     int height_window;
-
-    int pointer_position;
 
     wxPen pen_pointer{wxColour(47, 113, 212), 5};
     wxPen pen_volumes{wxColour(255, 255, 255), 1};
@@ -53,7 +52,7 @@ private:
      * Update scaling factor
      * This method updates the scaling factor of the volume bars to fit onto the screen
      */
-    double get_scaling_factor();
+    void update_scaling_factor();
 };
 
 #endif
