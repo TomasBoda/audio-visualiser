@@ -3,6 +3,7 @@
 
 #include <wx/wx.h>
 #include "../../config/config.h"
+#include "../time/Time.h"
 
 /*
  * Visualiser
@@ -17,6 +18,9 @@ public:
 protected:
     double_array frequency_spectrum_left;
     double_array frequency_spectrum_right;
+
+    int total_time;
+    int remaining_time;
 
     /*
      * Render the visualiser
@@ -40,6 +44,9 @@ protected:
      * This method copies the frequency spectrum from the audio thread
      */
     virtual void copy_frequency_spectrum();
+
+    void update_remaining_time();
+    void render_remaining_time(Graphics graphics);
 };
 
 #endif

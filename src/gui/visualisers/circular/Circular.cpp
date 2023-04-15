@@ -84,7 +84,7 @@ void Circular::apply_gravity_to_frequency_spectrum() {
 }
 
 double Circular::normalize_frequency(double db_value) const {
-    const double db_range = 50;
+    const double db_range = 40;
     const double pixel_factor = (double) global::HEIGHT / 2.0 / db_range;
     return db_value * pixel_factor;
 }
