@@ -80,13 +80,12 @@ void AudioPlayer::audio_playback() {
     SDL_PauseAudio(0);
 
     // play audio as long as there is data to be played
-    while (audio->length > 0) {
+    while (global::AUDIO_POSITION < global::AUDIO_SIZE) {
         SDL_Delay(1);
     }
 
-    // close and free audio data
+    // close audio
     SDL_CloseAudio();
-    SDL_FreeWAV(audio->position);
 }
 
 void AudioPlayer::load_volume_levels() {
