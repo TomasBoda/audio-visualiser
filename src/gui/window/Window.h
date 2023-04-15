@@ -33,16 +33,16 @@ public:
      */
     void update() override;
 
-    void set_observer(Observer * observer) {
-        this->observer = observer;
+    void set_observer(std::unique_ptr<Observer> & observer) {
+        this->observer = std::move(observer);
     }
 private:
     Equalizer * equalizer_visualiser;
     Circular * circular_visualiser;
     Volumes * volumes_visualiser;
-
     Visualiser * visualiser;
-    Observer * observer;
+
+    std::unique_ptr<Observer> observer;
 
     wxMenuBar * menu_bar;
 

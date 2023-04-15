@@ -3,12 +3,10 @@
 bool App::OnInit() {
     const char * filename = global::FILENAME;
 
-    audio_player = new AudioPlayer();
-
-    observer = new Observer(audio_player);
+    audio_player = std::make_unique<AudioPlayer>();
+    observer = std::make_unique<Observer>(audio_player);
     observer->play(filename);
-
-    window = new Window();
+    window = std::make_unique<Window>();
     window->set_observer(observer);
 
     return true;

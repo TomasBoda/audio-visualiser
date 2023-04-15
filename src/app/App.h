@@ -11,9 +11,9 @@ class App : public wxApp {
 public:
     virtual bool OnInit();
 private:
-    Window * window;
-    AudioPlayer * audio_player;
-    Observer * observer;
+    std::unique_ptr<Window> window;
+    std::unique_ptr<AudioPlayer> audio_player;
+    std::unique_ptr<Observer> observer;
 };
 
 #endif

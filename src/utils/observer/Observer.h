@@ -2,6 +2,7 @@
 #define FFT_MUSIC_VISUALISER_OBSERVER_H
 
 #include <string>
+#include <memory>
 #include "../../audio/AudioPlayer.h"
 
 /*
@@ -10,13 +11,13 @@
  */
 class Observer {
 public:
-    Observer(AudioPlayer * audio_player): audio_player(audio_player) {}
+    Observer(std::unique_ptr<AudioPlayer> & audio_player): audio_player(std::move(audio_player)) {}
 
     void play(const std::string & filename);
     void resume();
     void pause();
 private:
-    AudioPlayer * audio_player;
+    std::unique_ptr<AudioPlayer> audio_player;
 };
 
 #endif
