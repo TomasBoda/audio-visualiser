@@ -6,7 +6,7 @@ Frame::Frame(): wxFrame(NULL, wxID_ANY, "Music Visualiser", wxDefaultPosition, w
     initialize_window();
 }
 
-Frame::~Frame() {
+Frame::~Frame() noexcept {
     render_timer->Stop();
     update_timer->Stop();
     delete render_timer;

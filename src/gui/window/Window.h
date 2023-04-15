@@ -20,6 +20,7 @@
 class Window : public Frame {
 public:
     Window();
+    ~Window() noexcept;
 
     /*
      * Render components in the window
@@ -37,10 +38,10 @@ public:
         this->observer = std::move(observer);
     }
 private:
-    Equalizer * equalizer_visualiser;
-    Circular * circular_visualiser;
-    Volumes * volumes_visualiser;
-    Visualiser * visualiser;
+    std::shared_ptr<Equalizer> equalizer_visualiser;
+    std::shared_ptr<Circular> circular_visualiser;
+    std::shared_ptr<Volumes> volumes_visualiser;
+    std::shared_ptr<Visualiser> visualiser;
 
     std::unique_ptr<Observer> observer;
 

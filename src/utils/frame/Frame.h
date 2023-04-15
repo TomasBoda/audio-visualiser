@@ -13,7 +13,7 @@
 class Frame : public wxFrame {
 public:
     Frame();
-    ~Frame();
+    ~Frame() noexcept;
 
     /*
      * Initialize the window

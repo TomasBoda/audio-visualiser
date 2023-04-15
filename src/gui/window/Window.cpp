@@ -1,13 +1,16 @@
 #include "Window.h"
 
 Window::Window() {
-    equalizer_visualiser = new Equalizer();
-    circular_visualiser = new Circular();
-    volumes_visualiser = new Volumes();
-
+    equalizer_visualiser = std::make_shared<Equalizer>();
+    circular_visualiser = std::make_shared<Circular>();
+    volumes_visualiser = std::make_shared<Volumes>();
     visualiser = equalizer_visualiser;
 
     init_menu_bar();
+}
+
+Window::~Window() noexcept {
+    delete menu_bar;
 }
 
 void Window::render(Graphics graphics) {

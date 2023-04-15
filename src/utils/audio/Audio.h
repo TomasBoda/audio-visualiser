@@ -21,6 +21,8 @@ struct AudioData {
     SDL_AudioFormat format;
 };
 
+using audio_ptr = std::shared_ptr<AudioData>;
+
 /*
  * Copy audio data back to stream
  * This method copies the processed audio data back to stream and moves the audio stream pointer
@@ -28,7 +30,7 @@ struct AudioData {
  * @param audio audio data @see AudioData
  * @param length size of the current audio chunk
  */
-void copy_to_stream_and_advance(Uint8 * & stream, AudioData * & audio, int length);
+void copy_to_stream_and_advance(Uint8 * & stream, audio_ptr & audio, int length);
 
 /*
  * Free FFT vectors after processing
@@ -45,7 +47,7 @@ void free_fftw_data(fftw_complex * & fft_input, fftw_complex * & fft_output, fft
  * @param fft_input input vector of the FFT algorithm
  * @param audio audio data @see AudioData
  */
-void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio, int channel);
+void copy_stream_to_fft_input(fftw_complex * & fft_input, audio_ptr & audio, int channel);
 
 /*
  * Calculate frequency spectrum
@@ -55,7 +57,7 @@ void copy_stream_to_fft_input(fftw_complex * & fft_input, AudioData * & audio, i
  * @param channel channel to be calculated
  * @param frequency_spectrum variable where the decibel values of the frequency spectrum should be stored
  */
-void calculate_fft_frequency_spectrum(AudioData * & audio, Uint32 window_size, int channel, double_array & frequency_spectrum);
+void calculate_fft_frequency_spectrum(audio_ptr & audio, Uint32 window_size, int channel, double_array & frequency_spectrum);
 
 /*
  * Convert frequency range in Hz to FFT bin range
@@ -65,16 +67,16 @@ void calculate_fft_frequency_spectrum(AudioData * & audio, Uint32 window_size, i
  * @param audio audio data @see AudioData
  * @return pair of lower and upper FFT bin bounds
  */
-std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int high_frequency, AudioData * & audio);
+std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int high_frequency, audio_ptr & audio);
 
 /*
  * Get decibel levels of audio file by seconds
  * This method calculates the highest decibel level of each second of the audio file
  * @return vector of decibel levels
  */
-std::vector<double> & get_volume_levels(AudioData & audio);
+std::vector<double> & get_volume_levels(audio_ptr & audio);
 
-void update_audio_position(AudioData * & audio);
+void update_audio_position(audio_ptr & audio);
 
 /*
  * Convert frequency magnitude to decibel value

@@ -50,7 +50,7 @@ public:
      */
     void load_volume_levels();
 private:
-    AudioData audio;
+    audio_ptr audio;
     std::thread audio_thread;
 
     /*

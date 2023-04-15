@@ -12,7 +12,6 @@ template<typename T>
 using array_ptr = std::unique_ptr<T[]>;
 
 using double_array = array_ptr<double>;
-
 using double_vector = std::vector<double>;
 
 namespace global {

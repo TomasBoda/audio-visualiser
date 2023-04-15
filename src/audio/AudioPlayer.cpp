@@ -2,6 +2,7 @@
 
 AudioPlayer::AudioPlayer() {
     initialize();
+    audio = std::make_shared<AudioData>();
 }
 
 void AudioPlayer::initialize() {
@@ -11,7 +12,7 @@ void AudioPlayer::initialize() {
 }
 
 void AudioPlayer::audio_callback(void * user_data, Uint8 * stream, int length) {
-    AudioData * audio = (AudioData *) user_data;
+    audio_ptr audio = std::static_pointer_cast<AudioData>(*(static_cast<std::shared_ptr<void>*>(user_data)));
     update_audio_position(audio);
 
     Uint32 window_size = audio->samples;
@@ -41,12 +42,12 @@ void AudioPlayer::load_audio(const std::string & filename) {
     }
 
     // fill the AudioData struct with audio data
-    audio.position = wav_buffer;
-    audio.length = wav_length;
-    audio.sample_rate = wav_spec.freq;
-    audio.channels = wav_spec.channels;
-    audio.samples = wav_spec.samples;
-    audio.format = wav_spec.format;
+    audio->position = wav_buffer;
+    audio->length = wav_length;
+    audio->sample_rate = wav_spec.freq;
+    audio->channels = wav_spec.channels;
+    audio->samples = wav_spec.samples;
+    audio->format = wav_spec.format;
 
     // set the callback function
     wav_spec.callback = &AudioPlayer::audio_callback;
@@ -79,13 +80,13 @@ void AudioPlayer::audio_playback() {
     SDL_PauseAudio(0);
 
     // play audio as long as there is data to be played
-    while (audio.length > 0) {
+    while (audio->length > 0) {
         SDL_Delay(1);
     }
 
     // close and free audio data
     SDL_CloseAudio();
-    SDL_FreeWAV(audio.position);
+    SDL_FreeWAV(audio->position);
 }
 
 void AudioPlayer::load_volume_levels() {
