@@ -34,7 +34,7 @@ public:
      */
     void update() override;
 
-    void set_observer(std::unique_ptr<Observer> & observer) {
+    void set_observer(std::unique_ptr<Observer> observer) {
         this->observer = std::move(observer);
     }
 private:

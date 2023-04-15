@@ -9,14 +9,13 @@ namespace global {
     std::mutex MUTEX;
 
     const int NUM_CHUNKS = 360;
-
     double_array SPECTRUM_LEFT = std::make_unique<double[]>(NUM_CHUNKS);
     double_array SPECTRUM_RIGHT = std::make_unique<double[]>(NUM_CHUNKS);
 
     int LOW_FREQUENCY = 0;
     int HIGH_FREQUENCY = 20000;
 
-    std::vector<double> VOLUME_LEVELS;
+    double_vector VOLUME_LEVELS;
     double MAX_VOLUME = 0;
 
     int AUDIO_SIZE = 0;

@@ -11,7 +11,7 @@
  */
 class Observer {
 public:
-    Observer(std::unique_ptr<AudioPlayer> & audio_player): audio_player(std::move(audio_player)) {}
+    Observer(std::unique_ptr<AudioPlayer> audio_player): audio_player(std::move(audio_player)) {}
 
     void play(const std::string & filename);
     void resume();

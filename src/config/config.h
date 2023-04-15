@@ -30,7 +30,7 @@ namespace global {
     extern double_array SPECTRUM_LEFT;
     extern double_array SPECTRUM_RIGHT;
 
-    extern std::vector<double> VOLUME_LEVELS;
+    extern double_vector VOLUME_LEVELS;
     extern double MAX_VOLUME;
 
     extern int AUDIO_SIZE;

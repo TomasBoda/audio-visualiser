@@ -1,6 +1,6 @@
 #include "Audio.h"
 
-void copy_to_stream_and_advance(Uint8 * & stream, audio_ptr & audio, int length) {
+void copy_to_stream_and_advance(Uint8 * & stream, audio_ptr audio, int length) {
     SDL_memcpy(stream, audio->position, length);
     audio->position += length;
     audio->length -= length;
@@ -12,7 +12,7 @@ void free_fftw_data(fftw_complex * & fft_input, fftw_complex * & fft_output, fft
     fftw_free(fft_output);
 }
 
-void copy_stream_to_fft_input(fftw_complex * & fft_input, audio_ptr & audio, int channel) {
+void copy_stream_to_fft_input(fftw_complex * & fft_input, audio_ptr audio, int channel) {
     Uint32 window_size = audio->samples;
 
     for (int i = 0; i < window_size; i++) {
@@ -22,7 +22,7 @@ void copy_stream_to_fft_input(fftw_complex * & fft_input, audio_ptr & audio, int
     }
 }
 
-void calculate_fft_frequency_spectrum(audio_ptr & audio, Uint32 window_size, int channel, double_array & frequency_spectrum) {
+void calculate_fft_frequency_spectrum(audio_ptr audio, Uint32 window_size, int channel, double_array & frequency_spectrum) {
     fftw_complex * fft_input = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
     fftw_complex * fft_output = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
     fftw_plan fft_plan = fftw_plan_dft_1d(window_size, fft_input, fft_output, FFTW_FORWARD, FFTW_ESTIMATE);
@@ -69,7 +69,7 @@ void calculate_fft_frequency_spectrum(audio_ptr & audio, Uint32 window_size, int
     free_fftw_data(fft_input, fft_output, fft_plan);
 }
 
-std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int high_frequency, audio_ptr & audio) {
+std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int high_frequency, audio_ptr audio) {
     int window_size = audio->samples;
     int num_bins = window_size / 2 + 1;
     Uint32 sample_rate = audio->sample_rate;
@@ -93,7 +93,7 @@ std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int 
     return indexes;
 }
 
-std::vector<double> & get_volume_levels(audio_ptr & audio) {
+std::vector<double> & get_volume_levels(audio_ptr audio) {
     std::vector<double> * levels = new std::vector<double>;
 
     int samples_per_second = audio->sample_rate;
@@ -120,7 +120,7 @@ std::vector<double> & get_volume_levels(audio_ptr & audio) {
     return *levels;
 }
 
-void update_audio_position(audio_ptr & audio) {
+void update_audio_position(audio_ptr audio) {
     // get the current playback duration in bytes
     Uint32 bytes_played = audio->length - audio->samples * audio->channels * SDL_AUDIO_BITSIZE(audio->format) / 8;
     // update the playback duration in bytes
