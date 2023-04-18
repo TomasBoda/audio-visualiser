@@ -74,7 +74,7 @@ std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int 
  * This method calculates the highest decibel level of each second of the audio file
  * @return vector of decibel levels
  */
-std::vector<double> & get_volume_levels(audio_ptr audio);
+std::vector<double> get_volume_levels(audio_ptr audio);
 
 void update_audio_position(audio_ptr audio);
 

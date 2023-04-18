@@ -51,29 +51,41 @@ void Window::on_volumes_select(Event event) {
     visualiser = volumes_visualiser;
 }
 
+void Window::set_observer(std::unique_ptr<Observer> observer) {
+    this->observer = std::move(observer);
+}
+
 void Window::init_menu_bar() {
     menu_bar = new wxMenuBar();
 
+    // file menu
     wxMenu * file_menu = new wxMenu();
+    // choose new file
     file_menu->Append(wxID_ANY, "&Choose new file...\tCtrl+N");
-    file_menu->Append(wxID_ANY, "&Quit\tCtrl+Q");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_choose, this, file_menu->GetMenuItems()[0]->GetId());
+    // quit the application
+    file_menu->Append(wxID_ANY, "&Quit\tCtrl+Q");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_quit, this, file_menu->GetMenuItems()[1]->GetId());
     menu_bar->Append(file_menu, "&File");
 
     wxMenu * playback_menu = new wxMenu();
+    // resume audio playback
     playback_menu->Append(wxID_ANY, "&Resume\tCtrl+R");
-    playback_menu->Append(wxID_ANY, "&Pause\tCtrl+P");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_resume, this, playback_menu->GetMenuItems()[0]->GetId());
+    // pause audio playback
+    playback_menu->Append(wxID_ANY, "&Pause\tCtrl+P");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_pause, this, playback_menu->GetMenuItems()[1]->GetId());
     menu_bar->Append(playback_menu, "&Playback");
 
     wxMenu * visualiser_menu = new wxMenu();
+    // select the equalizer visualiser
     visualiser_menu->Append(wxID_ANY, "Equalizer\tCtrl+E");
-    visualiser_menu->Append(wxID_ANY, "Circular\tCtrl+C");
-    visualiser_menu->Append(wxID_ANY, "Volumes\tCtrl+V");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_equalizer_select, this, visualiser_menu->GetMenuItems()[0]->GetId());
+    // select the circular visualiser
+    visualiser_menu->Append(wxID_ANY, "Circular\tCtrl+C");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_circular_select, this, visualiser_menu->GetMenuItems()[1]->GetId());
+    // select the volumes visualiser
+    visualiser_menu->Append(wxID_ANY, "Volumes\tCtrl+V");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &Window::on_volumes_select, this, visualiser_menu->GetMenuItems()[2]->GetId());
     menu_bar->Append(visualiser_menu, "&Visualiser");
 

@@ -1,6 +1,9 @@
 # Music Visualizer
 by Tomáš Boďa
 
+[User Manual](/docs/manual.md) \
+[Documentation](/docs/documentation.md)
+
 ![Music Visualiser](music-visualiser.gif)
 
 ## About

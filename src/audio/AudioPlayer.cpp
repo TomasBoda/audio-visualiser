@@ -13,10 +13,13 @@ void AudioPlayer::initialize() {
 
 void AudioPlayer::audio_callback(void * user_data, Uint8 * stream, int length) {
     audio_ptr audio = std::static_pointer_cast<AudioData>(*(static_cast<std::shared_ptr<void>*>(user_data)));
+
+    // update the audio remaining time
     update_audio_position(audio);
 
     Uint32 window_size = audio->samples;
 
+    // calculate the frequency spectrum of each channel using the FFT algorithm
     if (audio->channels == 1) {
         calculate_fft_frequency_spectrum(audio, window_size, 0, global::SPECTRUM_LEFT);
         calculate_fft_frequency_spectrum(audio, window_size, 0, global::SPECTRUM_RIGHT);
@@ -25,6 +28,7 @@ void AudioPlayer::audio_callback(void * user_data, Uint8 * stream, int length) {
         calculate_fft_frequency_spectrum(audio, window_size, 1, global::SPECTRUM_RIGHT);
     }
 
+    // copy audio data back to stream and move the audio pointer to next chunk
     copy_to_stream_and_advance(stream, audio, length);
 }
 

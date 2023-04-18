@@ -4,6 +4,9 @@
 #include <wx/wx.h>
 #include <string>
 
+/*
+ * Dialog component
+ */
 class Dialog {
 public:
     /*

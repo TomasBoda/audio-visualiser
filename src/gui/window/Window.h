@@ -34,9 +34,12 @@ public:
      */
     void update() override;
 
-    void set_observer(std::unique_ptr<Observer> observer) {
-        this->observer = std::move(observer);
-    }
+    /*
+     * Set observer
+     * This method sets the observer
+     * @param observer observer to be set
+     */
+    void set_observer(std::unique_ptr<Observer> observer);
 private:
     std::shared_ptr<Equalizer> equalizer_visualiser;
     std::shared_ptr<Circular> circular_visualiser;
@@ -47,16 +50,48 @@ private:
 
     wxMenuBar * menu_bar;
 
+    /*
+     * Choose new audio file
+     * This method opens the file chooser dialog and the user can select the next audio file to be played
+     */
     void on_choose(Event event);
 
+    /*
+     * Quit application
+     * This method quits the application
+     */
     void on_quit(Event event);
+    /*
+     * Resume audio playback
+     * This method resumes the audio playback if it has been paused
+     */
     void on_resume(Event event);
+    /*
+     * Pause audio playback
+     * This method pauses the audio playback if it has been resumed
+     */
     void on_pause(Event event);
 
+    /*
+     * Select equalizer visualiser
+     * This method changes the current visualiser to the equalizer visualiser
+     */
     void on_equalizer_select(Event event);
+    /*
+     * Select circular visualiser
+     * This method changes the current visualiser to the circular visualiser
+     */
     void on_circular_select(Event event);
+    /*
+     * Select volumes visualiser
+     * This method changes the current visualiser to the volumes visualiser
+     */
     void on_volumes_select(Event event);
 
+    /*
+     * Initialize menu bar
+     * This method initializes the native menu bar with all its options
+     */
     void init_menu_bar();
 };
 

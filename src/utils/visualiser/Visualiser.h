@@ -13,7 +13,15 @@ class Visualiser {
 public:
     Visualiser();
 
+    /*
+     * Render visualiser
+     * This method render the visualiser
+     */
     void render_visualiser(Graphics graphics);
+    /*
+     * Update visualiser
+     * This method updates the visualizer
+     */
     void update_visualiser();
 protected:
     double_array frequency_spectrum_left;
@@ -25,7 +33,6 @@ protected:
     /*
      * Render the visualiser
      * This method renders the custom visualiser and its components
-     * @param graphics graphics object @see wxDC
      */
     virtual void render(Graphics graphics) {}
     /*
@@ -45,7 +52,15 @@ protected:
      */
     virtual void copy_frequency_spectrum();
 
+    /*
+     * Update the remaining audio playback time
+     * This method calculates the remaining audio playback time
+     */
     void update_remaining_time();
+    /*
+     * Render the remaining audio playback time
+     * This method renders the remaining audio playback time
+     */
     void render_remaining_time(Graphics graphics);
 };
 

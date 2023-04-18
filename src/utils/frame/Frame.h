@@ -42,7 +42,15 @@ private:
     void OnSize(wxSizeEvent & event);
     void OnClose(wxCloseEvent & event);
 
+    /*
+     * Render timer callback
+     * This method represent action to be performed on each render timer tick
+     */
     void on_render_timer(wxTimerEvent & event);
+    /*
+     * Update timer callback
+     * This method represent action to be performed on each update timer tick
+     */
     void on_update_timer(wxTimerEvent & event);
 
     /*

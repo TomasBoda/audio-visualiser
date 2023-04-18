@@ -93,8 +93,8 @@ std::pair<size_t, size_t> frequency_range_to_bin_indexes(int low_frequency, int 
     return indexes;
 }
 
-std::vector<double> & get_volume_levels(audio_ptr audio) {
-    std::vector<double> * levels = new std::vector<double>;
+std::vector<double> get_volume_levels(audio_ptr audio) {
+    std::vector<double> levels;
 
     int samples_per_second = audio->sample_rate;
     int bytes_per_second = samples_per_second * (SDL_AUDIO_BITSIZE(audio->format) / 8) * audio->channels;
@@ -114,10 +114,10 @@ std::vector<double> & get_volume_levels(audio_ptr audio) {
         }
 
         float root_mean_square = sqrtf(sum_squares / num_samples);
-        levels->push_back(root_mean_square);
+        levels.push_back(root_mean_square);
     }
 
-    return *levels;
+    return levels;
 }
 
 void update_audio_position(audio_ptr audio) {

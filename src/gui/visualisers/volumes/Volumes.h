@@ -6,6 +6,9 @@
 #include "../../../config/config.h"
 #include "../../../utils/visualiser/Visualiser.h"
 
+/*
+ * Volumes visualiser derived from the generic visualiser
+ */
 class Volumes : public Visualiser {
 public:
     Volumes();
