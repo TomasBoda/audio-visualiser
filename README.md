@@ -7,4 +7,4 @@ A cross-platform application written in C++ that visualizes audio in real-time u
 [User Manual](/docs/manual.md) \
 [Documentation](/docs/documentation.md)
 
-![Music Visualiser](/docs/visualiser-equalizer.png)
+![Music Visualiser](/docs/assets/visualiser-equalizer.png)

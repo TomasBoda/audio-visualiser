@@ -45,17 +45,17 @@ There are three visualisers the user can choose from, which are [Equalizer](#equ
 This visualiser is the most natural way to visualise the frequency spectrum of an audio file. It represents a two-dimensional grid, where the horizontal axis represents the frequency value in Hertz and the vertical axis represents the corresponding frequency magnitude in decibels. \
 There are two colored lines representing the left and right channel of the audio file. The red line represents the left channel and the blue line represents the right channel.
 
-![Equalizer Visualiser](/docs/visualiser-equalizer.png)
+![Equalizer Visualiser](/docs/assets/visualiser-equalizer.png)
 
 #### Circular Visualiser
 This visualiser also represents the frequency spectrum of an audio file. In this case, the spectrum is visualised around a central oval, striking the frequency bins to every direction. \
 the left side of the circle represents the frequency spectrum of the left channel and the right side of the circle represent the frequency spectrum of the right channel.
 
-![Circular Visualiser](/docs/visualiser-circular.png)
+![Circular Visualiser](/docs/assets/visualiser-circular.png)
 
 #### Volumes Visualiser
 This visualiser is represents a waveform of the whole audio file based on the maximum volume at any given second of its duration. \
 Each second of the audio file is represented as a small rectangle, that's height corresponds to the maximum volume of that second. \
 There is also a blue line that moves from left to right over time, representing a pointer to the current second of the audio playback.
 
-![Volumes Visualiser](/docs/visualiser-volumes.png)
+![Volumes Visualiser](/docs/assets/visualiser-volumes.png)
