@@ -36,6 +36,7 @@ void Frame::OnClose(wxCloseEvent &event) {
     render_timer->Stop();
     update_timer->Stop();
     Destroy();
+    std::exit(0);
 }
 
 void Frame::on_render_timer(wxTimerEvent &event) {
@@ -49,6 +50,7 @@ void Frame::on_update_timer(wxTimerEvent &event) {
 void Frame::initialize_window() {
     Bind(wxEVT_PAINT, &Frame::OnPaint, this);
     Bind(wxEVT_SIZE, &Frame::OnSize, this);
+    Bind(wxEVT_CLOSE_WINDOW, &Frame::OnClose, this);
 
     init_default_size();
 
