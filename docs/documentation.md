@@ -55,6 +55,7 @@ void AudioPlayer::audio_callback(void * user_data, Uint8 * stream, int length) {
 
 ### Calculating the Frequency Spectrum
 The `audio_callback` function uses the `calculate_fft_frequency_spectrum` function defined in the [Audio](../src/utils/audio/Audio.h) util that calculates the frequency spectrum using the Fast Fourier Transform (FFT) algorithm.
+
 The calculation of the frequency spectrum works as follows.
 
 First, we allocate the FFT input and output vectors and create a FFT plan object that is used as the input to the FFT algorithm.
