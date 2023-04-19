@@ -1,6 +1,19 @@
 # User Manual
 This document serves as a user manual to the Music Visualiser application.
 
+## Table of Contents
+1. [Requirements](#requirements)
+2. [Setup and Build](#setup-and-build)
+3. [Application Manual](#application-manual)
+   1. [Navigation](#navigation)
+      1. [File Menu](#file-menu)
+      2. [Playback Menu](#playback-menu)
+      3. [Visualisers Menu](#visualiser-menu)
+   2. [Visualisers](#visualisers)
+      1. [Equalizer Visualiser](#equalizer-visualiser)
+      2. [Circular Visualiser](#circular-visualiser)
+      3. [Volumes Visualiser](#volumes-visualiser)
+
 ## Requirements
 For building and running the application, you will need the following installed on your system.
 

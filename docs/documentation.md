@@ -1,6 +1,17 @@
 # Documentation
 This document serves as documentation to the Music Visualiser source code.
 
+## Table of Contents
+1. [Tools and Dependencies](#tools-and-dependencies)
+2. [Main Components](#main-components)
+   1. [Audio Player](#audio-player)
+      1. [Calculating the Frequency Spectrum](#calculating-the-frequency-spectrum)
+   2. [Visualiser](#visualiser)
+      1. [Equalizer Visualiser](#equalizer-visualiser)
+      2. [Circular Visualiser](#circular-visualiser)
+      3. [Volumes Visualiser](#volumes-visualiser)
+3. [Observer Design Patters](#observer-design-pattern)
+
 ## Tools and Dependencies
 The application is written in `C++` using the `CMake` build tool and utilizes the following external libraries.
 - [wxWidgets](https://github.com/wxWidgets/wxWidgets) - used for cross-platform window and GUI
@@ -235,7 +246,7 @@ for (int i = 0; i < num_seconds; i++) {
 ```
 Finally, we store this value into an array and use this array to plot the audio waveform.
 
-### Observer Design Pattern
+## Observer Design Pattern
 Since the audio playback and the GUI si dealt with in separate components, they need a way to communicate with each other. More specifically, the audio playback needs to be controlled from the GUI.
 
 For this purpose, I opted for the [Observer Design Patter](https://en.wikipedia.org/wiki/Observer_pattern), implemented in the [Observer](../src/utils/observer/Observer.h) class, which functions as a middleware, connecting the [Window](../src/gui/window/Window.h) to the [AudioPlayer](../src/audio/AudioPlayer.h) instance.
