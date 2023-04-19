@@ -8,14 +8,27 @@ The application is written in `C++` using the `CMake` build tool and utilizes th
 - [FFTW3](https://github.com/FFTW/fftw3) - used for Fast Fourier Transform calculations
 
 These libraries are added to the project as submodules and are built from source using `CMakeLists.txt`.
+```cmake
+add_subdirectory(libs/SDL)
+include_directories(libs/SDL/include)
+
+add_subdirectory(libs/fftw3)
+include_directories(libs/fftw3/api)
+
+add_subdirectory(libs/wxWidgets)
+include_directories(libs/wxWidgets/include)
+
+target_link_libraries(fft_music_visualiser PRIVATE SDL2 fftw3 wx::net wx::core wx::base)
+```
 
 ## Main Components
 The two most important components are the [AudioPlayer](../src/audio/AudioPlayer.h) and the [Visualiser](../src/utils/visualiser/Visualiser.h) classes.
 
 ### Audio Player
 The [AudioPlayer](../src/audio/AudioPlayer.h) class is responsible for processing audio files and their data. It can load an audio file, start it in a new thread and control its playback.
+It works together with the [Audio](../src/utils/audio/Audio.h) util to perform operations and calculations on the audio data.
 
-It utilizes the `AudioData` struct defined in [Audio](../src/utils/audio/Audio.h) util that represents an audio object with all its necessary data.
+It utilizes the `AudioData` struct that represents an audio object with all its necessary data.
 ```c++
 struct AudioData {
     Uint8 * position;
@@ -26,42 +39,28 @@ struct AudioData {
     SDL_AudioFormat format;
 };
 ```
-
 This object is then passed to the `SDL2` and is used in the `audio_callback` function that processes current audio playback and its data in real time.
 
-The `audio_callback` function is responsible for calculating the frequency spectrum of each audio chunk (current audio data) and saving it to a global variable for visualisation.
+The `audio_callback` function is responsible for processing chunks of audio data in real-time. It is repeatedly called while the audio is being played and is used for real time audio processing. \
 ```c++
 void AudioPlayer::audio_callback(void * user_data, Uint8 * stream, int length) {
     audio_ptr audio = std::static_pointer_cast<AudioData>(*(static_cast<std::shared_ptr<void>*>(user_data)));
     
-    // update the audio remaining time
-    update_audio_position(audio);
-
-    Uint32 window_size = audio->samples;
-
-    // calculate the frequency spectrum of each channel using the FFT algorithm
-    if (audio->channels == 1) {
-        calculate_fft_frequency_spectrum(audio, window_size, 0, global::SPECTRUM_LEFT);
-        calculate_fft_frequency_spectrum(audio, window_size, 0, global::SPECTRUM_RIGHT);
-    } else {
-        calculate_fft_frequency_spectrum(audio, window_size, 0, global::SPECTRUM_LEFT);
-        calculate_fft_frequency_spectrum(audio, window_size, 1, global::SPECTRUM_RIGHT);
-    }
-
-    // copy audio data back to stream and move the audio pointer to next chunk
-    copy_to_stream_and_advance(stream, audio, length);
+    // do something with the audio data
 }
 ```
+Currently, it is used for updating the audio pointer for calculating the remaining playback time and calculating the frequency spectrum of the current audio data chunk.
 
 ### Calculating the Frequency Spectrum
 The `audio_callback` function uses the `calculate_fft_frequency_spectrum` function defined in the [Audio](../src/utils/audio/Audio.h) util that calculates the frequency spectrum using the Fast Fourier Transform (FFT) algorithm.
 
 The calculation of the frequency spectrum works as follows.
 
-First, we allocate the FFT input and output vectors and create a FFT plan object that is used as the input to the FFT algorithm.
+First, we allocate the FFT input and output vectors and create the FFT plan object that is used as the input to the FFT algorithm.
 ```c++
 fftw_complex * fft_input = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
 fftw_complex * fft_output = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * window_size);
+
 fftw_plan fft_plan = fftw_plan_dft_1d(window_size, fft_input, fft_output, FFTW_FORWARD, FFTW_ESTIMATE);
 ```
 Then, we copy the current audio chunk to the FFT input vector.
@@ -97,8 +96,8 @@ The [Visualiser](../src/utils/visualiser/Visualiser.h) is an abstract class that
 #### Equalizer Visualiser
 The [Equalizer](../src/gui/visualisers/equalizer/Equalizer.h) visualiser plots a two-dimensional visualisation of the decibel magnitudes (vertical axis) of the frequency bins (horizontal axis).
 
-There is one important thing about the plotting that is non-trivial, which is that the frequency bins are not distributed equally among the horizontal axis. 
-That is because in a relatively normal wave file, the lower frequencies are usually much louder than the higher frequencies, which results in not so aesthetic visualisation. 
+There is one non-trivial thing about this visualiser that needed to be dealt with to ensure smooth animation. \
+In a standard (properly mixed and mastered) wave file, the lower frequencies are usually much louder than the higher frequencies, which results in a very unevenly distributed plot.
 Therefore, I opted for specifying frequency ranges and their corresponding widths in pixels, which results in a much aesthetically pleasing visualisation.
 
 For this to work, I needed to create helper arrays with the delimiters, widths and frequency bin indexes.
@@ -120,7 +119,6 @@ double_vector widths = double_vector{
     global::WIDTH / 10.0 * 3.0
 };
 ```
-
 - the `delimiters` array represents the individual frequency ranges we want to distinguish
 - the `indexes` array represents the start and end index of the frequency bins of each frequency range in the `delimiters` array
 - the `widths` array represents the widths of the frequency ranges in pixels
@@ -158,12 +156,16 @@ x_prev = x;
 y_prev = y;
 ```
 
-This purpose of this whole process is to make the lower frequencies take up more horizontal space in the window, so the frequency spectrum plot looks less rugged.
+This purpose of this whole process is to make the lower frequencies take up more horizontal space in the window, so the frequency spectrum plot looks less uneven and more equally distributed among the horizontal axis.
 
 #### Circular Visualiser
 The [Circular](../src/gui/visualisers/circular/Circular.h) visualiser plots the frequency spectrum around a central circle. It uses basic geometric operations to calculate the `x` and `y` coordinates of each frequency bin based on the angle and magnitude of the frequency bin.
 
-There is one important thing about the plotting that is non-trivial, which is averaging adjacent frequency bins, so that the whole animation is smoother and less spiky. For this, I created a helper variable `smoothing_factor`, which is an integer value representing the number of adjacent frequency bins to be averaged. The greater the number is, the more smooth the visualisation is.
+There is one non-trivial thing about this visualiser that needed to be dealt with to ensure smooth animation. \
+Adjacent frequency bins can very in magnitudes to quite a great extent. Therefore, the circular plot looks very spiky uneven.
+Therefore, I decided to average adjacent frequencies, which minimizes their difference in magnitudes, resulting in a much more smooth visualisation.
+
+For this, I created a helper variable `smoothing_factor`, which is an integer constant representing the number of adjacent frequency bins to be averaged. The greater the number is, the smoother the visualisation is.
 
 Averaging the frequency bins is calculated in each tick of the visualisation and works as follows.
 
@@ -207,13 +209,13 @@ The [Volumes](../src/gui/visualisers/volumes/Volumes.h) visualiser plots the vol
 
 To calculate the number of seconds and the maximum volume of the audio in each second, we need to perform the following operations.
 
-Firstly, we determine the bytes per each second and the total number of seconds of the audio file.
+Firstly, we determine the number of bytes per each second and the total number of seconds of the audio file.
 ```c++
 int samples_per_second = audio->sample_rate;
 int bytes_per_second = samples_per_second * (SDL_AUDIO_BITSIZE(audio->format) / 8) * audio->channels;
 int num_seconds = (int) (audio->length / bytes_per_second);
 ```
-Then, we loop through each second and calculate the root mean square, which represents the overall volume.
+Then, we loop through each second and calculate the [root-mean-square](https://en.wikipedia.org/wiki/Root_mean_square), which represents the overall volume of the corresponding second.
 ```c++
 for (int i = 0; i < num_seconds; i++) {
     int start_byte = i * bytes_per_second;
@@ -232,3 +234,48 @@ for (int i = 0; i < num_seconds; i++) {
 }
 ```
 Finally, we store this value into an array and use this array to plot the audio waveform.
+
+### Observer Design Pattern
+Since the audio playback and the GUI si dealt with in separate components, they need a way to communicate with each other. More specifically, the audio playback needs to be controlled from the GUI.
+
+For this purpose, I opted for the [Observer Design Patter](https://en.wikipedia.org/wiki/Observer_pattern), implemented in the [Observer](../src/utils/observer/Observer.h) class, which functions as a middleware, connecting the [Window](../src/gui/window/Window.h) to the [AudioPlayer](../src/audio/AudioPlayer.h) instance.
+
+The [Observer](../src/utils/observer/Observer.h) is a simple class holding a pointer to the [AudioPlayer](../src/audio/AudioPlayer.h) instance, which disposes of various functions controlling the audio playback.
+```c++
+class Observer {
+public:
+    // ...
+private:
+    std::unique_ptr<AudioPlayer> audio_player;
+};
+```
+The pointer to the observer is then passed to the [Window](../src/gui/window/Window.h) object, which can call the observer's methods.
+```c++
+class Window : public Frame {
+public:
+    // ...
+    
+    void set_observer(std::unique_ptr<Observer> observer) {
+        this->observer = std::move(observer);
+    }
+private:
+    //...
+}
+```
+In this way, the audio playback can be controlled from the graphical user interface, which satisfies the needs of this project. \
+In this project, we only need to load an audio file, play it and pause/resume the playback from the GUI. Therefore, only the following three methods are implemented in the observer.
+```c++
+void Observer::play(const std::string & filename) {
+    audio_player->load_audio(filename);
+    audio_player->load_volume_levels();
+    audio_player->play_audio();
+}
+
+void Observer::resume() {
+    audio_player->resume_audio();
+}
+
+void Observer::pause() {
+    audio_player->pause_audio();
+}
+```

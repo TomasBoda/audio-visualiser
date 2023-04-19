@@ -25,18 +25,19 @@ message(STATUS ">> wxWidgets added")
 
 add_executable(fft_music_visualiser
         main.cpp
-        src/audio/AudioPlayer.h
-        src/audio/AudioPlayer.cpp
-        src/app/App.h
-        src/config/config.h
-        src/config/config.cpp
-        src/gui/window/Window.h
-        src/utils/dialog/Dialog.h
-        src/app/App.cpp
-        src/utils/audio/Audio.h
-        src/utils/visualiser/Visualiser.h
-        src/gui/visualisers/equalizer/Equalizer.h
-        src/gui/visualisers/circular/Circular.h
-        src/utils/frame/Frame.h src/utils/frame/Frame.cpp src/gui/window/Window.cpp src/gui/visualisers/equalizer/Equalizer.cpp src/gui/visualisers/circular/Circular.cpp src/utils/observer/Observer.h src/utils/audio/Audio.cpp src/utils/observer/Observer.cpp src/utils/dialog/Dialog.cpp src/utils/visualiser/Visualiser.cpp src/gui/visualisers/volumes/Volumes.h src/gui/visualisers/volumes/Volumes.cpp src/utils/time/Time.h src/utils/time/Time.cpp)
+        src/app/App.h src/app/App.cpp
+        src/audio/AudioPlayer.h src/audio/AudioPlayer.cpp
+        src/config/config.h src/config/config.cpp
+        src/gui/window/Window.h src/gui/window/Window.cpp
+        src/gui/visualisers/equalizer/Equalizer.h src/gui/visualisers/equalizer/Equalizer.cpp
+        src/gui/visualisers/circular/Circular.h src/gui/visualisers/circular/Circular.cpp
+        src/gui/visualisers/volumes/Volumes.h src/gui/visualisers/volumes/Volumes.cpp
+        src/utils/audio/Audio.h src/utils/audio/Audio.cpp
+        src/utils/dialog/Dialog.h src/utils/dialog/Dialog.cpp
+        src/utils/frame/Frame.h src/utils/frame/Frame.cpp
+        src/utils/observer/Observer.h src/utils/observer/Observer.cpp
+        src/utils/time/Time.h src/utils/time/Time.cpp
+        src/utils/visualiser/Visualiser.h src/utils/visualiser/Visualiser.cpp
+)
 
 target_link_libraries(fft_music_visualiser PRIVATE SDL2 fftw3 wx::net wx::core wx::base)
