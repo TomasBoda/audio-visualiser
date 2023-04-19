@@ -5,7 +5,7 @@ This document serves as documentation to the Music Visualiser source code.
 The application is written in `C++` using the `CMake` build tool and utilizes the following external libraries.
 - [wxWidgets](https://github.com/wxWidgets/wxWidgets) - used for cross-platform window and GUI
 - [SDL2](https://github.com/libsdl-org/SDL/tree/SDL2) - used for audio processing and playback
-- [FFTW3](https://github.com/FFTW/fftw3) - used for Fast Fourier Transform calculations
+- [FFTW3](https://github.com/FFTW/fftw3) - used for Fast Fourier Transform (FFT) calculations
 
 These libraries are added to the project as submodules and are built from source using `CMakeLists.txt`.
 ```cmake
@@ -22,7 +22,7 @@ target_link_libraries(fft_music_visualiser PRIVATE SDL2 fftw3 wx::net wx::core w
 ```
 
 ## Main Components
-The two most important components are the [AudioPlayer](../src/audio/AudioPlayer.h) and the [Visualiser](../src/utils/visualiser/Visualiser.h) classes.
+The two most important components of this project are the [AudioPlayer](#audio-player) and the [Visualiser](#visualiser) classes.
 
 ### Audio Player
 The [AudioPlayer](../src/audio/AudioPlayer.h) class is responsible for processing audio files and their data. It can load an audio file, start it in a new thread and control its playback.
@@ -41,7 +41,7 @@ struct AudioData {
 ```
 This object is then passed to the `SDL2` and is used in the `audio_callback` function that processes current audio playback and its data in real time.
 
-The `audio_callback` function is responsible for processing chunks of audio data in real-time. It is repeatedly called while the audio is being played and is used for real time audio processing. \
+The `audio_callback` function is called repeatedly during the audio playback and is responsible for processing chunks of audio data in real-time.
 ```c++
 void AudioPlayer::audio_callback(void * user_data, Uint8 * stream, int length) {
     audio_ptr audio = std::static_pointer_cast<AudioData>(*(static_cast<std::shared_ptr<void>*>(user_data)));
@@ -49,7 +49,7 @@ void AudioPlayer::audio_callback(void * user_data, Uint8 * stream, int length) {
     // do something with the audio data
 }
 ```
-Currently, it is used for updating the audio pointer for calculating the remaining playback time and calculating the frequency spectrum of the current audio data chunk.
+Currently, it is used for updating the audio pointer for calculating the remaining playback time as well as calculating the frequency spectrum of the current audio data chunk.
 
 ### Calculating the Frequency Spectrum
 The `audio_callback` function uses the `calculate_fft_frequency_spectrum` function defined in the [Audio](../src/utils/audio/Audio.h) util that calculates the frequency spectrum using the Fast Fourier Transform (FFT) algorithm.
@@ -63,7 +63,7 @@ fftw_complex * fft_output = (fftw_complex*) fftw_malloc(sizeof(fftw_complex) * w
 
 fftw_plan fft_plan = fftw_plan_dft_1d(window_size, fft_input, fft_output, FFTW_FORWARD, FFTW_ESTIMATE);
 ```
-Then, we copy the current audio chunk to the FFT input vector.
+Then, we copy the current audio chunk data to the FFT input vector.
 ```c++
 Uint32 window_size = audio->samples;
 
@@ -73,7 +73,7 @@ for (int i = 0; i < window_size; i++) {
     fft_input[i][1] = 0.0;
 }
 ```
-With the input vector holding the current audio data, we perform the FFT algorithm on the `fft_plan` using `fftw_execute(fft_plan);`.
+With the input vector holding the current audio data, we perform the FFT algorithm on the `fft_plan` using `fftw_execute(fft_plan)`.
 
 Next, we loop through the FFT output vector, which now holds the transformed values (frequency bins) and calculate the magnitude of each frequency bin.
 ```c++
