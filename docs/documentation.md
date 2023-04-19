@@ -18,7 +18,7 @@ The application is written in `C++` using the `CMake` build tool and utilizes th
 - [SDL2](https://github.com/libsdl-org/SDL/tree/SDL2) - used for audio processing and playback
 - [FFTW3](https://github.com/FFTW/fftw3) - used for Fast Fourier Transform (FFT) calculations
 
-These libraries are added to the project as submodules and are built from source using `CMakeLists.txt`.
+These libraries are added to the project as submodules and are built from source using [CMakeLists.txt](/CMakeLists.txt).
 ```cmake
 add_subdirectory(libs/SDL)
 include_directories(libs/SDL/include)
