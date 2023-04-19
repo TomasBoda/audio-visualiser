@@ -59,3 +59,5 @@ Each second of the audio file is represented as a small rectangle, that's height
 There is also a blue line that moves from left to right over time, representing a pointer to the current second of the audio playback.
 
 ![Volumes Visualiser](/docs/assets/visualiser-volumes.png)
+
+by Tomáš Boďa

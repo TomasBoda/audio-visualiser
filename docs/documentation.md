@@ -97,13 +97,13 @@ The [Visualiser](../src/utils/visualiser/Visualiser.h) is an abstract class that
 The [Equalizer](../src/gui/visualisers/equalizer/Equalizer.h) visualiser plots a two-dimensional visualisation of the decibel magnitudes (vertical axis) of the frequency bins (horizontal axis).
 
 There is one non-trivial thing about this visualiser that needed to be dealt with to ensure smooth animation. \
-In a standard (properly mixed and mastered) wave file, the lower frequencies are usually much louder than the higher frequencies, which results in a very unevenly distributed plot.
+In a standard (properly mixed and mastered) wave file, lower frequencies are usually much louder than higher frequencies, which results in an unevenly distributed plot.
 Therefore, I opted for specifying frequency ranges and their corresponding widths in pixels, which results in a much aesthetically pleasing visualisation.
 
-For this to work, I needed to create helper arrays with the delimiters, widths and frequency bin indexes.
+For this to work, I needed to create helper arrays with the frequency range delimiters and their corresponding widths and frequency bin indexes.
 ```c++
 using double_vector = std::vector<double>
-
+        
 double_vector delimiters = double_vector{ 0, 200, 1000, 8000, 20000};
 
 double_vector indexes = double_vector{ 0,
@@ -156,16 +156,16 @@ x_prev = x;
 y_prev = y;
 ```
 
-This purpose of this whole process is to make the lower frequencies take up more horizontal space in the window, so the frequency spectrum plot looks less uneven and more equally distributed among the horizontal axis.
+The purpose of this whole process is to make the lower frequencies take up more horizontal space in the window, so that the frequency spectrum plot looks less uneven and more equally distributed among the horizontal axis.
 
 #### Circular Visualiser
 The [Circular](../src/gui/visualisers/circular/Circular.h) visualiser plots the frequency spectrum around a central circle. It uses basic geometric operations to calculate the `x` and `y` coordinates of each frequency bin based on the angle and magnitude of the frequency bin.
 
 There is one non-trivial thing about this visualiser that needed to be dealt with to ensure smooth animation. \
-Adjacent frequency bins can very in magnitudes to quite a great extent. Therefore, the circular plot looks very spiky uneven.
-Therefore, I decided to average adjacent frequencies, which minimizes their difference in magnitudes, resulting in a much more smooth visualisation.
+Adjacent frequency bins can vary in magnitudes to quite a great extent. Hence, the circular plot looks very spiky and uneven.
+Due to this reason, I decided to average the magnitudes of adjacent frequencies, which minimizes their differences and results in a much smoother visualisation.
 
-For this, I created a helper variable `smoothing_factor`, which is an integer constant representing the number of adjacent frequency bins to be averaged. The greater the number is, the smoother the visualisation is.
+For this, I created a helper variable `smoothing_factor`, which is an integer constant representing the number of adjacent frequency bins to be averaged. The greater this number is, the smoother the visualisation will be.
 
 Averaging the frequency bins is calculated in each tick of the visualisation and works as follows.
 
@@ -249,7 +249,7 @@ private:
     std::unique_ptr<AudioPlayer> audio_player;
 };
 ```
-The pointer to the observer is then passed to the [Window](../src/gui/window/Window.h) object, which can call the observer's methods.
+The pointer to the observer is then passed to the [Window](../src/gui/window/Window.h) object, which can then call the observer's methods.
 ```c++
 class Window : public Frame {
 public:
@@ -262,8 +262,8 @@ private:
     //...
 }
 ```
-In this way, the audio playback can be controlled from the graphical user interface, which satisfies the needs of this project. \
-In this project, we only need to load an audio file, play it and pause/resume the playback from the GUI. Therefore, only the following three methods are implemented in the observer.
+In this way, the audio playback can be controlled from the graphical user interface, which satisfies the needs of this project.
+However, in this project, we only need to load an audio file, play it and pause/resume the playback from the GUI. Therefore, only the following three methods are implemented in the observer.
 ```c++
 void Observer::play(const std::string & filename) {
     audio_player->load_audio(filename);
@@ -279,3 +279,5 @@ void Observer::pause() {
     audio_player->pause_audio();
 }
 ```
+
+by Tomáš Boďa
