@@ -23,7 +23,12 @@ add_subdirectory(libs/wxWidgets)
 include_directories(libs/wxWidgets/include)
 message(STATUS ">> wxWidgets added")
 
+if (MSCV)
+    set(WIN_OPTIONS WIN32)
+endif()
+
 add_executable(fft_music_visualiser
+        ${WIN_OPTIONS}
         main.cpp
         src/app/App.h src/app/App.cpp
         src/audio/AudioPlayer.h src/audio/AudioPlayer.cpp
