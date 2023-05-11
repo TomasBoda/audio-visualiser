@@ -51,5 +51,5 @@ void Visualiser::render_remaining_time(Graphics graphics) {
 
     std::string time_string = remaining_time_string + " / " + total_time_string;
 
-    graphics.DrawText(time_string, global::WIDTH - 165, 40);
+    graphics.DrawText(time_string, global::WIDTH - 265, 40);
 }

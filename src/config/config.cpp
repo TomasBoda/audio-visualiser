@@ -4,7 +4,7 @@ namespace global {
     int WIDTH = 1800;
     int HEIGHT = 1000;
 
-    const char * FILENAME = "../src/assets/the-technicolors-tonight-you-are-mine.wav";
+    const char * FILENAME = "./the-technicolors-tonight-you-are-mine.wav";
 
     std::mutex MUTEX;
 

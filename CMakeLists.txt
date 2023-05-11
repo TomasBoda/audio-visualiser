@@ -23,7 +23,7 @@ add_subdirectory(libs/wxWidgets)
 include_directories(libs/wxWidgets/include)
 message(STATUS ">> wxWidgets added")
 
-if (MSCV)
+if (MSVC)
     set(WIN_OPTIONS WIN32)
 endif()
 
