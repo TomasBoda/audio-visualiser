@@ -1,7 +1,8 @@
 #include "App.h"
 
 bool App::OnInit() {
-    const char * filename = global::FILENAME;
+    //const char * filename = global::FILENAME;
+    std::string filename = Dialog::show_file_select();
 
     audio_player = std::make_unique<AudioPlayer>();
 
